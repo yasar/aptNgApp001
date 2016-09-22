@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="col-md-3">
+		<div data-apt-client-group-selector
+		     data-apt-formify data-label="Client Group"
+		     data-translate
+		     data-view-type="list"
+		     data-list-class="pre-scrollable"
+		     data-ng-model="vmClientForm.form.data.client_group_id"></div>
+	</div>
+	<div class="col-md-5">
+		<apt-field
+				type="date-ui" field="registration_date"
+				model-base="vmClientForm.form.data"
+				data-label="Registration Date"
+				translate="true"></apt-field>
+
+		<div data-ng-if="vmClientForm.clientFormType=='person'"
+		     data-apt-person-selector
+		     data-apt-formify data-label="Person"
+		     data-translate
+		     data-ng-model="vmClientForm.form.data.person_id"
+		     data-ng-change="vmClientForm.clientSelected()"
+		     data-form-handler-suffix="manager"></div>
+
+		<div data-ng-if="vmClientForm.clientFormType=='entity'"
+		     data-apt-entity-selector
+		     data-apt-formify data-label="Entity"
+		     data-translate
+		     data-ng-model="vmClientForm.form.data.entity_id"
+		     data-ng-change="vmClientForm.clientSelected()"
+		     data-form-handler-suffix="manager"></div>
+
+		<!--<div data-apt-client-group-selector
+		     data-apt-formify data-label="Client Group"
+		     data-translate
+		     data-ng-model="vmClientForm.form.data.client_group_id"></div>-->
+
+		<apt-field field="notes" type="textarea" model-base="vmClientForm.form.data"></apt-field>
+
+
+	</div>
+	<div class="col-md-4">
+		<div data-ng-if="vmClientForm.clientFormType=='person'">
+			<apt-panel>
+				<apt-panel-title>{{'Person Profile' | translate}}</apt-panel-title>
+				<div data-apt-person-profile item-id="vmClientForm.selectedId"></div>
+			</apt-panel>
+		</div>
+		<div data-ng-if="vmClientForm.clientFormType=='entity'"
+		     data-apt-entity-profile
+		     entity-id="vmClientForm.selectedId"></div>
+	</div>
+</div>

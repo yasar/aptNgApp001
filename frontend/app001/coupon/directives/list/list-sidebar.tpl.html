@@ -1,0 +1,48 @@
+<apt-panel class="no-border">
+    <apt-panel-heading-elements>
+        <form class="heading-form" action="#" ng-if="vmCouponList.data.length">
+            <div class="form-group has-feedback">
+                <apt-field field="searchFilter"
+                           placeholder="Search.."
+                           show-label="false"
+                           model-base="vmCouponList"></apt-field>
+                <div class="form-control-feedback">
+                    <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+            </div>
+        </form>
+    </apt-panel-heading-elements>
+    <apt-panel-body>
+        <div ng-if="!vmCouponList.data.length" translate>No any coupon is created, yet.</div>
+    </apt-panel-body>
+    <ul class="media-list">
+        <li class="media heading-divided p-10 no-margin-bottom no-margin-top"
+            data-ng-repeat="item in vmCouponList.data |filter:{title:vmCouponList.searchFilter}"
+            ng-class="{'alpha-slate': item==vmCouponList.selectedItem}">
+            <div class="media-left">
+                <i ng-if="item.is_published"
+                   class="icon-checkmark3 text-success"
+                   uib-tooltip="{{'Published'|translate}}"
+                   tooltip-placement="right"></i>
+                <i ng-if="!item.is_published"
+                   class="icon-checkmark3 text-muted"
+                   uib-tooltip="{{'Not Published'|translate}}"
+                   tooltip-placement="right"></i>
+            </div>
+
+            <div class="media-body">
+                <div class="media-heading">
+                    <a ng-href="{{ 'main.app001.coupon.view' | routeSegmentUrl: {id: item.coupon_id} }}"
+                       class="letter-icon-title text-overflow">
+                        <span>{{item.title}}</span>
+                        <span data-ng-if="!item.title" class="text-muted">{{'Untitled'|translate}}</span>
+                    </a>
+                </div>
+                <div class="text-muted text-size-small" ng-if="item.code">
+                    <span class="text-size-mini position-left">Code: </span> {{item.code}}
+                </div>
+
+            </div>
+        </li>
+    </ul>
+</apt-panel>

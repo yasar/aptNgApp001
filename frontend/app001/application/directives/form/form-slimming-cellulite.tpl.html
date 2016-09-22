@@ -1,0 +1,301 @@
+<div class="panel">
+    <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
+        <li class="active"><a href="#Consultation" data-toggle="tab" pg-tab role="tab"
+                              data-ng-click="showCalendar= false" translate>Consultation</a>
+        </li>
+        <li><a href="#Operation" data-toggle="tab" pg-tab role="tab"
+               data-ng-click="showCalendar = true" translate>Operation</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="Consultation">
+            <div data-apt-person-selector data-ng-model="formData.person_id"></div>
+            <div class="row form-group-attached">
+                <div class="col-md-12">
+                    <fieldset>
+                        <!--<legend style="font-size: 16px">General Properties</legend>-->
+                        <div class="checkbox check-success">
+                            <input type="checkbox" value="1" id="case0400"
+                                   ng-change="resetCheckboxesIfUnchecked('#case0400', [
+                                   '#case0401',
+                                   '#case0402',
+                                   '#case0403',
+                                   '#case0404',
+                                   '#case0405',
+                                   '#case0406',
+                                   '#case0407',
+                                   '#case0408',
+                                   '#case0409',
+                                   '#case0410',
+                                   '#case0411',
+                                   '#case0412',
+                                   '#case0413'
+                                   ])"
+                                   data-ng-model="vars.case0400_checked" data-ng-true-value="1" data-ng-false-value="0">
+                            <label for="case0400" translate>Daha önce zayıflama ve selülit tedavisi için bir uygulama
+                                yaptırdınız mı ? </label>
+                        </div>
+                        <div data-ng-show="vars.case0400_checked == 1">
+                            <div class="checkbox check-success">
+                                <input type="checkbox" value="1" id="case0401"
+                                       data-ng-model="formData.consultation_case0401" data-ng-true-value="1"
+                                       data-ng-false-value="0">
+                                <label for="case0401" translate>Diet</label>
+                            </div>
+                            <div class="checkbox check-success">
+                                <input type="checkbox" value="1" id="case0402"
+                                       data-ng-model="formData.consultation_case0402" data-ng-true-value="1"
+                                       data-ng-false-value="0">
+                                <label for="case0402" translate>Vücut Bakımı</label>
+                            </div>
+                            <div class="checkbox check-success">
+                                <input type="checkbox" value="1" id="case0403"
+                                       data-ng-model="formData.consultation_case0403" data-ng-true-value="1"
+                                       data-ng-false-value="0">
+                                <label for="case0403" translate>Medikal Uygulama</label>
+                            </div>
+                            <div class="checkbox check-success">
+                                <input type="checkbox" value="1" id="case0406"
+                                       data-ng-model="formData.consultation_case0406" data-ng-true-value="1"
+                                       data-ng-false-value="0">
+                                <label for="case0406" translate>Estetik Operasyon</label>
+                            </div>
+                            <div class="checkbox check-success">
+                                <input type="checkbox" value="1" id="case0407"
+                                       data-ng-model="formData.consultation_case0407" data-ng-true-value="1"
+                                       data-ng-false-value="0">
+                                <label for="case0407" translate>Makine : Vakumlu Masaj</label>
+                            </div>
+                            <div class="checkbox check-success">
+                                <input type="checkbox" value="1" id="case0408"
+                                       data-ng-model="formData.consultation_case0408" data-ng-true-value="1"
+                                       data-ng-false-value="0">
+                                <label for="case0408" translate>Şekillendiri ve Selülit Giderici Ürünler</label>
+                            </div>
+                            <div class="checkbox check-success">
+                                <input type="checkbox" value="1" id="case0409"
+                                       data-ng-model="formData.consultation_case0409" data-ng-true-value="1"
+                                       data-ng-false-value="0">
+                                <label for="case0409" translate>Others</label>
+                            </div>
+                            <fieldset>
+                                <legend style="font-size: 16px">Sonuçları Ne oldu ?</legend>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="checkbox check-success">
+                                            <input type="checkbox" value="1" id="case0412"
+                                                   data-ng-model="formData.consultation_case0412" data-ng-true-value="1"
+                                                   data-ng-false-value="0">
+                                            <label for="case0412" translate>Kilo Kaybı Oldu Mu ?</label>
+                                        </div>
+                                        <div class="checkbox check-success">
+                                            <input type="checkbox" value="1" id="case0413"
+                                                   data-ng-model="formData.consultation_case0413" data-ng-true-value="1"
+                                                   data-ng-false-value="0">
+                                            <label for="case0413" translate>Tekrar Kilo Alma Oldu Mu ?</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div data-pg-form-group class="form-group form-group-default">
+                                            <label for="case0414" translate>Kg</label>
+                                            <input type="text" class="form-control" id="case0414" placeholder="Kg"
+                                                   data-ng-model="formData.consultation_case0414">
+                                        </div>
+                                        <div data-pg-form-group class="form-group form-group-default">
+                                            <label for="case0415" translate>Kg</label>
+                                            <input type="text" class="form-control" id="case0415" placeholder="Kg"
+                                                   data-ng-model="formData.consultation_case0415">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <fieldset>
+                        <!--<legend style="font-size: 16px">Allergic</legend>-->
+                        <div class="checkbox check-success">
+                            <input type="checkbox" value="1" id="case0416"
+                                   data-ng-model="formData.consultation_case0416" data-ng-true-value="1"
+                                   data-ng-false-value="0">
+                            <label for="case0416" translate>Varis şikayetiniz var mı ?</label>
+                        </div>
+                        <div class="checkbox check-success">
+                            <input type="checkbox" value="1" id="case0417"
+                                   data-ng-model="formData.consultation_case0417" data-ng-true-value="1"
+                                   data-ng-false-value="0">
+                            <label for="case0417" translate>Yemek saatleriniz düzenli mi ?</label>
+                        </div>
+
+                        <div class="checkbox check-success">
+                            <input type="checkbox" value="1" id="case0418"
+                                   data-ng-model="formData.consultation_case0418" data-ng-true-value="1"
+                                   data-ng-false-value="0">
+                            <label for="case0418" translate>Ögün aralarında birşeyler atıştırıyor musunuz ?</label>
+                        </div>
+                        <label style="margin-bottom: 10px;">Ne sıklıkla kahve ve kola tüketiyorsunuz ?</label>
+                        <div class="radio radio-success">
+                            <input type="radio" value="0" name="optionyes" id="case0419" data-ng-model="formData.consultation_case0419">
+                            <label for="case0419">Hiç</label>
+                            <input type="radio" value="1" name="optionyes" id="case0420" data-ng-model="formData.consultation_case0420" >
+                            <label for="case0420">Çok sık değil</label>
+                            <input type="radio"  value="2" name="optionyes" id="case0421" data-ng-model="formData.consultation_case0421">
+                            <label for="case0421">Sık sık</label>
+                        </div>
+                        <label style="margin-bottom: 10px;">Ne sıklıkla su tüketiyorsunuz ?</label>
+                        <div class="radio radio-success">
+                            <input type="radio" value="0" name="optionyes" id="case0422" data-ng-model="formData.consultation_case0422">
+                            <label for="case0422">Hiç</label>
+                            <input type="radio" value="1" name="optionyes" id="case0423" data-ng-model="formData.consultation_case0423">
+                            <label for="case0423">Çok sık değil</label>
+                            <input type="radio"  value="2" name="optionyes" id="case0424" data-ng-model="formData.consultation_case0424">
+                            <label for="case0424">Sık sık</label>
+                        </div>
+                        <div class="checkbox check-success">
+                            <input type="checkbox" value="1" id="case0425"
+                                   data-ng-model="formData.consultation_case0425" data-ng-true-value="1"
+                                   data-ng-false-value="0">
+                            <label for="case0425" translate>Tedavi uygulanırken siz de yürüyüş yapıp dengeli beslenir misiniz ?</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <fieldset>
+                        <!--<legend style="font-size: 16px; margin-bottom: 20px;">Others</legend>-->
+                        <div class="form-group">
+                            <label for="case0432">İncelmek istenen ve selülitli bölgeler</label>
+                            <textarea class="form-control" rows="5" id="case0432"
+                                      data-ng-model="formData.consultation_case0432"></textarea>
+                        </div>
+                        <label style="margin-bottom: 10px;">Selülit Tipi</label>
+                        <div class="radio radio-success">
+                            <input type="radio" value="0" name="optionyes" id="case0426" data-ng-model="formData.consultation_case0426">
+                            <label for="case0426">Hiç</label>
+                            <input type="radio" value="1" name="optionyes" id="case0427" data-ng-model="formData.consultation_case0427">
+                            <label for="case0427">Çok sık değil</label>
+                            <input type="radio"  value="2" name="optionyes" id="case0428" data-ng-model="formData.consultation_case0428">
+                            <label for="case0428">Sık sık</label>
+                        </div>
+                        <label style="margin-bottom: 10px;">Selülit Derecesi</label>
+                        <div class="radio radio-success">
+                            <input type="radio" value="0" name="optionyes" id="case0429" data-ng-model="formData.consultation_case0429">
+                            <label for="case0429">Hiç</label>
+                            <input type="radio" value="1" name="optionyes" id="case0430" data-ng-model="formData.consultation_case0430">
+                            <label for="case0430">Çok sık değil</label>
+                            <input type="radio"  value="2" name="optionyes" id="case0431" data-ng-model="formData.consultation_case0431">
+                            <label for="case0431">Sık sık</label>
+                        </div>
+                        <div class="checkbox check-success">
+                            <input type="checkbox" value="1" id="case0433"
+                                   data-ng-model="formData.consultation_case0433" data-ng-true-value="1"
+                                   data-ng-false-value="0">
+                            <label for="case0433" translate>Deride sarkma var mı ?</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="case0434">Hormon veya kortizon tedavisi görüyor musunuz ?</label>
+                            <textarea class="form-control" rows="5" id="case0434"
+                                      data-ng-model="formData.consultation_case0434"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="case0435">Herhangi bir operasyon geçirdiniz mi ?</label>
+                            <textarea class="form-control" rows="5" id="case0435"
+                                      data-ng-model="formData.consultation_case0435"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="case0436">Herhangi bir ilaç kullanıyor musunuz ?</label>
+                            <textarea class="form-control" rows="5" id="case0436"
+                                      data-ng-model="formData.consultation_case0436"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="case0437">Vücudünüzla ilgili şikayet ve istekleriniz</label>
+                            <textarea class="form-control" rows="5" id="case0437"
+                                      data-ng-model="formData.consultation_case0437"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="case0439">Tavsiye edilen ürünler</label>
+                            <textarea class="form-control" rows="5" id="case0439"
+                                      data-ng-model="formData.consultation_case0439"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="case0440">Güzellik uzmanının görüşleri</label>
+                            <textarea class="form-control" rows="5" id="case0440"
+                                      data-ng-model="formData.consultation_case0440"></textarea>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="Operation">
+
+            <div data-pg-form-group class="form-group form-group-default ">
+                <label>Date</label>
+                <input id="start-date" type="text" class="form-control date" name="startDate"
+                       data-ng-model="formData.operation_date_start_time" ui-jq="datepicker" ui-jq="popover"
+                       data-container="body" data-placement="top"
+                       data-content="This field is required" data-trigger="manual" required>
+            </div>
+
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_height" translate>Height</label>
+                <input type="text" class="form-control" id="operation_height"
+                       placeholder="Bölgeler için selector yapılacak" data-ng-model="formData.operation_height">
+            </div>
+
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_weight" translate>Weight</label>
+                <input type="text" class="form-control" id="operation_weight" placeholder="Height"
+                       data-ng-model="formData.operation_weight">
+            </div>
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_blood_pressure" translate>Blood Pressure</label>
+                <input type="text" class="form-control" id="operation_blood_pressure" placeholder="Blood Pressure"
+                       data-ng-model="formData.operation_blood_pressure">
+            </div>
+
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_stomach" translate>Stomach</label>
+                <input type="text" class="form-control" id="operation_stomach" placeholder="Stomach"
+                       data-ng-model="formData.operation_stomach">
+            </div>
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_waist" translate>Waist</label>
+                <input type="text" class="form-control" id="operation_waist" placeholder="Waist"
+                       data-ng-model="formData.operation_waist">
+            </div>
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_hip" translate>Hip</label>
+                <input type="text" class="form-control" id="operation_hip" placeholder="Hip"
+                       data-ng-model="formData.operation_hip">
+            </div>
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_calf" translate>Calf</label>
+                <input type="text" class="form-control" id="operation_calf" placeholder="Calf"
+                       data-ng-model="formData.operation_calf">
+            </div>
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_arm" translate>Arm</label>
+                <input type="text" class="form-control" id="operation_arm" placeholder="Arm"
+                       data-ng-model="formData.operation_arm">
+            </div>
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_upper_leg" translate>Upper Leg</label>
+                <input type="text" class="form-control" id="operation_upper_leg" placeholder="Upper Leg"
+                       data-ng-model="formData.operation_upper_leg">
+            </div>
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_lower_leg" translate>Lower Leg</label>
+                <input type="text" class="form-control" id="operation_lower_leg" placeholder="Lower Leg"
+                       data-ng-model="formData.operation_lower_leg">
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,18 @@
+<form ng-submit="vmSaleitemForm.form.submit()" role="form">
+
+    <div apt-formify-holder data-layout="ver" data-label-width="3,6">
+        <apt-field field="saleitem" model-base="vmSaleitemForm.form.data"></apt-field>
+    </div>
+    <apt-panel-footer>
+        <apt-panel-footer-right>
+            <button type="button" class="btn btn-xs btn-default"
+                    data-ng-click="vmSaleitemForm.form.cancel()"><span translate>Cancel</span> <i
+                    class="icon-close2 position-right"></i>
+            </button>
+            <button type="submit" class="btn btn-xs btn-primary"><span
+                    data-ng-bind="vmSaleitemForm.form.submitLabel"></span> <i
+                    class="icon-arrow-right14 position-right"></i>
+            </button>
+        </apt-panel-footer-right>
+    </apt-panel-footer>
+</form>

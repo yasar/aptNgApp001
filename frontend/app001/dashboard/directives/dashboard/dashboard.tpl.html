@@ -1,0 +1,52 @@
+<div>
+	
+	<div class="row">
+		<div data-ng-repeat="widget in vmDashboard.widgets" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"
+		     bind-html-compile="widget.template"
+		     bind-html-compile-scope-id="widget._scopeId"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<apt-panel>
+				<apt-panel-title>
+					<span translate>Clients</span>
+				</apt-panel-title>
+				<div apt-client-list view-type="media" data-params="{clientType:'allClient'}"></div>
+			</apt-panel>
+
+		</div>
+		<div class="col-md-6">
+			<div data-apt-calendar
+			     toggleable-event-sources="vmDashboard.eventSources"
+			     config-calendar="vmDashboard.calendarConfig"
+			     calendar-name="{{vmDashboard.calendarName}}"></div>
+
+			<apt-panel>
+				<apt-panel-title>Apptolia.Nexus Project</apt-panel-title>
+				<apt-panel-tab active>
+					<apt-panel-tab-title><span translate>News</span></apt-panel-tab-title>
+					<apt-panel-tab-body>
+						<div apt-atom-feeds-redmine
+						     domain="'http://redmine.apps.byrweb.com'"
+						     project="'nexus'"
+						     feed-type="'news'"
+						     key="'e529b10f70b49b23566f685c6630afc24afd928b'"
+						     count="10"></div>
+					</apt-panel-tab-body>
+				</apt-panel-tab>
+				<apt-panel-tab>
+					<apt-panel-tab-title><span translate>Issues</span></apt-panel-tab-title>
+					<apt-panel-tab-body>
+						<div apt-atom-feeds-redmine
+						     domain="'http://redmine.apps.byrweb.com'"
+						     project="'nexus'"
+						     feed-type="'issues'"
+						     key="'e529b10f70b49b23566f685c6630afc24afd928b'"
+						     count="20"></div>
+					</apt-panel-tab-body>
+				</apt-panel-tab>
+			</apt-panel>
+		</div>
+	</div>
+
+</div>

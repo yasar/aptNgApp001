@@ -1,0 +1,50 @@
+<div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" data-ng-if="vmSellerForm.sellerFormType=='person'">
+                <label translate>Person</label>
+                <div data-apt-person-selector
+                     data-ng-model="vmSellerForm.form.data.person_id"
+                     data-form-handler-suffix="manager"></div>
+            </div>
+
+            <div class="form-group" data-ng-if="vmSellerForm.sellerFormType=='entity'">
+                <label translate>Entity</label>
+                <div data-apt-entity-selector
+                     data-ng-model="vmSellerForm.form.data.entity_id"
+                     data-form-handler-suffix="manager"></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label translate>Account</label>
+                <div data-apt-account-selector
+                     data-ng-model="vmSellerForm.form.data.account_id"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label translate>Personel</label>
+                <div data-apt-staff-selector
+                     data-ng-model="vmSellerForm.form.data.staff_id"></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <apt-field
+                        type="date-ui" field="registration_date"
+                        model-base="vmSellerForm.form.data"
+                        data-label="Registration Date"
+                        translate="true"></apt-field>
+            </div>
+        </div>
+    </div>
+
+    <apt-field field="notes" type="textarea" model-base="vmSellerForm.form.data"></apt-field>
+</div>

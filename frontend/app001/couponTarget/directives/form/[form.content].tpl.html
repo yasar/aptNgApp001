@@ -1,0 +1,43 @@
+<div>
+
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label translate>Target Type</label>
+            <div data-apt-type-selector
+                 data-type="plain"
+                 data-ng-model="vmCouponTargetForm.form.data.type_id"
+                 data-ng-change="vmCouponTargetForm.changeTarget(data)"
+                 data-filter-object="{groupname:'coupon_target'}"></div>
+        </div>
+    </div>
+    <div class="col-md-6" ng-if="vmCouponTargetForm.show.client_group">
+        <div class="form-group">
+            <label translate>Client Group</label>
+            <div
+                    data-apt-client-group-selector
+                    type="plain"
+                    data-ng-model="vmCouponTargetForm.form.data.client_group_id"></div>
+        </div>
+    </div>
+    <div class="col-md-6" ng-if="vmCouponTargetForm.show.staff_group">
+        <div class="form-group">
+            <label translate>Staff Group</label>
+            <div
+                    data-apt-staff-group-selector
+                    data-type="plain"
+                    data-ng-model="vmCouponTargetForm.form.data.staff_group_id"></div>
+        </div>
+    </div>
+
+    <div class="col-md-6" ng-if="vmCouponTargetForm.show.card_type">
+        <div class="form-group">
+            <label translate>Card Type</label>
+            <div
+                    data-apt-type-selector
+                    type="plain"
+                    data-filter-object="{groupname:'Card'}"
+                    data-ng-model="vmCouponTargetForm.form.data.card_type_id"></div>
+        </div>
+    </div>
+</div>

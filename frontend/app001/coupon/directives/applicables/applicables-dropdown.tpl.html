@@ -1,0 +1,29 @@
+<ul class="nav navbar-nav">
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			<span ng-hide="vmCouponApplicables.flags.isInspecting"
+			      class="position-left badge badge-inline"
+			      ng-class="{true:'badge-success', false:'badge-default'}[vmCouponApplicables.coupons.length>0]">{{vmCouponApplicables.coupons.length}}</span>
+			<span ng-show="vmCouponApplicables.flags.isInspecting" class="position-left spinner icon-spinner9"></span>
+			<span translate>Coupons</span>
+			<span class="caret"></span>
+		</a>
+
+		<div class="dropdown-menu dropdown-content">
+			<div class="dropdown-content-body" style="min-width: 280px;">
+				<div class="panel bg-blue-300" ng-repeat="coupon in vmCouponApplicables.coupons">
+					<div class="panel-body"
+					     data-uib-tooltip="{{coupon.description}}"
+					     tooltip-placement="left">
+						<h3 class="no-margin">{{coupon.code}}</h3>
+						<span>{{coupon.title}}</span>
+					</div>
+				</div>
+
+				<div class="content-group text-muted" ng-if="vmCouponApplicables.coupons.length==0">
+					<h5 translate>No any applicable coupon found.</h5>
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>

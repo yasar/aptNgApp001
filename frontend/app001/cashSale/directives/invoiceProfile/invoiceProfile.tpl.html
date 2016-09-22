@@ -1,0 +1,66 @@
+<div class="panel panel-flat no-margin no-border">
+    <table class="table table-borderless table-compressed content-group-sm">
+        <tbody>
+        <tr>
+            <td class="text-right">
+                <span data-ng-show="vmCashSaleInvoiceProfile.invoiceRecipient.bill_to">{{vmCashSaleInvoiceProfile.invoiceRecipient.bill_to}}</span>
+                <span data-ng-hide="vmCashSaleInvoiceProfile.invoiceRecipient.bill_to"
+                      class="text-muted"
+                      translate>Name</span>
+                <a class="text-size-mini" data-ng-click="vmCashSaleInvoiceProfile.editClient()"
+                   ng-if="vmCashSaleInvoiceProfile.invoiceRecipient.bill_to"
+                   data-uib-tooltip="{{'Edit'|translate}}"><i class="icon-popout"></i></a>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right">
+                <span data-ng-show="vmCashSaleInvoiceProfile.invoiceRecipient.tckn">{{vmCashSaleInvoiceProfile.invoiceRecipient.tckn}}</span>
+                <span data-ng-hide="vmCashSaleInvoiceProfile.invoiceRecipient.tckn" class="text-muted" translate>TC Identity No</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right">
+                <span data-ng-show="vmCashSaleInvoiceProfile.invoiceRecipient.tax_office">{{vmCashSaleInvoiceProfile.invoiceRecipient.tax_office}}</span>
+                <span data-ng-hide="vmCashSaleInvoiceProfile.invoiceRecipient.tax_office"
+                      class="text-muted"
+                      translate>Tax Office</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right">
+                <span data-ng-show="vmCashSaleInvoiceProfile.invoiceRecipient.tax_num">{{vmCashSaleInvoiceProfile.invoiceRecipient.tax_num}}</span>
+                <span data-ng-hide="vmCashSaleInvoiceProfile.invoiceRecipient.tax_num"
+                      class="text-muted"
+                      translate>Tax Number</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right">
+                <span data-ng-show="vmCashSaleInvoiceProfile.invoiceRecipient.billing_address">{{vmCashSaleInvoiceProfile.invoiceRecipient.billing_address}}</span>
+                <span data-ng-hide="vmCashSaleInvoiceProfile.invoiceRecipient.billing_address"
+                      class="text-muted"
+                      translate>Billing Address</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="panel-footer panel-footer-condensed">
+        <div class="">
+            <ul class="list-inline list-inline-condensed heading-text pull-right">
+                <li><a href
+                       class="text-default text-size-mini text-light"
+                       data-ng-click="vmCashSaleInvoiceProfile.selectInvoiceRecipient()"><i
+                        class="icon-plus2"></i> <span
+                        translate>New Billing Address</span></a>
+                </li>
+                <li data-ng-if="vmCashSaleInvoiceProfile.invoiceRecipient.addresses.length>1">
+                    <span class="label border-left-primary label-striped"
+                          data-ng-click="vmCashSaleInvoiceProfile.selectBillingAddress(vmCashSaleInvoiceProfile.invoiceRecipient.addresses)">
+                        {{vmCashSaleInvoiceProfile.invoiceRecipient.addresses.length}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
