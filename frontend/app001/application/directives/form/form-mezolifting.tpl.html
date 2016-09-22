@@ -1,0 +1,106 @@
+<div class="panel">
+    <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
+        <li class="active"><a href="#Consultation" data-toggle="tab" pg-tab role="tab"
+                              data-ng-click="showCalendar= false" translate>Consultation</a>
+        </li>
+        <li><a href="#Operation" data-toggle="tab" pg-tab role="tab"
+               data-ng-click="showCalendar = true" translate>Operation</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="Consultation">
+            <div data-apt-person-selector data-ng-model="formData.person_id"></div>
+            <div class="row form-group-attached">
+                <div class="col-md-6 ">
+                    <fieldset>
+                        <legend style="font-size: 16px" translate>General Properties</legend>
+                        <div class="checkbox check-success">
+                            <input type="checkbox" checked="checked" value="1" id="case0200"
+                                   data-ng-model="formData.consultation_case0200" ng-true-value="1" ng-false-value="0">
+                            <label for="case0200" translate>Son dönem kalp yetmezliği var mı ? </label>
+                        </div>
+                        <div class="checkbox check-success">
+                            <input type="checkbox" checked="checked" value="1" id="case0201"
+                                   data-ng-model="formData.consultation_case0201" ng-true-value="1" ng-false-value="0">
+                            <label for="case0201" translate>Böbrek yetmizliği var mı ?</label>
+                        </div>
+                        <div class="checkbox check-success">
+                            <input type="checkbox" checked="checked" value="1" id="case0202"
+                                   data-ng-model="formData.consultation_case0202" ng-true-value="1" ng-false-value="0">
+                            <label for="case0202" translate>Diyabet özellikle(Nph-İnsülin kullanımı) var mı ?</label>
+                        </div>
+                        <div class="checkbox check-success">
+                            <input type="checkbox" checked="checked" value="1" id="case0203"
+                                   data-ng-model="formData.consultation_case0203" ng-true-value="1" ng-false-value="0">
+                            <label for="case0203" translate>Pıhtılaşmayı önleyen tedevai görüyor mu?</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-6">
+                    <fieldset>
+                        <legend style="font-size: 16px" translate>Allergic</legend>
+                        <div class="checkbox check-success">
+                            <input type="checkbox" checked="checked" value="1" id="case0204"
+                                   data-ng-model="formData.consultation_case0204" ng-true-value="1" ng-false-value="0">
+                            <label for="case0204" translate>İlaçlara karşı alerjisi var mı ?</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="case0205" translate>İlaçların isimleri</label>
+                            <textarea class="form-control" rows="5" id="case0205" data-ng-model="formData.consultation_case0205"></textarea>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <fieldset>
+                        <legend style="font-size: 16px; margin-bottom: 20px;">Others</legend>
+                        <div class="form-group">
+                            <label for="case0206" translate>Müşterinin genel şikayeti</label>
+                            <textarea class="form-control" rows="5" id="case0206" data-ng-model="formData.consultation_case0206"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="case0207" translate>Description</label>
+                            <textarea class="form-control" rows="5" id="case0207" data-ng-model="formData.consultation_case0207"></textarea>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="Operation">
+
+            <div data-pg-form-group class="form-group form-group-default ">
+                <label translate>Date</label>
+                <input id="start-date" type="text" class="form-control date" name="startDate"
+                       data-ng-model="formData.operation_date_start_time" ui-jq="datepicker" ui-jq="popover"
+                       data-container="body" data-placement="top"
+                       data-content="This field is required" data-trigger="manual" required>
+            </div>
+
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_body_part" translate>Body Part</label>
+                <input type="text" class="form-control" id="operation_body_part" placeholder="Bölgeler için selector yapılacak" data-ng-model="formData.operation_body_part">
+            </div>
+
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_used_unit" translate>Used Unit</label>
+                <input type="text" class="form-control" id="operation_used_unit" placeholder="Used Unit" data-ng-model="formData.operation_used_unit">
+            </div>
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_used_pill" translate>Used Pill</label>
+                <input type="text" class="form-control" id="operation_used_pill" placeholder="Used Unit" data-ng-model="formData.operation_used_pill">
+            </div>
+
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="operation_staff" translate>Consultant</label>
+                <div data-apt-staff-selector data-ng-model="formData.operation_staff" id="operation_staff"></div>
+            </div>
+            <div class="form-group">
+                <label for="opinion" translate>Görüşler</label>
+                <textarea class="form-control" rows="5" id="opinion" data-ng-model="formData.operation_opinion"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+

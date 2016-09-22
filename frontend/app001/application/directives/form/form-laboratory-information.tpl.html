@@ -1,0 +1,139 @@
+<div class="panel">
+    <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
+        <li class="active"><a href="#Consultation" data-toggle="tab" pg-tab role="tab"
+                              data-ng-click="showCalendar= false" translate>Consultation</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="Consultation">
+            <div data-pg-form-group class="form-group form-group-default ">
+            <label>Date</label>
+            <input id="start-date" type="text" class="form-control date" name="startDate"
+                   data-ng-model="formData.consultation_date_start_time" ui-jq="datepicker" ui-jq="popover"
+                   data-container="body" data-placement="top"
+                   data-content="This field is required" data-trigger="manual" required>
+        </div>
+            <div class="row form-group-attached">
+                <div class="col-md-3 ">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="cholesterol" translate>T.Kolestrol</label>
+                        <input type="text" class="form-control" id="cholesterol"
+                               data-ng-model="formData.consultation_cholesterol">
+                    </div>
+                </div>
+                <div class="col-md-3 ">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="sgot" translate>Sgot</label>
+                        <input type="text" class="form-control" id="sgot"
+                               data-ng-model="formData.consultation_sgot">
+                    </div>
+                </div>
+                <div class="col-md-3 ">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="hdl" translate>HDL</label>
+                        <input type="text" class="form-control" id="hdl"
+                               data-ng-model="formData.consultation_hdl">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="fgpt" translate>Fgpt</label>
+                        <input type="text" class="form-control" id="fgpt"
+                               data-ng-model="formData.consultation_fgpt">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group-attached">
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="ldl" translate>LDL</label>
+                        <input type="text" class="form-control" id="ldl"
+                               data-ng-model="formData.consultation_ldl">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="pks" translate>PKS</label>
+                        <input type="text" class="form-control" id="pks"
+                               data-ng-model="formData.consultation_pks">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="vldl" translate>VLDL</label>
+                        <input type="text" class="form-control" id="vldl"
+                               data-ng-model="formData.consultation_vldl">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="hb" translate>HB</label>
+                        <input type="text" class="form-control" id="hb"
+                               data-ng-model="formData.consultation_hb">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="ure" translate>Üre</label>
+                        <input type="text" class="form-control" id="ure"
+                               data-ng-model="formData.consultation_ure">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="htc" translate>HTC</label>
+                        <input type="text" class="form-control" id="htc"
+                               data-ng-model="formData.consultation_htc">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="uric_acid" translate>Uric Acid</label>
+                        <input type="text" class="form-control" id="uric_acid"
+                               data-ng-model="formData.consultation_uric_acidc">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="tsh" translate>TSH</label>
+                        <input type="text" class="form-control" id="tsh"
+                               data-ng-model="formData.consultation_tsh">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="aks" translate>AKŞ</label>
+                        <input type="text" class="form-control" id="aks"
+                               data-ng-model="formData.consultation_aks">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="t3" translate>T3</label>
+                        <input type="text" class="form-control" id="t3"
+                               data-ng-model="formData.consultation_t3">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="trigliserid" translate>Trigliserid</label>
+                        <input type="text" class="form-control" id="trigliserid"
+                               data-ng-model="formData.consultation_trigliserid">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div data-pg-form-group class="form-group form-group-default">
+                        <label for="t4" translate>T4</label>
+                        <input type="text" class="form-control" id="t4"
+                               data-ng-model="formData.consultation_t4">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

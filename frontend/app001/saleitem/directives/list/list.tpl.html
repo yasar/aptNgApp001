@@ -1,0 +1,16 @@
+<table apt-datatable datasource="data" model-base="vmSaleitemList">
+    <thead>
+    <tr>
+        <th apt-sort="saleitem" translate>Sale Item</th>
+        <th style="width: 100px;" apt-sort="type_name" translate>Type</th>
+        <th style="width: 200px;" apt-sort="group_name" translate>Group</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{row.name}}</td>
+        <td>{{row.type_name|capitalize|translate}}</td>
+        <td>{{row.group_name}}</td>
+    </tr>
+    </tbody>
+</table>

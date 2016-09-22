@@ -1,0 +1,10 @@
+<form ng-submit="vmSellerForm.form.submit()" name="{{vmSellerForm.form.name}}" role="form" novalidate>
+    <apt-panel class="no-margin no-border" data-form="vmSellerForm.form">
+        <apt-panel-body>
+            <div ng-include="'app001/seller/directives/form/[form.content].quick.tpl.html'"></div>
+        </apt-panel-body>
+        <apt-panel-footer>
+            <apt-panel-footer-right defaults></apt-panel-footer-right>
+        </apt-panel-footer>
+    </apt-panel>
+</form>

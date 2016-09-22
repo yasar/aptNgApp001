@@ -1,0 +1,30 @@
+<table apt-datatable datasource="data" model-base="vmCouponRewardList">
+    <thead>
+    <tr>
+        <th width="150" apt-sort="coupon_id" translate>Reward Type</th>
+        <th apt-sort="title" translate>Reward</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{row.reward_type|translate}}</td>
+        <td>
+            <span ng-if="row.reward_type=='point'">
+                <span ng-if="row.is_percentage">%{{row.amount}}</span>
+                <span ng-if="!row.is_percentage">{{row.amount|number:0}} {{'points'|translate}}</span>
+            <span ng-if="row.reward_type=='discount'">
+                <span ng-if="row.is_percentage">%{{row.amount}}</span>
+                <span ng-if="!row.is_percentage">{{row.amount|isoCurrency:'try'}}</span>
+            </span>
+            <span ng-if="row.reward_type=='free_saleitem'">{{row.saleitem}}</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+

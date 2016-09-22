@@ -1,0 +1,20 @@
+<table apt-datatable datasource="data" model-base="vmCouponRequirementList">
+	<thead>
+	<tr>
+		<th width="50" class="col-lg-3" apt-sort="coupon_id" style="cursor: pointer;" translate>Requirement</th>
+		<th width="" class="col-lg-3" apt-sort="title" style="cursor: pointer;" translate>Payment Type</th>
+		<th width="80" class="col-lg-3" apt-sort="event" style="cursor: pointer;" translate>Amount</th>
+	
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>{{row.requirement|capitalize|translate}}</td>
+		<td>{{row.payment|translate:'paymentType'}}</td>
+		<td>
+			<span ng-if="row.requirement=='payment'">{{row.amount|isoCurrency:'try'}}</span>
+			<span ng-if="row.requirement=='amount'">{{row.amount|number:2}}</span>
+		</td>
+	</tr>
+	</tbody>
+</table>

@@ -1,0 +1,103 @@
+<div>
+	<div class="row">
+		<div class="col-md-1">
+			<apt-type-selector
+					apt-formify data-label="Type" translate
+					data-view-type="icon-list"
+					data-filter-object="{groupname:'seller_type'}"
+					data-searchable="false"
+					data-ng-change="vmSellerForm.selectQuickSellerFormType(data)"
+					data-ng-model="vmSellerForm.form.data.seller_type_id"></apt-type-selector>
+		</div>
+
+		<div class="col-md-11">
+			<div ng-if="!vmSellerForm.form.data.seller_type_id" class="well-sm text-muted">
+				<h2 translate>Nothing selected</h2>
+				<p translate>Please select the supplier type</p>
+			</div>
+
+			<div ng-if="vmSellerForm.form.data.seller_type_id">
+
+				<div class="row">
+					<div class="col-sm-6">
+
+						<div class="form-group">
+							<label translate>Account</label>
+							<div data-apt-account-selector
+								 data-ng-model="vmSellerForm.form.data.account_id"></div>
+						</div>
+
+						<div class="form-group">
+							<label translate>Personel</label>
+							<div data-apt-staff-selector
+								 data-ng-model="vmSellerForm.form.data.staff_id"></div>
+						</div>
+					</div>
+
+					<div class="col-xs-6 col-sm-4 col-md-3">
+
+						<div class="form-group">
+							<apt-field
+									type="date-ui" field="registration_date"
+									model-base="vmSellerForm.form.data"
+									data-label="Registration Date"
+									translate="true"></apt-field>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div data-ng-if="vmSellerForm.sellerQuickFormType=='person'">
+							<div data-apt-person-form data-view-type="undecorated"
+							     data-has-parent="true"
+							     data-item="vmSellerForm.form.data.quickPersonData"></div>
+						</div>
+						<div data-ng-if="vmSellerForm.sellerQuickFormType=='entity'">
+							<div data-apt-entity-form
+							     data-view-type="inside-form"
+							     data-has-parent="true"
+							     data-item="vmSellerForm.form.data.quickEntityData"></div>
+						</div>
+
+
+					</div>
+
+					<div class="col-md-6">
+
+
+						<div ng-if="vmSellerForm.sellerQuickFormType!=null">
+
+							<apt-field
+									field="phone"
+									model-base="vmSellerForm.form.data.quickContactData"
+									data-label="Phone"
+									translate="true"></apt-field>
+							<apt-field
+									field="email"
+									model-base="vmSellerForm.form.data.quickContactData"
+									data-label="Email"
+									translate="true"></apt-field>
+
+							<apt-address-form
+									data-view-type="undecorated"
+									data-has-parent="true"
+									data-item="vmSellerForm.form.data.quickAddressData"></apt-address-form>
+
+						</div>
+					</div>
+				</div>
+
+				<apt-field field="notes"
+				           type="textarea"
+				           rows="5"
+				           model-base="vmSellerForm.form.data"></apt-field>
+			</div>
+
+		</div>
+	</div>
+
+
+</div>

@@ -1,0 +1,17 @@
+<div apt-formify-holder data-layout="ver" data-label-width="3,6">
+
+    <apt-field field="price" model-base="vmPriceForm.form.data" required
+               formify="true"></apt-field>
+
+    <apt-currency-selector
+            apt-formify data-label="Currency"
+            data-ng-model="vmPriceForm.form.data.currency_id" translate></apt-currency-selector>
+
+    <apt-tax-selector
+            apt-formify data-label="Tax"
+            data-ng-model="vmPriceForm.form.data.tax_id" translate></apt-tax-selector>
+
+    <apt-field type="checkbox" field="is_tax_included" model-base="vmPriceForm.form.data"
+               formify="true" label="Tax Included"></apt-field>
+
+</div>

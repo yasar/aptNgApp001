@@ -1,0 +1,21 @@
+<table apt-datatable datasource="data"
+       model-base="vmCouponConditionList">
+    <thead>
+    <tr>
+        <th apt-sort="title" translate>Title</th>
+        <th width="15%" apt-sort="event" translate>Event</th>
+        <th width="15%" apt-sort="condition" translate>Condition</th>
+        <th width="15%" apt-sort="shopping_channel" translate>Channel</th>
+        <th width="15%" apt-sort="start_Date" translate>Start</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{row.title}}</td>
+        <td>{{row.event|translate}}</td>
+        <td>{{row.condition|translate}}</td>
+        <td>{{row.shopping_channel|translate}}</td>
+        <td>{{row.start_Date}}</td>
+    </tr>
+    </tbody>
+</table>

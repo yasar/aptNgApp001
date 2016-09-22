@@ -1,0 +1,17 @@
+<div>
+    <apt-panel class="no-border">
+        <apt-panel-title translate>Coupons</apt-panel-title>
+        <apt-panel-heading-elements>
+            <span class="label bg-success heading-text" ng-hide="vmCashSaleCoupons.flags.isInspecting">{{vmCashSaleCoupons.coupons.length}}</span>
+            <span class="heading-text icon-spinner"
+                  ng-show="vmCashSaleCoupons.flags.isInspecting"></span>
+        </apt-panel-heading-elements>
+        <apt-panel-body>
+            <div class="content-group" data-ng-repeat="coupon in vmCashSaleCoupons.coupons">
+                <h6 class="text-semibold no-margin">
+                    <i class="icon-price-tag position-left text-slate"></i> {{coupon.title}}
+                </h6>
+            </div>
+        </apt-panel-body>
+    </apt-panel>
+</div>

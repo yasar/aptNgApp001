@@ -1,0 +1,25 @@
+<table apt-datatable datasource="data" model-base="vmCardList"
+       options="{showAddNewButton:false, showReloadButton: false, addRowMenu:false}">
+	<thead>
+	<tr>
+		<th class="col-xs-2" apt-sort="branch" translate>Branch</th>
+		<th apt-sort="card_no" translate="">Card No</th>
+		<th class="col-xs-2" title="{{'Status'|translate}}"></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>{{row.branch}}</td>
+		<td>{{row.card_no}}</td>
+		<!--<td ng-class="{'bg-danger-300': row.in_use}">
+			<span ng-show="row.in_use"><i class="icon-checkmark5"></i></span>
+			<span ng-show="!row.in_use"><i class="icon-cross3"></i></span>
+		</td>-->
+		<td>
+            <span class="label" ng-class="{
+                'label-default': !row.in_use,
+                'label-warning': row.in_use}">{{(row.in_use ? 'in_use' : 'unused') | translate}}</span>
+		</td>
+	</tr>
+	</tbody>
+</table>
