@@ -16,7 +16,7 @@
             })
             .when(builder.url(':app_id/:app_name'), builder.segment('current'), {
                 access: {
-                    permission: [builder.permission('module', 'read')]
+                    permission: [builder.permission('read','module')]
                 },
                 label : builder.title,
                 parent: '/'
@@ -31,7 +31,7 @@
             // })
             .when(builder.url(':app_id/:app_name/edit/:row_nr'), builder.segment('current.edit'), {
                 access: {
-                    permission: [builder.permission('module', 'read')]
+                    permission: [builder.permission('read','module')]
                 },
                 label : 'Edit',
                 parent: builder.url(':app_id/:app_name')
@@ -46,7 +46,7 @@
             // })
             .when(builder.url(':app_id/:app_name/new'), builder.segment('current.new'), {
                 access: {
-                    permission: [builder.permission('module', 'read')]
+                    permission: [builder.permission('read','module')]
                 },
                 label : 'New',
                 parent: builder.url(':app_id/:app_name')
