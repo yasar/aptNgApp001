@@ -1,7 +1,7 @@
-// /**
-//  * Created by abdullah on 12.01.2016.
-//  */
-//
+// // /**
+// //  * Created by abdullah on 12.01.2016.
+// //  */
+// //
 // (function () {
 //
 //     var builder = clientBuilder;
@@ -58,8 +58,8 @@
 //                     permissionCheckType: enums.permissionCheckType.combinationRequired
 //                 }
 //             })
-//
-//
+// //
+// //
 //             .within('main')
 //             .within('app001')
 //             .segment('client', {
