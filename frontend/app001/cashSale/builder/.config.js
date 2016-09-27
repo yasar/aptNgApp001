@@ -222,4 +222,3 @@ var cashSaleBuilder = new aptBuilder({
     
 });
 
-cashSaleBuilder.generate();

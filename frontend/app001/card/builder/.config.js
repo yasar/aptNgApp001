@@ -21,7 +21,8 @@ var cardBuilder = new aptBuilder({
         selectorDirective: true,
         moduleService    : true,
         modelService     : true,
-        layoutController : true
+        layoutController : true,
+        routeConfig      : true
     },
 });
 
