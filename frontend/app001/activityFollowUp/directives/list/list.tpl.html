@@ -1,0 +1,148 @@
+<div class="table-responsive" style="max-height: 600px;">
+	<table class="table table-compressed table-striped table-bordered no-border"
+	       apt-datatable
+	       datasource="data"
+	       model-base="vmActivityFollowUpList">
+		<thead>
+		<tr>
+			<th colspan="11"></th>
+			<th colspan="2" class="col-start" translate>Documents</th>
+			<th colspan="3" class="col-start" translate>Location</th>
+			<th colspan="3" class="col-start" translate>Approvals</th>
+			<th colspan="2" class="col-start" translate>Mast</th>
+			<th colspan="2" class="col-start" translate>Supply</th>
+			<th colspan="3" class="col-start" translate>Dispatch</th>
+			<th colspan="3" class="col-start" translate>Team</th>
+			<th colspan="4" class="col-start" translate>Operation</th>
+			<th colspan="3" class="col-start" translate>Configuration</th>
+			<th colspan="1" class="col-start" translate>Reporting</th>
+			<th colspan="1" class="col-start" translate>Accounting</th>
+			<th colspan="3" class="col-start" translate>Tracking Report</th>
+			<th colspan="2" class="col-start" translate>Mgm</th>
+			<th colspan="2" class="col-start" translate>Installation</th>
+			<th colspan="1"></th>
+		</tr>
+		<tr>
+			<th>%</th>
+			<th translate>Action</th>
+			<th>#</th>
+			<th translate>Type</th>
+			<th translate>Company</th>
+			<th translate>Sub Company</th>
+			<th translate>Mast</th>
+			<th translate>Country</th>
+			<th translate>City</th>
+			<th translate>District</th>
+			<th translate>Neighbourhood</th>
+			
+			
+			<th class="col-start" translate>Deed</th>
+			<th class="col-start" translate>Lease_agreement</th>
+			
+			<th class="col-start" translate>Coord Provided</th>
+			<th class="col-start" translate>Coord Approved</th>
+			<th class="col-start" translate>Coord Utm Approved</th>
+			
+			
+			<th class="col-start" translate>Approval Coord</th>
+			<th class="col-start" translate>Approval Permission</th>
+			<th class="col-start" translate>Approval Permission2</th>
+			
+			
+			<th class="col-start" translate>Height</th>
+			<th class="col-start" translate>Type</th>
+			
+			<th class="col-start" translate>Mast</th>
+			<th class="col-start" translate>Device</th>
+			
+			
+			<th class="col-start" translate>Foundation</th>
+			<th class="col-start" translate>Mast</th>
+			<th class="col-start" translate>Device</th>
+			
+			<th class="col-start" translate>Supervisor</th>
+			<th class="col-start" translate>Team</th>
+			<th class="col-start" translate>Subteam</th>
+			
+			<th class="col-start" translate>Foundation</th>
+			<th class="col-start" translate>Installation</th>
+			<th class="col-start" translate>Launch</th>
+			<th class="col-start" translate>Fencing</th>
+			
+			<th class="col-start" translate>Remote Connection</th>
+			<th class="col-start" translate>Setup</th>
+			<th class="col-start" translate>Checking Config</th>
+			
+			
+			<th class="col-start" translate>Report</th>
+			<th class="col-start" translate>Invoice</th>
+			
+			<th class="col-start" translate>Sent</th>
+			<th class="col-start" translate>Sent Date</th>
+			<th class="col-start" translate>Approved</th>
+			
+			<th class="col-start" translate>Approved</th>
+			<th class="col-start" translate>Ttp</th>
+			
+			<th class="col-start" translate>Date</th>
+			<th class="col-start" translate>Duration</th>
+			
+			<th class="col-start" translate>Notes</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td><span class="progressPercent"></span></td>
+			<td><span class="btn btn-xs btn-default"
+			          access="update_activityFollowUp_module"
+			          data-ng-click="vmActivityFollowUpList.edit(row)"
+			          translate>Edit</span>
+			</td>
+			<td>{{row.activity_follow_up_id}}</td>
+			<td>{{row.mast_type}}</td>
+			<td class="text-nowrap">{{row.entity}}</td>
+			<td class="text-nowrap">{{row.subentity}}</td>
+			<td class="text-nowrap">{{row.mast_name}}</td>
+			<td>{{row.country}}</td>
+			<td>{{row.city}}</td>
+			<td>{{row.district}}</td>
+			<td>{{row.neighbourhood}}</td>
+			<td>{{row.document_deed}}</td>
+			<td>{{row.document_contract}}</td>
+			<td>{{row.coord_provided}}</td>
+			<td>{{row.coord_approved}}</td>
+			<td>{{row.coord_utm_approved}}</td>
+			<td>{{row.approval_coord}}</td>
+			<td>{{row.approval_permission}}</td>
+			<td>{{row.approval_permission2}}</td>
+			<td>{{row.mast_height}}</td>
+			<td>{{row.mast_type2}}</td>
+			<td>{{row.supply_mast}}</td>
+			<td>{{row.supply_device}}</td>
+			<td>{{row.dispatch_foundation}}</td>
+			<td>{{row.dispatch_mast}}</td>
+			<td>{{row.dispatch_device}}</td>
+			<td>{{row.team_supervisor}}</td>
+			<td>{{row.team_team}}</td>
+			<td>{{row.team_subteam}}</td>
+			<td>{{row.operation_foundation}}</td>
+			<td>{{row.operation_installation}}</td>
+			<td>{{row.operation_launch}}</td>
+			<td>{{row.operation_fencing}}</td>
+			<td>{{row.configuration_connection}}</td>
+			<td>{{row.configuration_setup}}</td>
+			<td>{{row.configuration_checking}}</td>
+			<td>{{row.reporting_report}}</td>
+			<td>{{row.accounting_invoice}}</td>
+			<td>{{row.tracking_report_sent}}</td>
+			<td>{{row.tracking_report_sent_date|amDateFormat:$root.apt.Templ.appConfig.defaults.formats.screenDate}}</td>
+			<td>{{row.tracking_report_approved}}</td>
+			<td>{{row.mgm_approved}}</td>
+			<td>{{row.mgm_ftp}}</td>
+			<td>{{row.installation_date|amDateFormat:$root.apt.Templ.appConfig.defaults.formats.screenDate}}</td>
+			<td>{{row.installation_duration}}</td>
+			<td>{{row.notes}}</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
