@@ -1,9 +1,6 @@
-/*
-/!**
- * Created by unal on 30.03.2016.
- *!/
-
-
+/**
+ * Created by burak on 26.09.2016.
+ */
 var cashSaleBuilder = new aptBuilder({
     domain : 'cashSale',
     title  : 'Cash Sale',
@@ -13,13 +10,13 @@ var cashSaleBuilder = new aptBuilder({
     menu   : {
         order: 2
     },
-    /!*menu   : {
+    /*menu   : {
      text : 'Cash Sale',
      icon : 'icon-cart2',
      href : $routeSegment.getSegmentUrl('main.app001.cashSale'),
      auth : ['access_saleitem_menu'],
      order: 55
-     },*!/
+     },*/
     create : {
         listDirective    : true,
         formDirective    : true,
@@ -32,7 +29,7 @@ var cashSaleBuilder = new aptBuilder({
     widgets: [
         {
             target : 'dashboard',
-            /!**
+            /**
              * note that $scope is provided by the widget creator,
              * could from dashboard or somewhere else.
              *
@@ -40,7 +37,7 @@ var cashSaleBuilder = new aptBuilder({
              *
              * @param $scope
              * @param $injector
-             *!/
+             */
             creator: function ($scope, $injector) {
                 var aptUtils         = $injector.get('aptUtils');
                 var gettextCatalog   = $injector.get('gettextCatalog');
@@ -92,13 +89,13 @@ var cashSaleBuilder = new aptBuilder({
                                 },
                             }
                         },
-                        /!**
+                        /**
                          * graphValues will be coming from service which means
                          * we have deal with promise.
                          * that's where we utilize the onGraphCreate function
                          * onGraphCreate will retrieve data from server and
                          * will assign the converted(!!) data into graphValues
-                         *!/
+                         */
                         data   : [{
                             "key"   : "Quantity",
                             "bar"   : true,
@@ -144,46 +141,13 @@ var cashSaleBuilder = new aptBuilder({
                 }
             });
     },
-    model  : {
-        responseInterceptors: [
-            {
-                operation: ['get', 'customGET', 'put', 'post', 'getList', 'customGETLIST'],
-                callback : function (item) {
-
-                    return item;
-                }
-            }
-        ],
-
-        requestInterceptors: [
-            {
-                operation: ['get', 'customGET', 'put', 'post', 'getList', 'customGETLIST'],
-                callback : function (item) {
-                    return item;
-                }
-            }
-        ],
-        methods            : {
-            element   : [
-                //{name: 'getOverview', httpMethod: 'get', route: 'overview'}
-            ],
-            collection: [
-                {name: 'getWidgetDataForDashboard', httpMethod: 'get', route: 'widget/dashboard'}
-            ]
-        }
-    },
-    service: {
-        methods: {
-            getWidgetDataForDashboard: function () {
-                return this.model.getWidgetDataForDashboard();
-            }
-        }
-    },
-    list   : {
-        controller: function ($injector, $scope, builder) {
-
-        }
-    },
+    
+    
+    // list   : {
+    //     controller: function ($injector, $scope, builder) {
+    //
+    //     }
+    // },
     manager: {
         controller: function ($injector, $scope, builder) {
             var vm                  = this;
@@ -196,9 +160,9 @@ var cashSaleBuilder = new aptBuilder({
             var aptUtils            = $injector.get('aptUtils');
             vm.saleData             = CashSaleDataService.getData();
 
-            /!**
+            /**
              * barcode ile okutulan ürünün ilk dinleme yeri
-             *!/
+             */
             NotifyingService.subscribe($scope, 'product-barcode-read', function (event, saleitem) {
                 ShoppingCartService.addItem(saleitem);
                 event.preventDefault();
@@ -233,13 +197,13 @@ var cashSaleBuilder = new aptBuilder({
                     aptUtils.showConfirm(
                         gettextCatalog.getString('Confirmation'),
                         gettextCatalog.getString('You will loose any unsaved data if you choose to continue.' + ' ' + gettextCatalog.getString('Are you sure that you want to continue?')), function () {
-                            /!**
+                            /**
                              * paymentservice.reset balance yani alışveriş tutarından kalan miktarı da sıfırladıgı için
                              * sale sayfasından ileri geri yaptıgımızda alısverişi tamamlamadıgımız hiç bir odeme yapmadıgımız
                              * durumda kalan odemeyi 0 olarak gosteriyor bundan dolayı reser() yerin resetSplits() funk. cagırıyoruz.
                              * boylece sayfa degiştirme durumunda eger splitlerimizi saklamak istiyorsan saklıyabilyoruz eger
                              * istemiyorsak splits sıfırlanıyor.
-                             *!/
+                             */
                             PaymentService.resetSplits();
                             CashSaleDataService.reset();
                             gotoNextUrl();
@@ -255,71 +219,7 @@ var cashSaleBuilder = new aptBuilder({
 
         }
     },
-    layout : {
-        templConfig: {
-            showSidebarRight: false
-        },
-        controller : function ($injector, $scope, builder) {
-
-            var Templ               = $injector.get('aptTempl');
-            var gettextCatalog      = $injector.get('gettextCatalog');
-            var CashSaleDataService = $injector.get('CashSaleDataService');
-            var service             = $injector.get(shoppingCartBuilder.getServiceName('service'));
-
-
-            if (Templ.config.showSidebarLeft) {
-
-                Templ.setSlotItem('sidebarLeft', 'menu', {
-                    isCollapsable: true,
-                    isCollapsed  : true,
-                    showTitle    : true,
-                    title        : gettextCatalog.getString('Menu'),
-                    body         : '<div apt-cash-sale-shopping-cart-menu></div>',
-                    // class        : 'bg-slate-300',
-                    _scopeId     : $scope.$id
-                });
-
-                Templ.setSlotItem('sidebarLeft', 'client', {
-                    isCollapsable: true,
-                    isCollapsed  : false,
-                    showTitle    : true,
-                    title        : gettextCatalog.getString('Client'),
-                    // body         : '<div apt-cash-sale-client-finder class="p-10"></div>',
-                    body         : '<div apt-cash-sale-client></div>',
-                    // class        : 'bg-slate-300',
-                    _scopeId     : $scope.$id
-                });
-
-                Templ.setSlotItem('sidebarLeft', 'product', {
-                    title   : gettextCatalog.getString('Sale Item'),
-                    body    : '<apt-cash-sale-saleitem-finder></apt-cash-sale-saleitem-finder>',
-                    _scopeId: $scope.$id
-                });
-            }
-
-
-            // RIGHT
-            if (Templ.config.showSidebarRight) {
-
-                Templ.setSlotItem('sidebarRight', 'coupons', {
-                    title   : gettextCatalog.getString('Coupons'),
-                    // body    : '<apt-cash-sale-coupons></apt-cash-sale-coupons>',
-                    body    : '<apt-coupon-applicables></apt-coupon-applicables>',
-                    _scopeId: $scope.$id
-                });
-
-                Templ.setSlotItem('sidebarRight', 'payment', {
-                    isCollapsable: false,
-                    isCollapsed  : false,
-                    showTitle    : true,
-                    title        : gettextCatalog.getString('Payment'),
-                    body         : '<apt-cash-sale-payment></apt-cash-sale-payment>',
-                    _scopeId     : $scope.$id
-                });
-            }
-        }
-    }
+    
 });
 
 cashSaleBuilder.generate();
-*/
