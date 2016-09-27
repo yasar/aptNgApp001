@@ -1,0 +1,85 @@
+<table class="table table-compressed text-nowrap">
+    <tbody>
+    <tr>
+        <td class="no-border col-md-4 alert-primary" ng-class="{'alert-danger': vmCashSaleEnterPayment.max_limit==0}">
+            <div class="media-left">
+                <h5 class="text-semibold no-margin">
+                    <span ng-show="vmCashSaleEnterPayment.max_limit==null" translate>No Limit</span>
+                    <span ng-hide="vmCashSaleEnterPayment.max_limit==null">{{vmCashSaleEnterPayment.max_limit.toFixed(2)|isoCurrency:'try'}}</span>
+                    <small class="display-block no-margin text-size-mini" translate>Max Limit</small>
+                </h5>
+            </div>
+        </td>
+
+        <td class="no-border col-md-4 alert-info">
+            <div class="media-left">
+                <h5 class="text-semibold no-margin">
+                    {{vmCashSaleEnterPayment.sales_total.toFixed(2)|isoCurrency:'try'}}
+                    <small class="display-block no-margin text-size-mini" translate>Total</small>
+                </h5>
+            </div>
+        </td>
+
+        <td class="no-border col-md-4"
+            ng-class="{true:'alert-success', false:'alert-danger'}[vmCashSaleEnterPayment.balance==0]">
+            <div class="media-left">
+                <h5 class="text-semibold no-margin">
+                    {{vmCashSaleEnterPayment.balance.toFixed(2)|isoCurrency:'try'}}
+                    <small class="display-block no-margin text-size-mini" translate>Balance</small>
+                </h5>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="content-group">
+    <div class="content">
+        <div class="form-group">
+            <label class="display-block"><span translate>Payment Method</span><span
+                    class="text-bold pull-right">{{vmCashSaleEnterPayment.payment_type.name|translate}}</span></label>
+            <div class="btn-group btn-group-lg">
+                <button type="button"
+                        class="btn btn-default btn-icon"
+                        data-ng-class="{true: 'btn-primary', false: 'btn-default'}[payment_type.type_id==vmCashSaleEnterPayment.payment_type.type_id]"
+                        data-ng-click="vmCashSaleEnterPayment.setPaymentType(payment_type)"
+                        data-uib-tooltip="{{payment_type.name|translate}}"
+                        data-tooltip-append-to-body="true"
+                        data-ng-repeat="payment_type in vmCashSaleEnterPayment.payment_types | filter:{name:'!split'}"><i
+                        class="{{payment_type.conf.icon}}"></i></button>
+            </div>
+        </div>
+
+        <div class="form-group"
+             ng-show="vmCashSaleEnterPayment.is_active && vmCashSaleEnterPayment.max_limit!=0 && vmCashSaleEnterPayment.balance!=0">
+            <label translate>Payment Amount</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="vmCashSaleEnterPayment.split.payment"
+                       placeholder="{{'amount'|translate}}">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-danger btn-rounded" ng-click="vmCashSaleEnterPayment.addSplit()">
+                        <i class="icon-plus2"></i> <span translate>Add</span></button>
+                    <button type="button" class="btn btn-danger btn-rounded dropdown-toggle"
+                            data-toggle="dropdown"><span
+                            class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href ng-hide="vmCashSaleEnterPayment.max_limit==0"
+                               ng-click="vmCashSaleEnterPayment.compensate(balance)"><i class="icon-menu7"></i> <span
+                                translate>Compensate</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-muted" ng-if="vmCashSaleEnterPayment.max_limit==0">
+        <h2 translate>No limit available!</h2>
+        <p translate>The selected payment method does not have any limit available at this moment. Please try with
+            different
+            payment method.</p>
+    </div>
+
+    <div class="" ng-if="vmCashSaleEnterPayment.balance==0">
+        <apt-cash-sale-payment-button view-type="paynow"></apt-cash-sale-payment-button>
+    </div>
+</div>

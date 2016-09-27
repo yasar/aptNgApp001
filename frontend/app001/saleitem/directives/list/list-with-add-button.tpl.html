@@ -1,0 +1,39 @@
+<table apt-datatable datasource="data" model-base="vmSaleitemList">
+
+	<thead>
+	<tr>
+		<th><span apt-sort="name" translate>Product</span> / <span apt-sort="group_name" translate>Product Group</span>
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td class="media">
+			<div class="media-left pr-10">
+                <span class="btn text-default btn-flat btn-icon btn-xs cursor-default"
+                      uib-tooltip="{{row.type_name|translate}}"
+                      tooltip-placement="left">
+                    <i data-ng-class="row.type_conf.icon || 'icon-checkmark3'"></i>
+                </span>
+			</div>
+
+			<div class="media-body">
+				<div class="text-size-small">{{row.name}}</div>
+				<div class="text-muted text-size-mini">{{row.group_name}}</div>
+			</div>
+
+			<div class="media-right media-middle pl-5">
+				<ul class="icons-list text-nowrap">
+					<li>
+						<a href class="btn btn-icon btn-xs"
+						   uib-tooltip="{{'Add to package'|translate}}"
+						   tooltip-placement="right"
+						   ng-click="vmSaleitemList.addToPackage(row)"><i class="icon-plus22"></i></a>
+					</li>
+				</ul>
+			</div>
+		</td>
+
+	</tr>
+	</tbody>
+</table>

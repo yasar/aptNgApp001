@@ -1,0 +1,44 @@
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <apt-field field="amount" model-base="vmCouponRequirementForm.form.data"></apt-field>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label translate>Coupon Requirement</label>
+                <div data-apt-type-selector
+                     data-filter-object="{groupname:'coupon_requirement'}"
+                     ng-model="vmCouponRequirementForm.form.data.requirement_type_id"
+                     data-view-type2="plain">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label translate>Payment Type</label>
+                <div data-apt-type-selector
+                     data-ng-model="vmCouponRequirementForm.form.data.payment_type_id"
+                     data-view-type2="plain"
+                     data-translate-context="paymentType"
+                     data-filter-object="{groupname:'payment_type'}"
+                ></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label translate>Subject</label>
+            <div class="form-group">
+                <div data-apt-coupon-subject-selector
+                     data-view-type2="plain"
+                     data-ng-model="vmCouponRequirementForm.form.data.coupon_subject_id"
+                     data-filter-object="{coupon_id:vmCouponRequirementForm.form.data.coupon_id}"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

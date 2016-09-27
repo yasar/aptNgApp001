@@ -1,0 +1,77 @@
+<apt-panel class="browse-saleitem">
+    <apt-panel-title><span translate>Product Browser</span></apt-panel-title>
+    <apt-panel-heading-elements>
+        <form class="heading-form">
+            <div data-apt-saleitem-group-selector
+                 data-ng-model="vmCashSaleBrowseSaleitem.groupId"
+                 data-placeholder="{{'Group'|translate}}"
+                 data-apt-formify></div>
+            <div data-apt-brand-selector
+                 data-ng-model="vmCashSaleBrowseSaleitem.brandId"
+                 data-placeholder="{{'Brand'|translate}}"
+                 data-apt-formify></div>
+            <button data-ng-click="vmCashSaleBrowseSaleitem.findSaleitem()"
+                    class="btn bg-pink-300 heading-btn pull-right"><i class="icon-folder-search"></i></button>
+        </form>
+    </apt-panel-heading-elements>
+    <apt-panel-body>
+        <div ng-if="vmCashSaleBrowseSaleitem.saleitems.length" class="form-group">
+            <input type="text" class="form-control"
+                   placeholder="{{'search in the list'|translate}}"
+                   ng-model="vmCashSaleBrowseSaleitem.searchFilter.name"/>
+        </div>
+        <div class="pre-scrollable p-10" data-ng-if="vmCashSaleBrowseSaleitem.saleitems.length">
+            <div class="row">
+                <div data-ng-repeat="saleitem in vmCashSaleBrowseSaleitem.saleitems|filter:vmCashSaleBrowseSaleitem.searchFilter">
+                    <div class="col-lg-4">
+
+                        <div class="panel bg-grey-300">
+                            <div class="panel-body p-10">
+                                <div class="heading-elements mt-5" style="right: 10px;">
+                                    <ul class="icons-list no-margin">
+                                        <li class="dropdown">
+                                            <a href
+                                               class="btn btn-icon btn-xs text-orange"
+                                               data-ng-click="vmCashSaleBrowseSaleitem.addToShoppingCart(saleitem)">
+                                                <i class="icon-plus22"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h3 class="no-margin">{{saleitem.taxed_price|isoCurrency:saleitem.currency_code}}</h3>
+                                {{saleitem.name}}
+                                <div class="text-grey-600 text-size-mini price-calculation">
+                                    {{saleitem.base_price|isoCurrency:saleitem.currency_code}} +
+                                    {{saleitem.tax|isoCurrency:saleitem.currency_code}} (%{{saleitem.tax_percentage}})
+                                </div>
+                                <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="!vmCashSaleBrowseSaleitem.saleitems.length" class="text-muted">
+            <h2 translate>No results</h2>
+            <p translate>Please use the above filters to narrow your search and then click search icon or press
+                `ctrl+enter` keys together.</p>
+        </div>
+
+        <div bs-loading-overlay
+             bs-loading-overlay-template-url="misc/loading-overlay-template.tpl.html"
+             bs-loading-overlay-reference-id="ref_{{vmCashSaleBrowseSaleitem.uniqId}}"></div>
+
+
+    </apt-panel-body>
+
+
+    <div class="row mr-20">
+        <div class="pull-right mt-20">
+
+            <button class="btn btn-default btn-xs"
+                    data-ng-click="vmCashSaleBrowseSaleitem.cancel()">
+                Cancel
+            </button>
+        </div>
+    </div>
+</apt-panel>
