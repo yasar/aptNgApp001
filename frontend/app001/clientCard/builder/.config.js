@@ -1,35 +1,33 @@
 /**
- * Created by unal on 23.03.2016.
+ * Created by burak on 26.09.2016.
  */
-
-
-var cardBuilder = new aptBuilder({
-    domain : 'card',
-    title  : 'Cards',
+var clientCardBuilder = new aptBuilder({
+    domain : 'clientCard',
     package: 'app001',
-    icon   : 'icon-credit-card',
-    menu   : {
-        target: 'enterprise'
-    },
-    disable:{
-        addNew:true,
-        edit:true
-    },
+    icon   : 'icon-vcard',
+    title  : 'Client Card',
     create : {
         listDirective    : true,
         formDirective    : true,
         selectorDirective: true,
         moduleService    : true,
-        modelService     : true,
-        layoutController : true
+        modelService     : true
     },
     model  : {
+        restsize            : function (item) {
+            aptBuilder.utils.makeInt(item, ['is_primary']);
+
+            if (_.has(item, 'setPassword') && !item.setPassword) {
+                delete item.password;
+            }
+        },
         responseInterceptors: [
             {
                 operation: ['get', 'customGET', 'put', 'post', 'getList', 'customGETLIST'],
                 callback : function (item) {
+                    aptBuilder.utils.makeInt(item, ['client_card_id', 'client_id', 'card_id', 'enterprise_id']);
+                    aptBuilder.utils.makeBool(item, ['is_primary']);
                     item._selectorTitle = item.card_no;
-                    cardBuilder.utils.makeInt(item, ['card_id', 'type_id']);
                     return item;
                 }
             }
@@ -39,6 +37,7 @@ var cardBuilder = new aptBuilder({
             {
                 operation: ['get', 'customGET', 'put', 'post', 'getList', 'customGETLIST'],
                 callback : function (item) {
+                    clientCardBuilder.model.restsize(item);
                     return item;
                 }
             }
@@ -46,42 +45,40 @@ var cardBuilder = new aptBuilder({
         methods            : {
             element   : [
 
-                //{name: 'getOverview', httpMethod: 'get', route: 'overview'}
+                // {name: 'getInvoiceProfile', httpMethod: 'get', route: 'invoiceProfile'}
             ],
-            collection: [
-                {name: 'import', httpMethod: 'post', route: 'import'}
-
-            ]
+            collection: null
         }
     },
     service: {
-        methods: {}
+        methods: {
+            // getInvoiceProfile: function (clientId) {
+            //     return this.model.one(clientId).getInvoiceProfile();
+            // }
+        }
 
 
     },
     form   : {
-        title: 'Card',
+        title       : 'Client Card',
+        beforeCreate: function ($injector, $scope, builder) {
+            var vm  = this;
+            vm.stay = true;
+            vm.mute = false;
+        },
+        controller  : function ($injector, $scope, builder) {
 
-        controller: function ($injector, $scope, builder) {
+            var vm               = this;
+            var NotifyingService = $injector.get('NotifyingService');
 
-            var vm         = this;
-            var $rootScope = $injector.get('$rootScope'),
-                aptUtils   = $injector.get('aptUtils'),
-                service    = $injector.get(cardBuilder.getServiceName('service')),
-                model      = $injector.get(cardBuilder.getServiceName('model'));
+            NotifyingService.subscribe($scope, 'clientCard.formDataLoaded', function () {
+                vm.form.data.setPassword = false;
+            });
 
-            vm.import = importFn;
 
-            function importFn() {
-                model.import(vm.form.data).then(function (data) {
-                    if (data == 'false') {
-                        aptUtils.showError('Error occurred', 'An unknown error occurred.');
-                    }
-                }, function (data) {
-
-                });
+            if (_.has(vm, 'params.client_id')) {
+                vm.form.data.client_id = vm.params.client_id;
             }
-
 
         }
     },
@@ -92,7 +89,7 @@ var cardBuilder = new aptBuilder({
             var vm         = this,
                 $rootScope = $injector.get('$rootScope'),
                 aptUtils   = $injector.get('aptUtils'),
-                cardType   = aptUtils.getUrlSearchParamValue('cardType') || 'in_use',
+                clientType = aptUtils.getUrlSearchParamValue('clientType') || 'person',
                 service    = $injector.get(builder.getServiceName('service')),
                 model      = $injector.get(builder.getServiceName('model'));
             if (!vm.filter) {
@@ -112,16 +109,16 @@ var cardBuilder = new aptBuilder({
 
 
             function loadFilter() {
-                var _filter   = angular.fromJson(aptUtils.getUrlSearchParamValue('filter'));
-                var _cardType = aptUtils.getUrlSearchParamValue('cardType') || 'in_use';
+                var _filter     = angular.fromJson(aptUtils.getUrlSearchParamValue('filter'));
+                var _clientType = aptUtils.getUrlSearchParamValue('clientType') || 'person';
 
                 if (_filter) {
                     aptUtils.removeAndMerge(vm.filter, _filter);
                 }
 
-                if (_cardType) {
+                if (_clientType) {
                     angular.merge(vm.filter, {
-                        cardType: _cardType
+                        clientType: _clientType
                     });
                 }
             }
@@ -129,5 +126,4 @@ var cardBuilder = new aptBuilder({
     },
 });
 
-cardBuilder.generate();
 
