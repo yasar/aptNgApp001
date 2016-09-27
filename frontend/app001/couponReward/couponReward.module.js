@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by unal on 19.03.2016.
- */
+ *!/
 
 
 var couponRewardBuilder = new aptBuilder({
@@ -57,7 +58,7 @@ var couponRewardBuilder = new aptBuilder({
 
     },
     list   : {
-       /* rowMenu: function ($injector, vm) {
+       /!* rowMenu: function ($injector, vm) {
             var Menu    = $injector.get('aptMenu'),
                 restOp  = $injector.get('restOperationService'),
                 service = $injector.get(couponRewardBuilder.getServiceName('service'));
@@ -80,7 +81,7 @@ var couponRewardBuilder = new aptBuilder({
 
             rowMenu.addChild(menuItemDelete);
             return rowMenu;
-        },*/
+        },*!/
     },
     form   : {
         title:'Reward',
@@ -90,9 +91,9 @@ var couponRewardBuilder = new aptBuilder({
             var vm            = $scope[builder.getControllerAsName('form')];
 
 
-            /*if (_.get(vm.form.data,'__is_incomplete') == 1) {
+            /!*if (_.get(vm.form.data,'__is_incomplete') == 1) {
              vm.form.data.coupon_id = $routeSegment.$routeParams.id;
-             }*/
+             }*!/
 
             vm.form.data.coupon_id = aptUtils.getUrlSearchParamValue('id', vm.form.data.coupon_id);
 
@@ -146,3 +147,4 @@ var couponRewardBuilder = new aptBuilder({
 });
 
 couponRewardBuilder.generate();
+*/

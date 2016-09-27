@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by unal on 19.03.2016.
- */
+ *!/
 
 
 var saleitemPriceBuilder = new aptBuilder({
@@ -187,3 +188,4 @@ var saleitemPriceBuilder = new aptBuilder({
 });
 
 saleitemPriceBuilder.generate();
+*/

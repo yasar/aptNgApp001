@@ -1,6 +1,6 @@
-/**
+/*
+*
  * Created by unal on 19.03.2016.
- */
 
 
 var couponTargetBuilder = new aptBuilder({
@@ -52,7 +52,7 @@ var couponTargetBuilder = new aptBuilder({
 
     },
     list   : {
-     /*   rowMenu: function ($injector, vm) {
+     /!*   rowMenu: function ($injector, vm) {
             var Menu    = $injector.get('aptMenu'),
                 restOp  = $injector.get('restOperationService'),
                 service = $injector.get(couponTargetBuilder.getServiceName('service'));
@@ -75,7 +75,7 @@ var couponTargetBuilder = new aptBuilder({
 
             rowMenu.addChild(menuItemDelete);
             return rowMenu;
-        },*/
+        },*!/
     },
     form   : {
         title:'Target',
@@ -87,9 +87,9 @@ var couponTargetBuilder = new aptBuilder({
             vm.form.data.coupon_id = aptUtils.getUrlSearchParamValue('id', vm.form.data.coupon_id);
 
 
-            /*if (_.get(vm.form.data,'__is_incomplete') == 1) {
+            /!*if (_.get(vm.form.data,'__is_incomplete') == 1) {
              vm.form.data.coupon_id = $routeSegment.$routeParams.id;
-             }*/
+             }*!/
 
 
             vm.showDefault = {
@@ -110,12 +110,12 @@ var couponTargetBuilder = new aptBuilder({
 
                     case 'staff_group':
                         vm.show.staff_group = !vm.show.staff_group;
-                        /**
+                        /!**
                          * target degiştigi zaman bi onceki secilmis targetin id sini nullıyoruz.
                          * boylece data'yı update için gonderirken sadece secilmiş target'ın id sini yollanıs oacagız.
                          * target gorup tablosunda sadece bir tane targeti id sini kayıt edebiliyoruz
                          * @type {null}
-                         */
+                         *!/
                         vm.form.data.client_group_id = null;
                         vm.form.data.card_type_id = null;
                         break;
@@ -152,3 +152,4 @@ var couponTargetBuilder = new aptBuilder({
 });
 
 couponTargetBuilder.generate();
+*/

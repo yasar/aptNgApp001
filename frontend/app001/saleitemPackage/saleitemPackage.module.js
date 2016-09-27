@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by unal on 19.03.2016.
- */
+ *!/
 
 
 var saleitemPackageBuilder = new aptBuilder({
@@ -112,10 +113,10 @@ var saleitemPackageBuilder = new aptBuilder({
                 // $scope.$apply();
             });
 
-            /**
+            /!**
              * eklenen saleitem ilk once veri tabanına ekleniyor daha sonra listede gosteriliyor
              * liste ustunde update işlemi veya delete işlemi yapılacak
-             */
+             *!/
             function addSaleitemPackageItem(item) {
                 var packageItem = {
                     package_id : vm.itemId,
@@ -131,3 +132,4 @@ var saleitemPackageBuilder = new aptBuilder({
 });
 
 saleitemPackageBuilder.generate();
+*/

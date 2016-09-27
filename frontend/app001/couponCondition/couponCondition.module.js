@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by unal on 19.03.2016.
- */
+ *!/
 
 
 var couponConditionBuilder = new aptBuilder({
@@ -143,3 +144,4 @@ var couponConditionBuilder = new aptBuilder({
 });
 
 couponConditionBuilder.generate();
+*/

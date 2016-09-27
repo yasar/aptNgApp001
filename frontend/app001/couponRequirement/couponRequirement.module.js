@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by unal on 19.03.2016.
- */
+ *!/
 
 
 var couponRequirementBuilder = new aptBuilder({
@@ -52,7 +53,7 @@ var couponRequirementBuilder = new aptBuilder({
 
     },
     list   : {
-       /* rowMenu: function ($injector, vm) {
+       /!* rowMenu: function ($injector, vm) {
             var Menu    = $injector.get('aptMenu'),
                 restOp  = $injector.get('restOperationService'),
                 service = $injector.get(couponRequirementBuilder.getServiceName('service'));
@@ -75,7 +76,7 @@ var couponRequirementBuilder = new aptBuilder({
 
             rowMenu.addChild(menuItemDelete);
             return rowMenu;
-        },*/
+        },*!/
     },
     form   : {
         title:'Requirement',
@@ -95,3 +96,4 @@ var couponRequirementBuilder = new aptBuilder({
 });
 
 couponRequirementBuilder.generate();
+*/

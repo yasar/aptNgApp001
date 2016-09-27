@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by unal on 19.03.2016.
- */
+ *!/
 
 
 var shoppingCartBuilder = new aptBuilder({
@@ -228,10 +229,10 @@ var shoppingCartBuilder = new aptBuilder({
                 vm.totalTax       = 0;
                 vm.totalBasePrice = 0;
 
-                /**
+                /!**
                  * total bilgileri için fiyat birimi manuel atandı
                  * @type {{currency_code: string}}
-                 */
+                 *!/
                 vm.total          = {
                     currency_code: 'try'
                 };
@@ -254,13 +255,13 @@ var shoppingCartBuilder = new aptBuilder({
                 vm.calculateRow = calculateRow;
             }
 
-            /**
+            /!**
              * alıs veya satıs faturasında eklenen urunler cash sale module ıle birlikte ortak olarak
              * shoppin cart menuyu kullanıyor. alıs veya satıs faturasından sonra shoppinkarta eklenen
              * urunler cash sale ekranına geldigimizde shopping cart menude yer alıyor.
              * eger alıs vey satıs faturasından sonra cash sale ekranına gelirsek
              * shopping karttaki saleitemları sıfırlamamız gerekiyor.
-             */
+             *!/
             $scope.$on('$destroy', function () {
                 if (service.vars.keepOnRouteChange) {
                     service.vars.keepOnRouteChange = false;
@@ -357,3 +358,4 @@ var shoppingCartBuilder = new aptBuilder({
 });
 
 shoppingCartBuilder.generate();
+*/

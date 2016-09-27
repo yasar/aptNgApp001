@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by yasar on 21.05.2016.
- */
+ *!/
 
 var priceBuilder = new aptBuilder({
     domain : 'price',
@@ -32,9 +33,9 @@ var priceBuilder = new aptBuilder({
                 item.discount_type = 'amount';
             }
 
-            /**
+            /!**
              * check to see what is using this!!
-             */
+             *!/
             aptBuilder.utils.makeDate(item, ['send_on']);
         },
         restize             : function (item) {
@@ -78,9 +79,9 @@ var priceBuilder = new aptBuilder({
         //        //     popup : popup
         //        // });
         //
-        //        /**
+        //        /!**
         //         * return false so that createModuleService::edit() function wont try to execute its own restOp.edit()
-        //         */
+        //         *!/
         //        return false;
         //    }
         //},
@@ -117,4 +118,4 @@ var priceBuilder = new aptBuilder({
     }
 });
 
-priceBuilder.generate();
+priceBuilder.generate();*/

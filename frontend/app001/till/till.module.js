@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by murat on 30.04.2016.
- */
+ *!/
 var tillBuilder = new aptBuilder({
     domain : 'till',
     package: 'app001',
@@ -30,4 +31,4 @@ var tillBuilder = new aptBuilder({
     }
 });
 
-tillBuilder.generate();
+tillBuilder.generate();*/

@@ -1,3 +1,4 @@
+/*
 var dashboardBuilder = new aptBuilder({
     domain      : 'dashboard',
     dependencies: ['apt.calendar', 'apt.atomFeeds', 'aptAtomFeedsTemplates'],
@@ -19,15 +20,15 @@ var dashboardBuilder = new aptBuilder({
 
     service: {
         init   : function ($injector) {
-            /**
+            /!**
              * will hold creator functions to be called when dashboard is initialized
              * @type {Array}
-             */
+             *!/
             this.vars.widgetCreators = [];
-            /**
+            /!**
              * will hold the compiled widget html/directives
              * @type {Array}
-             */
+             *!/
             this.vars.widgets = [];
         },
         methods: {
@@ -68,11 +69,11 @@ var dashboardBuilder = new aptBuilder({
                 this.vars.widgetCreators.push(widgetCreator);
             },
             _destroy             : function ($scope) {
-                /**
+                /!**
                  * keep widgetCreators intact, that's our cache.
                  * just empty the generated widgets, so that
                  * we wont re-generate them
-                 */
+                 *!/
                 this.vars.widgets.length = 0;
             }
         }
@@ -102,4 +103,4 @@ var dashboardBuilder = new aptBuilder({
     }
 });
 
-dashboardBuilder.generate();
+dashboardBuilder.generate();*/
