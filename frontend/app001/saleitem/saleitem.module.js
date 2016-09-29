@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by unal on 19.03.2016.
- */
+ *!/
 
 
 var saleitemBuilder = new aptBuilder({
@@ -92,9 +93,9 @@ var saleitemBuilder = new aptBuilder({
                 return this.model.getMostSoldSaleitem(filter);
             },
 
-            /**
+            /!**
              * editConf ile popup suffix stay ayarlandı
-             */
+             *!/
             //edit   : {
             //    before: function ($injector, data, popup) {
             //        var restOp = $injector.get('restOperationService');
@@ -105,9 +106,9 @@ var saleitemBuilder = new aptBuilder({
             //            popup : popup
             //        });
             //
-            //        /**
+            //        /!**
             //         * return false so that createModuleService::edit() function wont try to execute its own restOp.edit()
-            //         */
+            //         *!/
             //        return false;
             //    }
             //},
@@ -152,3 +153,4 @@ var saleitemBuilder = new aptBuilder({
 });
 
 saleitemBuilder.generate();
+*/
