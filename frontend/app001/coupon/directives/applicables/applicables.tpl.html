@@ -1,0 +1,14 @@
+<div class="m-5">
+    <div class="panel bg-blue-300" ng-repeat="coupon in vmCouponApplicables.coupons">
+        <div class="panel-body"
+             data-uib-tooltip="{{coupon.description}}"
+             tooltip-placement="left">
+            <h3 class="no-margin">{{coupon.code}}</h3>
+            <span>{{coupon.title}}</span>
+        </div>
+    </div>
+
+    <div class="content-group text-muted" ng-if="vmCouponApplicables.coupons.length==0">
+        <h5 translate>No any applicable coupon found.</h5>
+    </div>
+</div>

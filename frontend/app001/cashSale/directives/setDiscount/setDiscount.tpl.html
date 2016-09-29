@@ -1,0 +1,194 @@
+<div class="panel panel-flat">
+	<div class="panel-heading">
+		<h6 class="panel-title" translate>Discount</h6>
+	</div>
+	<div class="container-fluid">
+		<div class="row mt-10">
+			<div class="col-lg-4">
+				<ul class="list-inline text-center">
+					<li>
+						<a href=""
+						   class="btn border-teal text-grey-300 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i
+								class="icon-magic-wand"></i>
+						</a>
+					</li>
+					<li class="text-left">
+						<div class="text-semibold" translate>Select Discount Type</div>
+						<div class="text-muted">
+							<span class="status-mark border-success position-left"> </span>
+							<span translate>you can select only one type</span>
+						</div>
+					</li>
+				</ul>
+
+				<div class="panel">
+					<div class="panel-body">
+						<div class="form-group">
+							<div class="radio">
+								<label>
+									<span class="pull-left"></span>
+									<input type="radio"
+									       data-ng-model="vmCashSaleSetDiscount.discountType"
+									       value="amount" />
+									<span translate>Discount Amount</span>
+								</label>
+							</div>
+
+							<div class="radio">
+								<label>
+                                    <span class="pull-left">
+	                                    <input type="radio"
+	                                           data-ng-model="vmCashSaleSetDiscount.discountType"
+	                                           value="percentage" />
+                                    </span>
+									<span translate>Percentage (%)</span>
+								</label>
+							</div>
+
+							<div class="radio">
+								<label>
+                                    <span class="pull-left">
+	                                    <input type="radio"
+	                                           data-ng-model="vmCashSaleSetDiscount.discountType"
+	                                           value="new_price" />
+                                    </span>
+									<span translate>New Price</span>
+								</label>
+							</div>
+
+							<div>
+								<label class="col-lg-3 control-label" translate>Value</label>
+								<div class="col-lg-9">
+									<input type="text"
+									       data-ng-model="vmCashSaleSetDiscount.value"
+									       class="form-control input-xs">
+								</div>
+							</div>
+
+							<div ng-if="vmCashSaleSetDiscount.discountType=='new_price'">
+								<label>
+									<span class="pull-left"></span>
+									<input type="checkbox"
+									       data-ng-model="vmCashSaleSetDiscount.discountIsTaxIncluded"
+									       ng-true-value="true"
+									       ng-false-value="false"
+									       value="amount" />
+									<span translate>Tax Included</span>
+								</label>
+							</div>
+
+							<div ng-if="vmCashSaleSetDiscount.discountType!='percentage'">
+								<label>
+									<span class="pull-left"></span>
+									<input type="checkbox"
+									       data-ng-model="vmCashSaleSetDiscount.onTotal"
+									       ng-true-value="true"
+									       ng-false-value="false" />
+									<span translate>On Total</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="pull-right mr-5">
+						<button class="btn bg-orange-400 btn-xs"
+						        data-ng-click="vmCashSaleSetDiscount.apply()" translate> Apply
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+
+				<ul class="list-inline text-center">
+					<li>
+						<a href="#"
+						   class="btn border-teal text-grey-300 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i
+								class="icon-stats-decline2"> </i> </a>
+					</li>
+					<li class="text-left">
+						<div class="text-semibold" translate>Initial Price</div>
+						<div class="text-muted">
+							<span class="status-mark border-success position-left"> </span>
+							<span translate>Initial Price Details</span>
+						</div>
+					</li>
+				</ul>
+				<div class="panel text-center">
+					<div class="panel-body">
+
+						<ul class="list list-unstyled text-Left">
+							<li><span translate>Base Price</span>: <span
+									class="text-semibold">{{vmCashSaleSetDiscount.saleitem.saleitem.base_price.toFixed(2)}}</span>
+							</li>
+							<li><span translate>Tax</span>:
+								<span class="text-semibold">{{(vmCashSaleSetDiscount.saleitem.saleitem.tax*vmCashSaleSetDiscount.saleitem.qty).toFixed(2)}}</span>
+							</li>
+							<li><span translate>Taxed Price</span>: <span
+									class="text-semibold">{{(vmCashSaleSetDiscount.saleitem.saleitem.taxed_price*vmCashSaleSetDiscount.saleitem.qty).toFixed(2)}}</span>
+							</li>
+							<li><span translate>Quantity</span>:
+								<span class="text-semibold">{{vmCashSaleSetDiscount.saleitem.qty}}</span></li>
+						</ul>
+					</div>
+
+
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<ul class="list-inline text-center">
+					<li>
+						<a href="#"
+						   class="btn border-teal text-grey-300 btn-flat btn-rounded btn-icon btn-xs valign-text-bottom"><i
+								class="icon-stats-growth2">
+						</i>
+						</a>
+					</li>
+					<li class="text-left">
+						<div class="text-semibold" translate>New Price</div>
+						<div class="text-muted">
+							<span class="status-mark border-success position-left"> </span>
+							<span translate>New Price Details</span>
+						</div>
+					</li>
+				</ul>
+
+				<div class="panel text-center">
+					<div class="panel-body">
+
+						<ul class="list list-unstyled text-Left">
+							<li><span translate>Base Price</span>: <span
+									class="text-semibold">{{vmCashSaleSetDiscount.newPrice.basePrice.toFixed(2)}}</span>
+							</li>
+							<li><span translate>Tax</span>: <span class="text-semibold"
+							                                      data-ng-show="vmCashSaleSetDiscount.newPrice.tax!=null">
+                                {{(vmCashSaleSetDiscount.newPrice.tax*vmCashSaleSetDiscount.saleitem.qty).toFixed(2)}}</span>
+							</li>
+							<li><span translate>Taxed Price</span>: <span class="text-semibold"
+							                                              data-ng-show="vmCashSaleSetDiscount.newPrice.taxedPrice!=null">
+                                {{(vmCashSaleSetDiscount.newPrice.taxedPrice*vmCashSaleSetDiscount.saleitem.qty).toFixed(2)}}</span>
+							</li>
+							<li><span translate>Quantity</span>:
+								<span class="text-semibold">{{vmCashSaleSetDiscount.saleitem.qty}}</span></li>
+							<li>
+								<span translate>Discount</span>: <span data-ng-show="vmCashSaleSetDiscount.newPrice.discount!=null"
+								                                       class="text-semibold">
+                                {{(vmCashSaleSetDiscount.newPrice.discount*vmCashSaleSetDiscount.saleitem.qty).toFixed(2)}}</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="pull-right mr-5">
+				<button class="btn bg-info-800 btn-xs"
+				        data-ng-click="vmCashSaleSetDiscount.accept()" translate> Accept
+				</button>
+				<button class="btn btn-default btn-xs"
+				        data-ng-click="vmCashSaleSetDiscount.cancel()" translate> Cancel
+				</button>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+

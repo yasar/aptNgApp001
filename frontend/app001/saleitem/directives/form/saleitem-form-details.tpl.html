@@ -1,0 +1,93 @@
+<div>
+    <div apt-formify-holder data-layout="ver" data-label-width="3,6">
+        <div class="row">
+            <div class="col-md-6">
+                <apt-field field="saleitem" label="Sale Item" model-base="vmSaleitemForm.form.data"></apt-field>
+
+            </div>
+            <div class="col-md-6">
+                <apt-field model-base="vmSaleitemForm.form.data" field="barcode"></apt-field>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label translate>Saleitem Group</label>
+                    <div data-apt-saleitem-group-selector
+                         data-ng-model="vmSaleitemForm.form.data.group_id"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label translate>Brand</label>
+                    <div data-apt-brand-selector
+                         data-ng-model="vmSaleitemForm.form.data.brand_id">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <div class="form-group">
+                    <label translate>Model</label>
+                    <div data-apt-model-selector
+                         data-ng-model="vmSaleitemForm.form.data.model_id"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+
+                <div class="form-group">
+                    <label translate>Saleitem Type</label>
+                    <div data-apt-type-selector
+                         data-type="plain"
+                         data-filter-object="{groupname:'saleitem_type'}"
+                         data-ng-model="vmSaleitemForm.form.data.saleitem_type_id"
+                    ></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label translate>Saleitem Unit</label>
+                    <div data-apt-saleitem-unit-selector
+                         data-ng-model="vmSaleitemForm.form.data.saleitem_unit_id"></div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <!--<div class="row">
+                    <div class="col-md-6">
+                        <label translate>
+                            Control Of Stock
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="checkbox check-success checkbox-circle"
+                             style="float: right">
+                            <input type="checkbox"
+                                   ng-true-value="1"
+                                   ng-false-value="0"
+                                   checked="checked"
+                                   id="is_stock_enabled"
+                                   data-ng-model="vmSaleitemForm.form.data.is_stock_enabled">
+                            <label for="is_stock_enabled">Enabled</label>
+                        </div>
+                    </div>
+                </div>-->
+                <apt-field type="checkbox"
+                           field="is_stock_enabled"
+                           model-base="vmSaleitemForm.form.data"
+                           label="Stock Control"
+                           ng-true-value="1"
+                           ng-false-value="0"/>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+    <h2>Update Form</h2>
+    <form ng-submit="update()" role="form" novalidate>
+        <div class="container-fluid container-fixed-lg" style="padding-left: 0;">
+            <ng-include src="'app001/application/directives/form/form-'+app_name+'.tpl.html'"></ng-include>
+        </div>
+        <div class="panel-footer">
+            <ul class="pull-right">
+                <li class="dropdown">
+                    <button type="submit"
+                            ng-show="isFormUpdatable"
+                            class="btn btn-complete btn-sm pull-right"><i class="icon-plus2"></i>Update
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

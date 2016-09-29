@@ -1,0 +1,15 @@
+<apt-branch-selector data-ng-model="vmTillFinder.branch_id"
+                     data-limit="false"
+                     data-apt-formify
+                     data-view-type="plain"
+                     data-label="Branch"
+                     data-translate></apt-branch-selector>
+<apt-till-selector data-ng-model="vmTillFinder.till_id"
+                   data-filter-required="true"
+                   data-filter-object="{branch_id: vmTillFinder.branch_id}"
+                   data-limit="false"
+                   data-load-if="vmTillFinder.branch_id>0"
+                   data-apt-formify
+                   data-view-type="plain"
+                   data-label="Till"
+                   data-translate></apt-till-selector>

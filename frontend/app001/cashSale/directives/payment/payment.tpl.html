@@ -1,0 +1,10 @@
+<div class="m-5">
+    <apt-cash-sale-default-payment-type-selector></apt-cash-sale-default-payment-type-selector>
+    <div data-ng-if="vmCashSalePayment.saleItems.length>0">
+        <apt-cash-sale-payment-button view-type="direct" class="no-border-radius-top"></apt-cash-sale-payment-button>
+        <apt-cash-sale-payment-button view-type="partial" class="no-border-radius-top"></apt-cash-sale-payment-button>
+    </div>
+    <div data-ng-if="vmCashSalePayment.saleItems.length<=0" class="text-muted">
+        <h5 translate>Shopping cart is empty</h5>
+    </div>
+</div>
