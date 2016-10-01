@@ -11,6 +11,7 @@ namespace BYRWEB\app001\card;
 
 
 use BYRWEB\base\ADbObject;
+use BYRWEB\base\AjaxReturn;
 use BYRWEB\base\CardSecurity;
 use BYRWEB\base\Constant;
 use BYRWEB\base\IDbObject;
@@ -62,11 +63,11 @@ class Card extends ADbObject implements IDbObject
     }
 
     /**
-     * @param null  $filter
-     * @param null  $keyword
-     * @param null  $limit
+     * @param null $filter
+     * @param null $keyword
+     * @param null $limit
      * @param array $order
-     * @param null  $selectOnly
+     * @param null $selectOnly
      *
      * @return CardRecord[]
      * @throws \BYRWEB\base\Exception
@@ -88,6 +89,12 @@ class Card extends ADbObject implements IDbObject
 
     public function import($data)
     {
+        $AR = new AjaxReturn();
+        if (!is_object($data) || !property_exists($data, 'import_data')) {
+            $AR->success = false;
+            $AR->error_message = 'Expected parameters are missing';
+            return $AR;
+        }
 
         $hash = CardSecurity::getHash($data->import_data);
         if ($hash !== $data->license_key) {
@@ -102,10 +109,10 @@ class Card extends ADbObject implements IDbObject
             $securityCode = md5(Constant::LICENSE_SALT + $cardNumber);
 
             $post = [
-                'branch_id'     => $data->branch_id,
+                'branch_id' => $data->branch_id,
                 'security_code' => $securityCode,
-                'card_no'       => $cardNumber,
-                'type_id'       => $data->type_id,
+                'card_no' => $cardNumber,
+                'type_id' => $data->type_id,
             ];
 
             $cr = new CardRecord();

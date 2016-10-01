@@ -2,40 +2,43 @@
  * Created by yasar on 26.09.2016.
  */
 _.merge(cardBuilder.routeConfig, {
-    list: {
-        template  : '<apt-panel><div data-apt-card-list></div></apt-panel>',
-        controller: ['$scope', 'aptMenu', 'aptTempl',
-            'gettextCatalog', 'aptUtils', '$rootScope',
-            'restOperationService', '$routeSegment',
-            function ($scope, Menu, Templ, gettextCatalog,
-                      aptUtils, $rootScope, restOp, $routeSegment) {
+    templConfig: {
+        showSidebarLeft : true,
+        showSidebarRight: false,
+    },
+    list       : {
+        controller: ['$scope', '$injector',
+            function ($scope, $injector) {
 
-                Templ.config.showSidebarLeft = true;
-
-                $scope.cardType = aptUtils.getUrlSearchParamValue('cardType', 'in_use');
-
-                var listener1 = $scope.$on('$routeChangeSuccess', function (event, next, current) {
+                var service        = $injector.get(cardBuilder.getServiceName('service'));
+                var aptUtils       = $injector.get('aptUtils');
+                var aptMenu        = $injector.get('aptMenu');
+                var aptTempl       = $injector.get('aptTempl');
+                var gettextCatalog = $injector.get('gettextCatalog');
+                var listener1      = $scope.$on('$routeChangeSuccess', function (event, next, current) {
                     $scope.cardType = aptUtils.getUrlSearchParamValue('cardType');
                     init();
                 });
 
+                aptMenu.get('moduleMenu').clear();
+                $scope.cardType = aptUtils.getUrlSearchParamValue('cardType', 'in_use');
                 $scope.$on('$destroy', function (event, next, current) {
                     listener1();
                 });
 
-                // Templ.setSlotRouteSegment();
-
                 init();
                 initInsideMenu();
+
+
                 function init() {
-                    Templ.page.subTitle = _.upperCase(gettextCatalog.getString($scope.cardType, null, 'cardType'));
+                    aptTempl.page.subTitle = _.upperCase(gettextCatalog.getString($scope.cardType, null, 'cardType'));
                 }
 
                 function initInsideMenu() {
-                    $scope.insideMenu = Menu.get('insideMenu').clear()
+                    $scope.insideMenu = aptMenu.get('insideMenu').clear()
                         .addChild({
-                            text : gettextCatalog.getString('In use'),
-                            icon : 'icon-vcard',
+                            text : 'In use',
+                            icon : 'icon-file-text2',
                             class: 'bg-teal-400',
                             click: function () {
                                 aptUtils.setUrlSearchParamValue('cardType', 'in_use');
@@ -43,8 +46,8 @@ _.merge(cardBuilder.routeConfig, {
                             auth : ['read_card_module']
                         })
                         .addChild({
-                            text : gettextCatalog.getString('Unused'),
-                            icon : 'icon-stack-empty',
+                            text : 'Unused',
+                            icon : 'icon-file-empty',
                             class: 'bg-orange-400',
                             click: function () {
                                 aptUtils.setUrlSearchParamValue('cardType', 'free');
@@ -52,11 +55,11 @@ _.merge(cardBuilder.routeConfig, {
                             auth : ['read_card_module']
                         })
                         .addChild({
-                            text : gettextCatalog.getString('Import'),
+                            text : 'Import',
                             icon : 'icon-import',
                             class: 'bg-default',
                             click: function () {
-                                aptUtils.goto({segment: 'main.app001.card.new'});
+                                aptUtils.popupDirective(cardBuilder, 'import');
                             },
                             auth : ['create_card_module']
                         });
@@ -64,14 +67,15 @@ _.merge(cardBuilder.routeConfig, {
                     $scope.insideMenuConfig = {
                         liHasSubMenuClass: '',
                         ulIsSubMenuClass : 'sub-menu',
-                        columnCount      : 2
+                        columnCount      : 2,
+                        translate        : true
                     };
 
-                    Templ.setSlotItem('sidebarLeft', 'card-type-filter', {
+                    aptTempl.setSlotItem('sidebarLeft', 'card-type-filter', {
                         title        : gettextCatalog.getString('Card Type'),
                         body         : '<div apt-menu-builder ' +
                                        'data-menu-type="slotButtonMenu" ' +
-                                       'data-ng-model="insideMenu" ' +
+                                       'data-ng-model="insideMenu"' +
                                        'class="p-10 alpha-brown" ' +
                                        'data-btn-size="xs" ' +
                                        'data-config="insideMenuConfig"> </div>',
@@ -82,19 +86,6 @@ _.merge(cardBuilder.routeConfig, {
                     });
 
                 }
-
-                Menu.get('moduleMenu').clear();
-                // .addChild({
-                //     text : 'New Card',
-                //     icon : 'icon-credit-card',
-                //     class: 'btn bg-teal-400 btn-xs',
-                //     href : $routeSegment.getSegmentUrl('main.app001.card.new'),
-                //     auth : ['create_card_module'],
-                //     click: function () {
-                //         return true;
-                //     }
-                // })
-
             }]
     }
 });
