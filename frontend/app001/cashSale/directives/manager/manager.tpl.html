@@ -1,0 +1,34 @@
+<div>
+    <apt-cash-sale-toolbar></apt-cash-sale-toolbar>
+    <div class="row">
+
+        <div class="col-md-6">
+            <apt-cash-sale-shopping-cart-point></apt-cash-sale-shopping-cart-point>
+        </div>
+
+        <div class="col-md-6">
+            <apt-cash-sale-shopping-cart-total
+                    ng-if="!!vmCashSaleManager.saleData.saleItems.length"></apt-cash-sale-shopping-cart-total>
+
+        </div>
+    </div>
+    <apt-cash-sale-shopping-cart ng-if="!!vmCashSaleManager.saleData.saleItems.length"
+                                 items="vmCashSaleManager.saleData.saleItems"></apt-cash-sale-shopping-cart>
+
+    <div ng-if="!vmCashSaleManager.saleData.flags.isClientSelected" class="well-lg text-muted">
+        <h2>
+            <i class="icon-exclamation icon-3x text-danger-300 position-left"></i>
+            <span translate>Client is not selected</span>
+        </h2>
+        <p translate>Swipe the client card or select a client from the list on the left.</p>
+    </div>
+
+    <div ng-if="vmCashSaleManager.saleData.flags.isClientSelected && !vmCashSaleManager.saleData.saleItems.length"
+         class="well-lg text-muted">
+        <h2>
+            <i class="icon-exclamation icon-3x position-left"></i>
+            <span translate>Shopping cart is empty</span>
+        </h2>
+        <p translate>Add at least one service or product to the cart.</p>
+    </div>
+</div>

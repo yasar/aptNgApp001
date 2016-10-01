@@ -1,0 +1,21 @@
+<div>
+    <div ng-if="vmTillList.data.length">
+        <table apt-datatable datasource="data" model-base="vmTillList">
+            <thead>
+            <tr>
+                <th class="col-md-1 st-sort-ascent" apt-sort="till_id" style="cursor: pointer;">Till No</th>
+                <th class="col-md-3 st-sort-ascent" apt-sort="till" style="cursor: pointer;" translate>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{row.till_id}}</td>
+                <td>{{row.till}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="!vmTillList.data.length" class="text-muted">
+        <h2>No record available</h2>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<table apt-datatable datasource="data" model-base="vmSaleitemPackageList">
+
+	<thead>
+	<tr>
+		<th apt-sort="name" translate>Product</th>
+		<!--<th style="width: 20px;" apt-sort="saleitem_type" title="{{'Can be used in partial?'|translate}}">P</th>-->
+		<th style="width: 80px" apt-sort="qty" translate>Qty</th>
+		<!--<th style="width: 20px;" class="no-padding"></th>-->
+		<th style="width: 40px;" class="no-padding">&nbsp;</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+
+		<td class="media">
+			<div class="media-left pr-10">
+                <span class="btn text-default btn-flat btn-icon btn-xs cursor-default"
+                      uib-tooltip="{{row.type_name|translate}}"
+                      tooltip-placement="left">
+                    <i data-ng-class="row.type_conf.icon || 'icon-checkmark3'"></i>
+                </span>
+			</div>
+
+			<div class="media-body">
+				<div class="text-size-small">{{row.name}}</div>
+				<div class="text-muted text-size-mini">{{row.saleitem_group_name}}</div>
+			</div>
+			<div class="media-right" ng-if="row.is_partial">
+				<span class="label label-info" ng-if="row.is_partial" translate>Partial</span>
+			</div>
+		</td>
+		<!--<td>
+			<apt-field data-field="is_partial" data-show-label="false" data-use-formify="false" data-type="checkbox"
+			           data-model-base="row"></apt-field>
+		</td>-->
+
+		<td>
+			<apt-field type="number" data-field="qty" data-show-label="false" data-use-formify="false"
+			           data-model-base="row"></apt-field>
+		</td>
+
+		<!--<td class="no-padding"><span class="btn btn-icon btn-xs"
+		                             uib-tooltip="{{'Remove from package'|translate}}"
+		                             tooltip-placement="left"
+		                             data-ng-click="vmSaleitemPackageList.delete(row)"> <i
+				class="icon-trash"></i> </span></td>-->
+		<td class="no-padding">
+			<!--<span class="btn btn-xs btn-icon"
+				  uib-tooltip="{{'Save'|translate}}"
+				  tooltip-placement="right"
+				  data-ng-click="vmSaleitemPackageList.save(row)"><i
+					class="icon-floppy-disk"></i> </span>-->
+
+			<ul class="icons-list text-nowrap">
+				<li class="">
+					<a href="#"
+					   class="dropdown-toggle"
+					   data-toggle="dropdown"
+					   aria-expanded="false"><i class="icon-more"></i></a>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><a href data-ng-click="vmSaleitemPackageList.delete(row)"><i class="icon-folder-minus4"></i> <span
+								translate>Remove from package</span></a></li>
+						<li><a href data-ng-click="vmSaleitemPackageList.save(row)"><i class="icon-floppy-disk"></i>
+							<span translate>Save</span></a></li>
+						<li class="divider"></li>
+						<li class="checkbox">
+							<label>
+								<input type="checkbox" class="checkbox" ng-model="row.is_partial">
+								<span translate>Can be used in partial?</span></label>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</td>
+	</tr>
+	</tbody>
+</table>

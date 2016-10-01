@@ -1,0 +1,27 @@
+<ul class="nav navbar-nav">
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			<i class="position-left" ng-class="vmCashSalePayment.paymentServiceVars.default_payment_type.conf.icon"></i>
+			<span>{{vmCashSalePayment.paymentServiceVars.default_payment_type.name|translate:'paymentType'}}</span>
+			<span class="caret"></span>
+		</a>
+		
+		<div class="dropdown-menu dropdown-content">
+			<div class="dropdown-content-body" style="min-width: 280px;">
+				<apt-inline-help translate>Select the default payment type. Payment type is an essential parameter for finding applicable coupons.</apt-inline-help>
+				<div apt-cash-sale-default-payment-type-selector></div>
+				<div data-ng-if="vmCashSalePayment.saleItems.length>0">
+					<apt-inline-help translate>Once you are ready, click the button below to process the payment.</apt-inline-help>
+					<apt-cash-sale-payment-button view-type="direct"
+					                              class="no-border-radius-top"></apt-cash-sale-payment-button>
+					
+					<apt-cash-sale-payment-button view-type="partial"
+					                              class="no-border-radius-top"></apt-cash-sale-payment-button>
+				</div>
+				<div data-ng-if="vmCashSalePayment.saleItems.length<=0" class="text-muted">
+					<h5 translate>Shopping cart is empty</h5>
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>

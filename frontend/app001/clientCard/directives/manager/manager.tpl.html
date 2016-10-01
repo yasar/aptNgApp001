@@ -1,0 +1,50 @@
+<div class="row">
+	<div class="col-md-4">
+		<apt-panel class="no-margin2">
+			<apt-panel-title>
+				<span translate>Client Cards</span>
+			</apt-panel-title>
+			<apt-panel-heading-elements>
+				<button type="button"
+				        data-ng-click="vmClientCardManager.createClientCard()"
+				        class="btn btn-primary btn-icon btn-xs heading-btn">
+					<i class="icon-plus2"></i>
+				</button>
+			</apt-panel-heading-elements>
+			<table class="table table-xs no-margin content-group-sm">
+				<tbody>
+				<tr data-ng-repeat="item in vmClientCardManager.clientCards"
+				    ng-class="{active: item==vmClientCardManager.selectedItem}">
+					<td ng-class="{'no-border-top': $index==0}">
+						<span ng-if="item.is_primary"
+						      title="{{'Primary Card' | translate}}"
+						      class="status-mark position-left border-orange"></span>
+						<span ng-if="!item.is_primary" class="status-mark position-left border-grey"></span>
+						<span translate>Card No</span>: {{item.card_no}}
+					</td>
+					<td class="text-right" ng-class="{'no-border': $index==0}">
+                        <span class="pull-right">
+                            <span data-ng-click="vmClientCardManager.selectItem(item)"
+                                  class="cursor-pointer"
+                                  ng-class="{'text-blue':vmClientCardManager.selectedItem==item}">
+	                            <i class="icon-chevron-right"></i></span>
+                        </span>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</apt-panel>
+	</div>
+	<div class="col-md-8">
+		<div data-apt-client-card-form
+		     ng-if="vmClientCardManager.selectedItemClientCardId"
+		     item-id="vmClientCardManager.selectedItemClientCardId"
+		     watch="true" data-stay="true"></div>
+
+		<div ng-if="!vmClientCardManager.selectedItemClientCardId"
+		     class="text-muted well no-border">
+			<h2 translate>Nothing selected</h2>
+			<p translate>Please a select an existing card to edit or click `+` sign to assign a new card</p>
+		</div>
+	</div>
+</div>

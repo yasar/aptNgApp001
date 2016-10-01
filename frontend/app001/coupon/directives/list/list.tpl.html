@@ -1,0 +1,17 @@
+<table apt-datatable datasource="data" model-base="vmCouponList">
+    <thead>
+    <tr>
+        <th style="width: 120px;" apt-sort="type" translate>Code</th>
+        <th apt-sort="title" translate>Title</th>
+        <th style="width: 80px;" apt-sort="status" translate>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{row.code}}</td>
+        <td>{{row.title}}<span ng-if="row.description" class="display-block text-light text-size-small">{{row.description}}</span></td>
+        <td><a href
+               ng-click="vmCouponList.showStatusChangeForm(row)">{{row.coupon_status|translate}}</a></td>
+    </tr>
+    </tbody>
+</table>

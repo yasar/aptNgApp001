@@ -1,0 +1,82 @@
+<form ng-submit="vmClientForm.form.submit()" role="form">
+    <apt-panel class="no-margin">
+        <apt-panel-title>
+            <i class="icon-person position-left"></i>
+            <span class="text-semibold"><span translate>Client</span>: {{vmClientForm.clientFormType | uppercase}}</span>
+        </apt-panel-title>
+        <apt-panel-body>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <fieldset>
+                        <legend class="text-semibold">
+                            <i class="icon-users2 position-left"></i>
+                            <span translate>Client Group</span>
+                        </legend>
+                    </fieldset>
+                    <div class="form-group">
+                        <div data-apt-client-group-listing
+                             data-ng-model="vmClientForm.form.data.client_group_id"
+                             data-checkbox="true"
+                             id="client_group"></div>
+                    </div>
+                </div>
+                <div class="col-md-9" data-apt-formify-holder>
+                    <fieldset>
+                        <legend class="text-semibold">
+                            <i class="icon-users2 position-left"></i>
+                            <span>{{vmClientForm.clientFormType |uppercase}}</span></legend>
+                    </fieldset>
+                    <div class="form-group" data-ng-if="vmClientForm.clientFormType=='person'">
+                        <label translate>Person</label>
+                        <div data-apt-person-selector
+                             data-ng-model="vmClientForm.form.data.person_id"></div>
+                    </div>
+
+                    <div class="form-group" data-ng-if="vmClientForm.clientFormType=='entity'">
+                        <label translate>Entity</label>
+                        <div data-apt-entity-selector
+                             data-ng-model="vmClientForm.form.data.entity_id"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label translate>Card</label>
+                                <div data-apt-card-selector
+                                     data-ng-model="vmClientForm.form.data.card_id"></div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <apt-field field="password" type="password" model-base="vmClientForm.form.data"></apt-field>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label translate>Account</label>
+                        <div data-apt-account-selector
+                             data-ng-model="vmClientForm.form.data.account_id"></div>
+                    </div>
+                    <apt-field field="notes" type="textarea" model-base="vmClientForm.form.data"></apt-field>
+                </div>
+            </div>
+
+        </apt-panel-body>
+
+        <apt-panel-footer>
+            <apt-panel-footer-right>
+                <button type="button"
+                        class="btn btn-xs btn-default"
+                        data-ng-click="vmClientForm.form.cancel()"><span translate>Cancel</span> <i
+                        class="icon-close2 position-right"></i>
+                </button>
+                <button type="submit" class="btn btn-xs btn-primary"><span
+                        data-ng-bind="vmClientForm.form.submitLabel"></span> <i
+                        class="icon-arrow-right14 position-right"></i>
+                </button>
+            </apt-panel-footer-right>
+        </apt-panel-footer>
+
+    </apt-panel>
+</form>
