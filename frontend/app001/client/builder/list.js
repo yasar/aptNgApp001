@@ -1,8 +1,8 @@
 /**
  * Created by burak on 26.09.2016.
  */
-_.merge(clientBuilder.list,{
-    rowMenu: function ($injector, vm) {
+_.merge(clientBuilder.list, {
+    rowMenu       : function ($injector, vm) {
 
         var Menu           = $injector.get('aptMenu');
         var ClientService  = $injector.get('ClientService');
@@ -15,27 +15,19 @@ _.merge(clientBuilder.list,{
         });
 
 
-        var menuItemEdit    = Menu.Item({
-            text     : 'Edit',
-            translate: true,
-            icon     : 'icon-pencil',
-            'class'  : 'dropdown-toggle btn-default',
+        var menuItemEdit    = Menu.Item('edit',{
             click    : function (item) {
-
-                if (_.isNull(item.entity_id)) {
-                    ClientService.vars.clientType = 'person';
-                }
-                if (_.isNull(item.person_id)) {
+                if (!_.isNull(item.entity_id)) {
                     ClientService.vars.clientType = 'entity';
+                }
+                else if (!_.isNull(item.person_id)) {
+                    ClientService.vars.clientType = 'person';
                 }
 
                 ClientService.edit(item, {popup: true, stay: true, suffix: 'manager'});
             }
         });
-        var menuItemDelete  = Menu.Item({
-            text   : 'Delete',
-            icon   : 'icon-close2',
-            'class': 'btn-danger',
+        var menuItemDelete  = Menu.Item('delete',{
             click  : function (item) {
                 ClientService.delete(item);
             }
@@ -44,8 +36,6 @@ _.merge(clientBuilder.list,{
             text : currentBuilder.title,
             icon : currentBuilder.icon,
             click: function (item) {
-
-
                 var currentService = $injector.get(currentBuilder.getServiceName('Service'));
 
                 var filter = {
@@ -63,7 +53,7 @@ _.merge(clientBuilder.list,{
 
         return rowMenu;
     },
-    controller: function ($injector, $scope, builder) {
+    controller    : function ($injector, $scope, builder) {
 
         var vm         = this;
         var $rootScope = $injector.get('$rootScope');

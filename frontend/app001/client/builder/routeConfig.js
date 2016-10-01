@@ -98,7 +98,6 @@ _.merge(clientBuilder.routeConfig, {
                     .addChild({
                         text : gettextCatalog.getString('Quick Client'),
                         icon : 'icon-user-tie',
-                        class: 'btn bg-teal-400 btn-xs',
                         auth : ['create_client_module'],
                         click: service.addQuickClient
                     });

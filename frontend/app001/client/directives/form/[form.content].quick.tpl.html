@@ -1,120 +1,116 @@
-<div>
-	<div class="row">
-		<div class="col-md-1">
-			<apt-type-selector
-					apt-formify data-label="Type" translate
-					data-view-type="icon-list"
-					data-filter-object="{groupname:'client_type'}"
-					data-searchable="false"
-					data-ng-change="vmClientForm.selectQuickClientFormType(data)"
-					data-ng-model="vmClientForm.form.data.client_type_id"></apt-type-selector>
+<div class="row">
+	<div class="col-md-1">
+		<apt-type-selector
+				apt-formify data-label="Type" translate
+				data-view-type="icon-list"
+				data-filter-object="{groupname:'client_type'}"
+				data-searchable="false"
+				data-ng-change="vmClientForm.selectQuickClientFormType(data)"
+				data-ng-model="vmClientForm.form.data.client_type_id"></apt-type-selector>
+	</div>
+	
+	<div class="col-md-11">
+		<div ng-if="!vmClientForm.form.data.client_type_id" class="well-sm text-muted">
+			<h2 translate>Nothing selected</h2>
+			<p translate>Please select the client type</p>
 		</div>
 		
-		<div class="col-md-11">
-			<div ng-if="!vmClientForm.form.data.client_type_id" class="well-sm text-muted">
-				<h2 translate>Nothing selected</h2>
-				<p translate>Please select the client type</p>
+		<div ng-if="vmClientForm.form.data.client_type_id">
+			
+			<div class="row">
+				<div class="col-sm-6">
+					<apt-client-group-selector
+							data-apt-formify
+							data-label="Client Group"
+							data-translate required
+							data-ng-model="vmClientForm.form.data.client_group_id"></apt-client-group-selector>
+				</div>
+				
+				<div class="col-xs-6 col-sm-4 col-md-3">
+					<apt-field
+							type="date-ui" field="registration_date" required
+							model-base="vmClientForm.form.data"
+							data-label="Registration Date"></apt-field>
+				</div>
+			
 			</div>
 			
-			<div ng-if="vmClientForm.form.data.client_type_id">
+			<div class="row">
+				<div class="col-md-6">
+					<div data-ng-if="vmClientForm.clientQuickFormType=='person'">
+						<fieldset>
+							<legend class="text-semibold">
+								<i class="icon-file-text2 position-left"></i>
+								<span translate>Person Info</span>
+								<a class="control-arrow" data-toggle="collapse" data-target="#person_details">
+									<i class="icon-circle-down2"></i>
+								</a>
+							</legend>
+							<div class="collapse in" id="person_details">
+								<div data-apt-person-form
+								     data-view-type="inside-form"
+								     data-has-parent="true"
+								     data-item="vmClientForm.form.data.quickPersonData"></div>
+							</div>
+						</fieldset>
+					</div>
+					<div data-ng-if="vmClientForm.clientQuickFormType=='entity'">
+						<fieldset>
+							<legend class="text-semibold">
+								<i class="icon-file-text2 position-left"></i>
+								<span translate>Entity Info</span>
+								<a class="control-arrow" data-toggle="collapse" data-target="#entity_details">
+									<i class="icon-circle-down2"></i>
+								</a>
+							</legend>
+							<div class="collapse in" id="entity_details">
+								<div data-apt-entity-form
+								     data-view-type="inside-form"
+								     data-has-parent="true"
+								     data-item="vmClientForm.form.data.quickEntityData"></div>
+							</div>
+						</fieldset>
+					</div>
 				
-				<div class="row">
-					<div class="col-sm-6">
-						<apt-client-group-selector
-								data-apt-formify
-								data-label="Client Group"
-								data-translate required
-								data-ng-model="vmClientForm.form.data.client_group_id"></apt-client-group-selector>
-					</div>
-					
-					<div class="col-xs-6 col-sm-4 col-md-3">
-						<apt-field
-								type="date-ui" field="registration_date" required
-								model-base="vmClientForm.form.data"
-								data-label="Registration Date"></apt-field>
-					</div>
 				
 				</div>
 				
-				<div class="row">
-					<div class="col-md-6">
-						<div data-ng-if="vmClientForm.clientQuickFormType=='person'">
-							<fieldset>
-								<legend class="text-semibold">
-									<i class="icon-file-text2 position-left"></i>
-									<span translate>Person Info</span>
-									<a class="control-arrow" data-toggle="collapse" data-target="#person_details">
-										<i class="icon-circle-down2"></i>
-									</a>
-								</legend>
-								<div class="collapse in" id="person_details">
-									<div data-apt-person-form
-									     data-view-type="inside-form"
-									     data-has-parent="true"
-									     data-item="vmClientForm.form.data.quickPersonData"></div>
-								</div>
-							</fieldset>
-						</div>
-						<div data-ng-if="vmClientForm.clientQuickFormType=='entity'">
-							<fieldset>
-								<legend class="text-semibold">
-									<i class="icon-file-text2 position-left"></i>
-									<span translate>Entity Info</span>
-									<a class="control-arrow" data-toggle="collapse" data-target="#entity_details">
-										<i class="icon-circle-down2"></i>
-									</a>
-								</legend>
-								<div class="collapse in" id="entity_details">
-									<div data-apt-entity-form
-									     data-view-type="inside-form"
-									     data-has-parent="true"
-									     data-item="vmClientForm.form.data.quickEntityData"></div>
-								</div>
-							</fieldset>
-						</div>
+				<div class="col-md-6">
 					
 					
-					</div>
-					
-					<div class="col-md-6">
+					<div ng-if="vmClientForm.clientQuickFormType!=null">
 						
-						
-						<div ng-if="vmClientForm.clientQuickFormType!=null">
-							
-							<fieldset>
-								<legend class="text-semibold">
-									<i class="icon-file-text2 position-left"></i>
-									<span translate>Contact Info</span>
-									<a class="control-arrow" data-toggle="collapse" data-target="#contact_details">
-										<i class="icon-circle-down2"></i>
-									</a>
-								</legend>
-								<div class="collapse in" id="contact_details">
-									<apt-field
-											field="phone"
-											model-base="vmClientForm.form.data.quickContactData"></apt-field>
-									<apt-field
-											field="email"
-											model-base="vmClientForm.form.data.quickContactData"></apt-field>
-									
-									<apt-address-form
-											data-view-type="inside-form"
-											data-has-parent="true"
-											data-item="vmClientForm.form.data.quickAddressData"></apt-address-form>
-								</div>
-							</fieldset>
-						</div>
+						<fieldset>
+							<legend class="text-semibold">
+								<i class="icon-file-text2 position-left"></i>
+								<span translate>Contact Info</span>
+								<a class="control-arrow" data-toggle="collapse" data-target="#contact_details">
+									<i class="icon-circle-down2"></i>
+								</a>
+							</legend>
+							<div class="collapse in" id="contact_details">
+								<apt-field
+										field="phone"
+										model-base="vmClientForm.form.data.quickContactData"></apt-field>
+								<apt-field
+										field="email"
+										model-base="vmClientForm.form.data.quickContactData"></apt-field>
+								
+								<apt-address-form
+										data-view-type="inside-form"
+										data-has-parent="true"
+										data-item="vmClientForm.form.data.quickAddressData"></apt-address-form>
+							</div>
+						</fieldset>
 					</div>
 				</div>
-				
-				<apt-field field="notes"
-				           type="textarea"
-				           rows="5"
-				           model-base="vmClientForm.form.data"></apt-field>
 			</div>
-		
+			
+			<apt-field field="notes"
+			           type="textarea"
+			           rows="5"
+			           model-base="vmClientForm.form.data"></apt-field>
 		</div>
+	
 	</div>
-
-
 </div>

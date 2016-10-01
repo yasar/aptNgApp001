@@ -4,7 +4,7 @@
 var clientBuilder = new aptBuilder({
     domain      : 'client',
     package     : 'app001',
-    icon        : 'icon-chess-queen',
+    icon        : 'icon-theater',
     title       : 'Client',
     menu        : true,
     create      : {
