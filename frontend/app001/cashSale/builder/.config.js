@@ -3,20 +3,13 @@
  */
 var cashSaleBuilder = new aptBuilder({
     domain : 'cashSale',
-    title  : 'Cash Sale',
+    title  : 'Sale',
     package: 'app001',
     // dependencies: ['shoppingCart'],
     icon   : 'icon-cart2',
     menu   : {
         order: 2
     },
-    /*menu   : {
-     text : 'Cash Sale',
-     icon : 'icon-cart2',
-     href : $routeSegment.getSegmentUrl('main.app001.cashSale'),
-     auth : ['access_saleitem_menu'],
-     order: 55
-     },*/
     create : {
         listDirective    : true,
         formDirective    : true,
