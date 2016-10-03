@@ -5,7 +5,6 @@
 (function () {
 
     angular.module('apt.app001', [
-
         'apt.app001.route',
         'apt.app001.icons',
         'apt.app001.application', // disabled temporarily
