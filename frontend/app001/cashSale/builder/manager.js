@@ -49,7 +49,8 @@ _.merge(cashSaleBuilder.manager, {
                    && url !== '/sale') {
                 aptUtils.showConfirm(
                     gettextCatalog.getString('Confirmation'),
-                    gettextCatalog.getString('You will loose any unsaved data if you choose to continue.' + ' ' + gettextCatalog.getString('Are you sure that you want to continue?')), function () {
+                    gettextCatalog.getString('You will loose any unsaved data if you choose to continue.') + ' ' + gettextCatalog.getString('Are you sure that you want to continue?'),
+                    function () {
                         /**
                          * paymentservice.reset balance yani alışveriş tutarından kalan miktarı da sıfırladıgı için
                          * sale sayfasından ileri geri yaptıgımızda alısverişi tamamlamadıgımız hiç bir odeme yapmadıgımız
