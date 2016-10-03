@@ -13,7 +13,7 @@ define('WT_MCRYPT_KEY', 'Gt3597{zq`F-|(70])_=Kfgd!jB!6H');
 define('WT_SITE_ID', 0);
 define('WT_ENABLE_LOG', true);
 define('WT_ENABLE_LOGIN_FAILURE_CHECK', false);
-define('WT_LOGIN_WITH_EBT', false);
+define('WT_LOGIN_WITH_EBT', true);
 define('APP_MODE', Enum::APP_MODE_SHARED);
 
 
@@ -36,8 +36,11 @@ if ($app_version) {
 
 function getRequiredFlags()
 {
+    /**
+     * default values
+     */
     $login = true;
-    $license = false;
+    $license = true;
 
     if (strpos($_SERVER['REQUEST_URI'], 'login')) {
         $login = $login && false;

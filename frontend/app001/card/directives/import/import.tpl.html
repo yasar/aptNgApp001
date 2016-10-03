@@ -1,7 +1,7 @@
 <form ng-submit="vmCardImport.import()" name="{{vmCardImport.form.name}}" role="form" novalidate>
 	<apt-panel class="no-margin" ng-init="_builder=$root.$window.cardBuilder">
 		<apt-panel-title icon="_builder.icon">
-			<span translate>{{_builder.title}}</span> / <span translate>Import</span>
+			<span>{{_builder.title|translate}}</span> / <span translate>Import</span>
 		</apt-panel-title>
 		<apt-panel-body>
 			<div class="row">
