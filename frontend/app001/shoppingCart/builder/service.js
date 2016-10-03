@@ -15,6 +15,14 @@ _.merge(shoppingCartBuilder.service,{
             return this.vars.items;
         },
         addItem              : function (saleitem) {
+            /**
+             * this happened on live demo.
+             * not an intensive debug performed but
+             * it could be a duplicate call to this method.
+             */
+            if(_.isUndefined(saleitem)){
+                return;
+            }
             var aptTempl       = this.$injector.get('aptTempl');
             var dialogs        = this.$injector.get('dialogs');
             var _this          = this;

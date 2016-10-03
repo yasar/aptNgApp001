@@ -21,11 +21,17 @@ _.merge(clientBuilder.selector, {
                 aptUtils.showWait(waitConf);
                 service.getByCardNr({card_nr: cardObj.data}).then(function (data) {
                     // vm.selectedItem(null); // didn't work, we should find another way to reset the selected item if there is any.
-                    waitConf.progress = 80;
-                    vm.onChange({data: data});
-                    $timeout(function () {
-                        waitConf.progress = 100;
-                    }, 100);
+
+                    if (!data || data == 'false') {
+                        waitConf.progress = 0;
+                        waitConf.message  = 'Nothing found.';
+                    } else {
+                        waitConf.progress = 80;
+                        vm.onChange({data: data});
+                        $timeout(function () {
+                            waitConf.progress = 100;
+                        }, 100);
+                    }
                 });
             });
         }

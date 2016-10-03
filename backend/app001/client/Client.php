@@ -322,6 +322,10 @@ class Client extends ADbObject implements IDbObject, IWidget
     {
         $client_id = $this->getClientIdByCardNr($card_nr);
 
+        if (!$client_id) {
+            return false;
+        }
+
         return parent::get($client_id);
     }
 

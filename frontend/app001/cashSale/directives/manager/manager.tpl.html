@@ -8,11 +8,11 @@
 
         <div class="col-md-6">
             <apt-cash-sale-shopping-cart-total
-                    ng-if="!!vmCashSaleManager.saleData.saleItems.length"></apt-cash-sale-shopping-cart-total>
+                    ng-show="vmCashSaleManager.saleData.saleItems.length"></apt-cash-sale-shopping-cart-total>
 
         </div>
     </div>
-    <apt-cash-sale-shopping-cart ng-if="!!vmCashSaleManager.saleData.saleItems.length"
+    <apt-cash-sale-shopping-cart ng-show="vmCashSaleManager.saleData.saleItems.length"
                                  items="vmCashSaleManager.saleData.saleItems"></apt-cash-sale-shopping-cart>
 
     <div ng-if="!vmCashSaleManager.saleData.flags.isClientSelected" class="well-lg text-muted">
