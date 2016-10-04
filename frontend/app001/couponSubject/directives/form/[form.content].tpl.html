@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label translate>Type</label>
+            <div data-apt-type-selector
+                 data-ng-model="vmCouponSubjectForm.form.data.type_id"
+                 data-ng-change="vmCouponSubjectForm.changeTarget(data)"
+                 data-view-type2="plain"
+                 data-filter-object="{groupname:'coupon_subject'}"
+                 data-select-item="vmCouponSubjectForm.selectedType">
+            </div>
+        </div>
+    </div>
+    <div ng-show="vmCouponSubjectForm.show.saleitem || vmCouponSubjectForm.show.saleitem_group " class="form-group">
+        <div class="col-md-6">
+            <apt-field field="saleitem_group_id" model-base="vmCouponSubjectForm.form.data" />
+            <!--<div class="form-group">-->
+                <!--<label translate>Sale Item Group</label>-->
+                <!--<div data-apt-saleitem-group-selector-->
+                     <!--data-view-type2="plain"-->
+                     <!--data-ng-model="vmCouponSubjectForm.form.data.saleitem_group_id">-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<div class="row" ng-show="vmCouponSubjectForm.show.brand">
+    <div class="col-md-6">
+        <apt-field field="brand_id" model-base="vmCouponSubjectForm.form.data.brand_id" />
+        <!--<div class="form-group">-->
+            <!--<label translate>Brand</label>-->
+            <!--<div data-apt-brand-selector-->
+                 <!--ng-model="vmCouponSubjectForm.form.data.brand_id"></div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="col-md-6">
+        <label translate>Target Scope</label>
+        <div data-apt-type-selector
+             data-view-type2="plain"
+             data-filter-object="{groupname:'coupon_target_scope'}"
+             ng-model="vmCouponSubjectForm.form.data.target_scope_type_id"></div>
+    </div>
+
+</div>
+<div class="row" ng-if="vmCouponSubjectForm.show.saleitem">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label translate>Saleitem</label>
+            <div data-apt-saleitem-selector
+                 data-filter-object="{saleitem_group_id:vmCouponSubjectForm.form.data.saleitem_group_id}"
+                 data-ng-model="vmCouponSubjectForm.form.data.saleitem_id"></div>
+        </div>
+
+    </div>
+</div>

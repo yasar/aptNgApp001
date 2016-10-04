@@ -1,0 +1,80 @@
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label translate>Reward Type</label>
+                <div data-apt-type-selector
+                     data-ng-model="vmCouponRewardForm.form.data.reward_type_id"
+                     data-view-type="plain"
+                     data-filter-object="{groupname:'coupon_reward'}"
+                     data-ng-change="vmCouponRewardForm.changeTarget(data)">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div ng-if="vmCouponRewardForm.show.gift_voucher" class="form-group">
+                <label translate>Hediye Çeki listesi gelecek</label>
+            </div>
+
+            <div ng-if="vmCouponRewardForm.show.free_saleitem" class="form-group">
+                <label translate>Saleitem</label>
+                <div data-apt-saleitem-selector
+                     data-ng-model="vmCouponRewardForm.form.data.saleitem_id"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div ng-if="vmCouponRewardForm.show.point || vmCouponRewardForm.show.discount" class="form-group">
+                <label class="label-sm" translate>Amount</label>
+                <input type="text"
+                       ng-model="vmCouponRewardForm.form.data.amount"
+                       class="form-control input-sm">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div ng-if="vmCouponRewardForm.show.point || vmCouponRewardForm.show.discount " class="form-group">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="checkbox check-success checkbox-circle" style="float: right">
+                            <input type="checkbox" ng-true-value="true"
+                                   ng-false-value="false"
+                                   checked="checked"
+                                   id="is_percentage"
+                                   data-ng-model="vmCouponRewardForm.form.data.is_percentage">
+                            <label for="is_percentage" translate>Is percentage</label>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox check-success checkbox-circle" style="float: right">
+                            <input type="checkbox" ng-true-value="true"
+                                   ng-false-value="false"
+                                   checked="checked"
+                                   id="is_subtracted_from_sale_totals"
+                                   data-ng-model="vmCouponRewardForm.form.data.is_subtracted_from_sale_totals">
+                            <label for="is_subtracted_from_sale_totals" translate>Is Subtracted From Sale Totals</label>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox check-success checkbox-circle" style="float: right">
+                            <input type="checkbox" ng-true-value="true"
+                                   ng-false-value="false"
+                                   checked="checked"
+                                   id="is_discounted_price_regarded"
+                                   data-ng-model="vmCouponRewardForm.form.data.is_discounted_price_regarded">
+                            <label for="is_discounted_price_regarded" translate>Is Discounted Price Regarded</label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

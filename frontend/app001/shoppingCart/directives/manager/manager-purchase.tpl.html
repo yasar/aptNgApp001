@@ -1,0 +1,136 @@
+<table class="table table-compressed table-striped table-bordered apt-datatable">
+    <thead class="navbar-inverse">
+    <tr class="border-double">
+        <th apt-sort="saleitem" translate>Sale Item</th>
+        <th colspan="2" apt-sort="qty" style="width: 120px;" translate>QTY</th>
+        <th apt-sort="total" style="width: 160px;" translate>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="4" class="alpha-primary"></td>
+    </tr>
+    <tr ng-repeat-start="row in vmShoppingCartManager.items">
+        <td>
+            <span type="button mr-10"
+                  title="{{'Remove row'|translate}}"
+                  data-ng-click="vmShoppingCartManager.removeItem(row)"
+                  class="btn text-danger-300 btn-icon no-padding"><i class="icon-x"></i></span>
+            <span class="text-semibold">{{row.saleitem.name}}</span>
+
+        </td>
+        <td class="no-padding" style="width: 70px;">
+            <input type="number"
+                   class="form-control input-xs no-border"
+                   ng-class="{'text-info text-bold':row.qty>1}"
+                   value="1"
+                   min="1"
+                   step="any"
+                   data-ng-model="row.qty"/>
+        </td>
+        <td class="text-size-small text-thin" style="width: 50px;">{{row.saleitem.saleitem_unit_name}}</td>
+        <td rowspan="2" class="text-right">
+            <h4>{{row.calculated.total.toFixed(2)*row.qty|isoCurrency:row.currency.code}}</h4>
+            <div class="div-table text-light pull-right">
+                <div class="tr">
+                    <span class="td">{{'Base Price'|translate}}:</span><span class="td">{{row.calculated.price.toFixed(2)|isoCurrency:row.currency.code}} </span>
+                </div>
+                <div class="tr">
+                    <span class="td">{{'Discount'|translate}}:</span><span class="td">{{row.calculated.discount_amount.toFixed(2)|isoCurrency:row.currency.code}} </span>
+                </div>
+                <div class="tr">
+                    <span class="td">{{'Tax'|translate}}:</span><span class="td">{{row.calculated.tax_amount.toFixed(2)|isoCurrency:row.currency.code}} </span>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" class="text-size-mini text-light">
+            <div class="div-table pull-left">
+                <div class="tr">
+                    <div class="td col-xs-4 text-left">
+                        <div apt-money
+                             class="input-group-xs"
+                             data-ng-change="vmShoppingCartManager.calculateRow(row)"
+                             ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                             ng-model="row.price.price"
+                             currency-id="row.price.currency_id"
+                             selected-currency="row.currency"></div>
+                        <span class="help-block no-margin-bottom" translate>Price</span>
+                    </div>
+                    <div class="td col-xs-4 text-left"
+                         ng-init="row.price.discount_type=row.price.discount_type||'percentage'">
+                        <div class="input-group input-group-xs">
+                            <div class="input-group-btn">
+                                <button type="button" title="{{'percentage'|translate}}"
+                                        class="btn btn-icon"
+                                        ng-class="{'bg-slate-300':row.price.discount_type=='percentage'}"
+                                        ng-click="row.price.discount_type='percentage'; vmShoppingCartManager.calculateRow(row);">
+                                    <i class="icon-percent"></i></button>
+                                <button type="button" title="{{'amount'|translate}}"
+                                        class="btn btn-icon"
+                                        ng-class="{'bg-slate-300':row.price.discount_type=='amount'}"
+                                        ng-click="row.price.discount_type='amount'; vmShoppingCartManager.calculateRow(row);">
+                                    <i class="icon-coin-dollar"></i></button>
+                            </div>
+                            <input type="number" ng-if="row.price.discount_type=='percentage'"
+                                   min="0" max="99"
+                                   class="form-control input-xs ng-animate-disabled"
+                                   data-ng-change="vmShoppingCartManager.calculateRow(row)"
+                                   ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                                   ng-model="row.price.discount_percentage"/>
+                            <input type="number" ng-if="row.price.discount_type=='amount'"
+                                   min="0"
+                                   max="{{(row.price.price * 1) - 1}}"
+                                   class="form-control input-xs ng-animate-disabled"
+                                   data-ng-change="vmShoppingCartManager.calculateRow(row)"
+                                   ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                                   ng-model="row.price.discount_amount"/>
+                        </div>
+                        <span class="help-block no-margin-bottom" translate>Discount</span>
+                    </div>
+                    <div class="td col-xs-3 text-left">
+                        <apt-tax-selector ng-model="row.price.tax_id"
+                                          ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                                          data-ng-change="vmShoppingCartManager.calculateRow(row)"
+                                          select-item="row.price.tax"
+                                          view-type="plain"
+                                          searchable="false"
+                                          help-text="Tax Rate"
+                                          class="input-xs"></apt-tax-selector>
+                        <!--<span class="help-block no-margin-bottom" translate></span>-->
+                    </div>
+                    <div class="td col-xs-1 text-left">
+                        <input type="checkbox" class="checkbox"
+                               data-ng-change="vmShoppingCartManager.calculateRow(row)"
+                               ng-model="row.price.is_tax_included"/>
+						<span class="help-block no-margin-bottom"
+                              title="{{'Tax Included'|translate}}"
+                              translate>T/I</span>
+                    </div>
+                </div>
+            </div>
+
+        </td>
+    </tr>
+    <tr ng-repeat-end>
+        <td colspan="4" class="alpha-primary"></td>
+    </tr>
+    <tr data-ng-if="vmShoppingCartManager.showTotalPrice">
+        <td colspan="4">
+            <div class="div-table pull-right">
+                <div class="tr">
+                    <span class="td text-semibold">{{'Total'|translate}}:</span><span class="td">{{vmShoppingCartManager.totalBasePrice.toFixed(2)|isoCurrency:vmShoppingCartManager.total.currency_code}} </span>
+                </div>
+                <div class="tr">
+                    <span class="td text-semibold">{{'Tax'|translate}}:</span><span class="td">{{vmShoppingCartManager.totalTax.toFixed(2)|isoCurrency:vmShoppingCartManager.total.currency_code}} </span>
+                </div>
+                <div class="tr text-size-large text-info">
+                    <span class="td text-semibold">{{'Grand Total'|translate}}:</span><span class="td">{{vmShoppingCartManager.totalPrice.toFixed(2)|isoCurrency:vmShoppingCartManager.total.currency_code}} </span>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    </tbody>
+</table>

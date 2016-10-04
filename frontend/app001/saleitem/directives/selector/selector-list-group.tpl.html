@@ -1,0 +1,23 @@
+<div>
+    <form ng-submit="<<vm>>.search(<<vm>>.keyword)">
+        <div class="input-group input-group-xs">
+            <input class="form-control"
+                   type="text"
+                   ng-model="<<vm>>.keyword"
+                   placeholder="{{'search in the list'|translate}}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-hide="<<vm>>.isLoading"
+                        type="submit"> <i class="icon-search4"></i> </button>
+                <button class="btn btn-default" type="button"
+                        ng-show="<<vm>>.isLoading"> <i class="spinner icon-spinner"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="list-group list-group-borderless no-padding">
+        <a data-ng-repeat="item in <<vm>>.data | filter:<<vm>>.keyword"
+           data-ng-click="<<vm>>.selectedItem(item)"
+           class="list-group-item"
+           data-ng-class="{active:<<vm>>.model==item.saleitem_id}"
+           data-ng-bind-html="item._selectorTitle">...</a>
+    </div>
+</div>

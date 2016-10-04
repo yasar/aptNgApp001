@@ -1,0 +1,11 @@
+<form ng-submit="vmClientForm.form.submit()" name="{{vmClientForm.form.name}}" role="form" novalidate>
+    <apt-panel class="no-margin no-border" data-form="vmClientForm.form">
+        <apt-panel-body>
+            <div ng-include="'app001/client/directives/form/[form.content].quick.tpl.html'"></div>
+        </apt-panel-body>
+        <apt-panel-footer>
+            <apt-panel-footer-left />
+            <apt-panel-footer-right defaults />
+        </apt-panel-footer>
+    </apt-panel>
+</form>

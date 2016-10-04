@@ -1,0 +1,44 @@
+<table apt-datatable datasource="data" model-base="vmSaleitemPriceList">
+	<thead>
+	<tr>
+		<th class="col-lg-1" apt-sort="price_type" translate>Type</th>
+		<th class="col-lg-2 text-right" apt-sort="price.price" translate>Entered Price</th>
+		<th class="col-lg-1" apt-sort="price.tax_percentage"></th>
+		<th class="col-lg-2 text-right" apt-sort="price.base_price" translate>Base Price</th>
+		<th class="col-lg-1 text-right" apt-sort="price.tax" translate>Tax</th>
+		<th class="col-lg-2 text-right" apt-sort="price.taxed_price" translate>Taxed Price</th>
+		<th class="col-lg-2" apt-sort="price.timestamp" translate>Date</th>
+		<th class="col-lg-1" translate>Status</th>
+	</tr>
+	</thead>
+	<tbody>
+	<!--<tr ng-class2="{true: 'bg-success-800'}[row.price_type=='sale' && row.is_active]">-->
+	<tr ng-class="{true: 'bg-grey-300'}[row.is_price_inuse]">
+		<td><i ng-class="{
+		            purchase:'icon-cart-add2 text-warning-300',
+		            sale:'icon-coins text-success-300'
+	            }[row.price_type]"></i> <span>{{row.price_type | capitalize | translate:'priceType'}}</span></td>
+		<td class="text-right">{{row.price.price |isoCurrency:row.price.currency_code}}</td>
+		<td class="text-right border-right border-right-grey-300">
+			<span ng-if="row.price.is_tax_included && row.price.tax_percentage"
+			      title="{{'Included'|translate:'tax'}}"
+			      class="text-muted">{{row.price.tax_percentage | percentSign}}</span>
+			<span ng-if="!row.price.is_tax_included && row.price.tax_percentage"
+			      title="{{'Excluded'|translate:'tax'}}" class="">+{{row.price.tax_percentage | percentSign}}</span>
+		</td>
+		<td class="text-right">{{row.price.base_price|isoCurrency:row.price.currency_code}}</td>
+		<td class="text-right">{{row.price.tax|isoCurrency:row.price.currency_code}}</td>
+		<td class="text-right">{{row.price.taxed_price|isoCurrency:row.price.currency_code}}</td>
+		<td class="border-left border-left-grey-300">{{row.price.timestamp}}</td>
+		<td>
+			<span ng-if="row.price_type=='sale' && !row.is_active"
+			      class="icon-x text-danger"></span>
+			<span ng-if="row.price_type=='sale' && row.is_active"
+			      class="icon-checkmark text-success"></span>
+			<span ng-if="row.is_primary" class="icon-star-full2 text-primary-800"></span>
+			<span ng-if="row.is_price_inuse" class="icon-lock5 text-warning"></span>
+		</td>
+	</tr>
+	</tbody>
+</table>
+

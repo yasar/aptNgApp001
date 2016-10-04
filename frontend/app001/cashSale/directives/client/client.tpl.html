@@ -1,0 +1,24 @@
+<div>
+    <div class="tabbable">
+        <ul class="nav nav-tabs nav-xs nav-justified no-margin-bottom">
+            <li class="active"><a href="#client-tab1" data-toggle="tab"><i class="{{$root.$window.clientBuilder.icon}}"></i>
+                <span translate>Client</span></a></li>
+            <li><a href="#client-tab2" data-toggle="tab"><i class="icon-profile"></i> <span translate>Profile</span></a>
+            </li>
+            <li><a href="#client-tab3" data-toggle="tab"><i class="icon-printer4"></i> <span translate>Invoice</span></a>
+            </li>
+        </ul>
+
+        <div class="tab-content p-10">
+            <div class="tab-pane active" id="client-tab1">
+                <div apt-cash-sale-client-finder class="p-10"></div>
+            </div>
+            <div class="tab-pane" id="client-tab2">
+                <apt-cash-sale-client-stats></apt-cash-sale-client-stats>
+            </div>
+            <div class="tab-pane" id="client-tab3">
+                <apt-cash-sale-invoice-profile></apt-cash-sale-invoice-profile>
+            </div>
+        </div>
+    </div>
+</div>

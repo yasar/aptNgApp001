@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-5">
+            <apt-saleitem-list data-view-type="with-add-button"
+                               data-table-options="vmSaleitemPackageManager.tableOptions"></apt-saleitem-list>
+    </div>
+    <div class="col-md-7">
+        <apt-panel2>
+            <!--<apt-saleitem-package-builder item-id="vmSaleitemPackageManager.itemId"></apt-saleitem-package-builder>-->
+            <apt-saleitem-package-list
+                    data-table-options="vmSaleitemPackageManager.tableOptions"
+                    data-filter="{package_id:vmSaleitemPackageManager.itemId}"></apt-saleitem-package-list>
+        </apt-panel2>
+    </div>
+</div>

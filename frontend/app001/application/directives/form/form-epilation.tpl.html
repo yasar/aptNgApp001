@@ -1,0 +1,33 @@
+
+<apt-panel>
+    <apt-panel-title><span translate>Epilation</span></apt-panel-title>
+    <apt-panel-body>
+        <apt-panel-tab active>
+            <apt-panel-tab-title>Consultation</apt-panel-tab-title>
+            <apt-panel-tab-body class="p-20">
+                <div data-apt-person-selector data-ng-model="formData.person_id" data-label="Person" data-apt-formify></div>
+                <apt-field field="consultation_laser_type" label="Type of laser device"></apt-field>
+                <apt-field field="consultation_body_part" label="Applied Body Part"></apt-field>
+                <apt-field field="consultation_clinic" label="Place of application"></apt-field>
+            </apt-panel-tab-body>
+        </apt-panel-tab>
+        <apt-panel-tab>
+            <apt-panel-tab-title>Operation</apt-panel-tab-title>
+            <apt-panel-tab-body class="p-20">
+                <div data-apt-staff-selector data-ng-model="formData.operation_staff" data-label="Staff" data-apt-formify></div>
+                <apt-field field="operation_date_start_time" type="date" label="Date"></apt-field>
+                <apt-field field="operation_body_part" label="Body Part"></apt-field>
+                <apt-field field="operation_device" label="Device"></apt-field>
+            </apt-panel-tab-body>
+        </apt-panel-tab>
+    </apt-panel-body>
+    <apt-panel-footer>
+        <apt-panel-footer-left></apt-panel-footer-left>
+        <apt-panel-footer-right>
+            <button type="button" class="btn btn-xs btn-default"><span translate>Cancel</span> <i class="icon-close2 position-right"></i>
+            </button>
+            <button type="submit" class="btn btn-xs btn-primary"><span data-ng-bind="vars.form_submit_label"></span> <i class="icon-arrow-right14 position-right"></i>
+            </button>
+        </apt-panel-footer-right>
+    </apt-panel-footer>
+</apt-panel>
