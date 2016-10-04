@@ -13,23 +13,25 @@
     </div>
     <div ng-show="vmCouponSubjectForm.show.saleitem || vmCouponSubjectForm.show.saleitem_group " class="form-group">
         <div class="col-md-6">
-            <div class="form-group">
-                <label translate>Sale Item Group</label>
-                <div data-apt-saleitem-group-selector
-                     data-view-type2="plain"
-                     data-ng-model="vmCouponSubjectForm.form.data.saleitem_group_id">
-                </div>
-            </div>
+            <apt-field field="saleitem_group_id" model-base="vmCouponSubjectForm.form.data" />
+            <!--<div class="form-group">-->
+                <!--<label translate>Sale Item Group</label>-->
+                <!--<div data-apt-saleitem-group-selector-->
+                     <!--data-view-type2="plain"-->
+                     <!--data-ng-model="vmCouponSubjectForm.form.data.saleitem_group_id">-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
 </div>
 <div class="row" ng-show="vmCouponSubjectForm.show.brand">
     <div class="col-md-6">
-        <div class="form-group">
-            <label translate>Brand</label>
-            <div data-apt-brand-selector
-                 ng-model="vmCouponSubjectForm.form.data.brand_id"></div>
-        </div>
+        <apt-field field="brand_id" model-base="vmCouponSubjectForm.form.data.brand_id" />
+        <!--<div class="form-group">-->
+            <!--<label translate>Brand</label>-->
+            <!--<div data-apt-brand-selector-->
+                 <!--ng-model="vmCouponSubjectForm.form.data.brand_id"></div>-->
+        <!--</div>-->
     </div>
 
     <div class="col-md-6">
