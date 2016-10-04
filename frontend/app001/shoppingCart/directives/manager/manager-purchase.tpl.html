@@ -1,12 +1,15 @@
-<table class="table table-compressed table-striped table-bordered no-border apt-datatable">
-    <thead>
-    <tr class="bg-grey-300">
+<table class="table table-compressed table-striped table-bordered apt-datatable">
+    <thead class="navbar-inverse">
+    <tr class="border-double">
         <th apt-sort="saleitem" translate>Sale Item</th>
         <th colspan="2" apt-sort="qty" style="width: 120px;" translate>QTY</th>
         <th apt-sort="total" style="width: 160px;" translate>Total</th>
     </tr>
     </thead>
     <tbody>
+    <tr>
+        <td colspan="4" class="alpha-primary"></td>
+    </tr>
     <tr ng-repeat-start="row in vmShoppingCartManager.items">
         <td>
             <span type="button mr-10"
@@ -93,8 +96,9 @@
                                           select-item="row.price.tax"
                                           view-type="plain"
                                           searchable="false"
+                                          help-text="Tax Rate"
                                           class="input-xs"></apt-tax-selector>
-                        <span class="help-block no-margin-bottom" translate>Tax Rate</span>
+                        <!--<span class="help-block no-margin-bottom" translate></span>-->
                     </div>
                     <div class="td col-xs-1 text-left">
                         <input type="checkbox" class="checkbox"
@@ -113,22 +117,6 @@
         <td colspan="4" class="alpha-primary"></td>
     </tr>
     <tr data-ng-if="vmShoppingCartManager.showTotalPrice">
-        <!--<td>
-            <span class="pull-left label label-info" translate>Base Price</span>
-            <span class="text-semibold pull-rigth">
-                {{vmShoppingCartManager.totalBasePrice.toFixed(2)}}
-            </span>
-        </td>
-        <td colspan="2">
-            <span class="pull-left label label-info" translate>Tax</span>
-            <span class="text-semibold pull-rigth">{{vmShoppingCartManager.totalTax.toFixed(2)}}</span>
-
-        </td>
-        <td>
-            <span class="pull-left label label-info" translate>Total Price</span>
-            <span class="text-semibold pull-rigth">{{vmShoppingCartManager.totalPrice.toFixed(2)}}</span>
-
-        </td>-->
         <td colspan="4">
             <div class="div-table pull-right">
                 <div class="tr">

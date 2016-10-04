@@ -1,15 +1,18 @@
-<table apt-datatable2 class="table table-compressed table-striped table-bordered no-border apt-datatable"
+<table class="table table-compressed table-striped table-bordered apt-datatable"
        data-options="vmShoppingCartManager.tableOptions"
        data-datasource="items"
        data-model-base="vmShoppingCartManager">
-	<thead>
-	<tr class="bg-grey-300">
+	<thead class="navbar-inverse">
+	<tr class="border-double">
 		<th apt-sort="saleitem" translate>Sale Item</th>
 		<th colspan="2" apt-sort="qty" style="width: 120px;" translate>QTY</th>
 		<th apt-sort="total" style="width: 200px;" translate>Total</th>
 	</tr>
 	</thead>
 	<tbody>
+	<tr>
+		<td colspan="4" class="alpha-primary"></td>
+	</tr>
 	<tr ng-repeat-start="row in vmShoppingCartManager.items">
 		<td>
 			<span class="text-semibold">{{row.saleitem.name}}</span>
@@ -39,8 +42,8 @@
 			       ng-class="{'text-info text-bold':row.qty>1}"
 			       value="1"
 			       min="1"
-				   step="any"
-				   data-ng-model="row.qty" />
+			       step="any"
+			       data-ng-model="row.qty" />
 		</td>
 		<td class="text-size-small text-thin" style="width: 50px;">{{row.saleitem.saleitem_unit_name}}</td>
 		<td rowspan="2" class="text-right">
@@ -48,7 +51,8 @@
 				<li class="pull-right">
 					<a href data-ng-if="row.saleitem.count > 1"
 					   data-ng-click="vmShoppingCartManager.openSaleitemPriceSelectForm(row.saleitem)">
-						<span class="badge badge-info" title="{{'Change Price' | translate}}">{{row.saleitem.count}}</span> </a>
+						<span class="badge badge-info"
+						      title="{{'Change Price' | translate}}">{{row.saleitem.count}}</span> </a>
 					<h4 ng-hide="row.newPrice">
 						{{(row.saleitem.taxed_price.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}</h4>
 					<h4 ng-show="row.newPrice">
