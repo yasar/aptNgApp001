@@ -1,0 +1,29 @@
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h6 class="panel-title"><span translate>Product Finder</span></h6>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label translate>Barcode</label>
+                <input type="text" class="form-control"
+                       data-ng-model="vmSaleitemFindByBarcode.barcode"
+                       ng-keypress="vmSaleitemFindByBarcode.onEnterKey($event)">
+            </div>
+        </div>
+
+        <div class="row" ng-if="vmSaleitemFindByBarcode.productOverview">
+            <div data-apt-saleitem-preview saleitem="vmSaleitemFindByBarcode.saleitem"></div>
+        </div>
+
+        <div class="row" ng-if="vmSaleitemFindByBarcode.productOverview==false">
+            <div class="col-md-12">
+                <div class="alert alert-warning alert-styled-left">
+                    <button type="button" class="close" data-dismiss="alert"></button>
+                    <span class="text-semibold">Product not found</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

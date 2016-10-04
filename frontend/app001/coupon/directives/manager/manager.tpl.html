@@ -1,0 +1,65 @@
+<apt-panel class="no-margin">
+
+    <apt-panel-title>
+        <i class="icon-gift position-left"></i>
+        <span class="text-semibold" translate>Coupon Manager</span>
+        <span class="text-thin" ng-bind="vmCouponManager.item.title"></span>
+    </apt-panel-title>
+
+
+    <apt-panel-tab active="true">
+        <apt-panel-tab-title><span translate>Details</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <div apt-coupon-form data-view-type="nested" item="vmCouponManager.item"></div>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+    <apt-panel-tab>
+        <apt-panel-tab-title><span translate>Condition</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <apt-coupon-condition-list
+                    data-initial-data="{coupon_id:vmCouponManager.item.coupon_id}"
+                    data-filter="{coupon_id:vmCouponManager.item.coupon_id}"></apt-coupon-condition-list>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+
+    <apt-panel-tab>
+        <apt-panel-tab-title><span translate>Subject</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <apt-coupon-subject-list
+                    data-initial-data="{coupon_id:vmCouponManager.item.coupon_id}"
+                    data-filter="{coupon_id:vmCouponManager.item.coupon_id}"></apt-coupon-subject-list>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+
+    <apt-panel-tab>
+        <apt-panel-tab-title><span translate>Requirement</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <apt-coupon-requirement-list
+                    data-initial-data="{coupon_id:vmCouponManager.item.coupon_id}"
+                    data-filter="{coupon_id:vmCouponManager.item.coupon_id}"></apt-coupon-requirement-list>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+    <apt-panel-tab>
+        <apt-panel-tab-title><span translate>Reward</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <apt-coupon-reward-list
+                    data-initial-data="{coupon_id:vmCouponManager.item.coupon_id}"
+                    data-filter="{coupon_id:vmCouponManager.item.coupon_id}"></apt-coupon-reward-list>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+
+    <apt-panel-tab>
+        <apt-panel-tab-title><span translate>Target</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <apt-coupon-target-list
+                    data-initial-data="{coupon_id:vmCouponManager.item.coupon_id}"
+                    data-filter="{coupon_id:vmCouponManager.item.coupon_id}"></apt-coupon-target-list>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+</apt-panel>

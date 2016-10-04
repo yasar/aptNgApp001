@@ -1,0 +1,53 @@
+<apt-panel-heading-elements>
+	<div class="heading-form">
+		<div class="pull-left mr-20 border-right border-right-grey">
+			<apt-type-selector translate
+			                   translate-context="priceType"
+			                   filter-object="{groupname:'price'}"
+			                   select-item="vmSaleitemPriceForm.selectedPriceType"
+			                   data-view-type="forPanelHeading"
+			                   data-ng-model="vmSaleitemPriceForm.form.data.price_type_id"></apt-type-selector>
+		</div>
+		<div class="pull-left">
+			<!--<span>Active</span>
+			<apt-field type="switch" field="is_active" model-base="vmSaleitemPriceForm.form.data"
+			           use-formify="false"></apt-field>-->
+			<apt-field type="switch" field="is_active" model-base="vmSaleitemPriceForm.form.data"
+			           use-formify="true" label="Active"></apt-field>
+		</div>
+	</div>
+</apt-panel-heading-elements>
+<div class="row">
+	<div class="col-md-6">
+
+		<!--<apt-type-selector apt-formify label="Type"
+		                   translate
+		                   translate-context="priceType"
+		                   filter-object="{groupname:'price'}"
+		                   data-view-type="icon-list-labeled"
+		                   data-ng-model="vmSaleitemPriceForm.form.data.price_type_id"></apt-type-selector>-->
+
+		<!--<apt-field type="checkbox" field="is_active" model-base="vmSaleitemPriceForm.form.data"
+		           formify="true" label="Active"></apt-field>-->
+
+		<div class="panel no-border">
+			<div class="panel-body text-center">
+				<div class="icon-object border-orange text-orange">
+					<i class="{{vmSaleitemPriceForm.selectedPriceType.conf.icon}}"></i></div>
+				<h5 class="text-semibold">{{vmSaleitemPriceForm.selectedPriceType.name|capitalize|translate:'priceType'}}</h5>
+				<p class="content-group"
+				   translate>You can change the price type by setting the options available in the heading. Also, note that if the price is not set as `active` it will not be in effect, it will be kept as archive.</p>
+				<span ng-if="vmSaleitemPriceForm.form.data.is_active"
+				      class="label label-flat label-success text-success"><i class="icon-check"></i> <span translate>Active</span></span>
+				<span ng-if="!vmSaleitemPriceForm.form.data.is_active"
+				      class="label label-flat label-warning text-warning"><i class="icon-x"></i> <span translate>Not Active</span></span>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-6">
+		<apt-price-form data-view-type2="undecorated" data-view-type="inside-form"
+		                data-has-parent="true"
+		                data-item="vmSaleitemPriceForm.form.data.price"></apt-price-form>
+	</div>
+</div>

@@ -1,0 +1,53 @@
+<apt-panel class="no-margin">
+
+    <apt-panel-title>
+        <i class="icon-basket position-left"></i>
+        <span class="text-semibold" translate>Product Manager</span>
+        <span class="text-thin" ng-bind="vmSaleitemManager.item.title"></span>
+    </apt-panel-title>
+
+    <apt-panel-tab active="true">
+        <apt-panel-tab-title><span translate>Details</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <apt-saleitem-form data-view-type="nested"
+                               item-id="vmSaleitemManager.item.saleitem_id"></apt-saleitem-form>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+    <apt-panel-tab>
+        <apt-panel-tab-title><span translate>Package</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <div ng-if="vmSaleitemManager.item.type_name=='package'">
+                <apt-saleitem-package-manager
+                        item-id="vmSaleitemManager.item.saleitem_id"></apt-saleitem-package-manager>
+            </div>
+            <div class="content" ng-if="vmSaleitemManager.item.type_name!='package'">
+                <h2 class="text-muted" translate>Selected type is not `package`</h2>
+                <p class="text-muted"
+                   translate>This sale item is not defined as of type `package`. In order to utilize the package features, please go back to details and change the type as `package` and after that do not forget to save the changes. Then, come back here and proceed with package definitions.</p>
+            </div>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+    <apt-panel-tab>
+        <apt-panel-tab-title><span translate>Price</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <!--<apt-saleitem-price-manager
+                    item-id="vmSaleitemManager.item.saleitem_id"></apt-saleitem-price-manager>-->
+            <apt-saleitem-price-list
+                    data-filter="{saleitem_id:vmSaleitemManager.item.saleitem_id}"></apt-saleitem-price-list>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+    <apt-panel-tab>
+        <apt-panel-tab-title><span class="text-muted" translate>Image</span></apt-panel-tab-title>
+        <apt-panel-tab-body>
+            <div class="content">
+                <h2 class="text-muted" translate>Planned feature</h2>
+                <p class="text-muted">This is a planned feature and will be available in our next release.</p>
+            </div>
+        </apt-panel-tab-body>
+    </apt-panel-tab>
+
+
+</apt-panel>

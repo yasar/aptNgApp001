@@ -1,0 +1,11 @@
+<div>
+    <!--<span>payment type:{{vmCashSalePaymentButton.default_payment_type|json}}</span>-->
+    <button type="button"
+            ng-show="vmCashSalePaymentButton.default_payment_type.name=='split'"
+            ng-click="vmCashSalePaymentButton.showPaymentOptions()"
+            class="btn bg-grey-300 btn-block">
+        <i class="icon-equalizer"></i>
+    <span translate style="width: 80px;"
+          class="center-block text-center" translate>Payment Options</span>
+    </button>
+</div>

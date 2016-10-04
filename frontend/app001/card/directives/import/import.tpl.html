@@ -1,0 +1,75 @@
+<form ng-submit="vmCardImport.import()" name="{{vmCardImport.form.name}}" role="form" novalidate>
+	<apt-panel class="no-margin" ng-init="_builder=$root.$window.cardBuilder">
+		<apt-panel-title icon="_builder.icon">
+			<span>{{_builder.title|translate}}</span> / <span translate>Import</span>
+		</apt-panel-title>
+		<apt-panel-body>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label translate>Card Number</label>
+						<textarea rows="10"
+						          required
+						          class="form-control"
+						          data-ng-model="vmCardImport.form.data.import_data"> </textarea>
+					</div>
+				
+				</div>
+				<div class="col-sm-8">
+					<apt-field field="branch_id" model-base="vmCardImport.form.data" required />
+					<!--<div class="form-group">
+						<label translate>Branch</label>
+						<div data-apt-branch-selector required
+						     data-view-type="plain"
+						     data-ng-model="vmCardImport.form.data.branch_id"></div>
+					</div>-->
+					<div class="form-group">
+						<label translate>Card Type</label>
+						<div data-apt-type-selector required
+						     data-view-type="plain"
+						     data-ng-model="vmCardImport.form.data.type_id"
+						     data-filter-object="{groupname:'Card'}"></div>
+					</div>
+					<apt-field field="license_key"
+					           translate2="true"
+					           required
+					           model-base="vmCardImport.form.data"></apt-field>
+					<!--<div class="form-group">
+						<label translate>Added Card Numbers</label>
+						<textarea class="form-control"
+						          rows="5"
+						          data-ng-model="vmCardImport.form.data.card_no"> </textarea>
+					</div>-->
+				
+				
+				</div>
+			</div>
+		</apt-panel-body>
+		
+		
+		<apt-panel-footer>
+			<apt-panel-footer-left />
+			<apt-panel-footer-right>
+				<apt-button type="button" action-type="cancel" label="'Cancel'"
+				            class="btn btn-xs btn-default"
+				            data-ng-click="vmCardImport.form.cancel()"></apt-button>
+				<apt-button type="submit"
+				            action-type="import"
+				            label="'Import'"
+				            class="btn btn-xs btn-primary"
+				            is-busy="vmCardImport.form.isSaving"
+				            is-failed="vmCardImport.form.isSavingFailed"></apt-button>
+				<!--<button type="button" class="btn btn-xs btn-default"
+				        data-ng-click="vmCardImport.form.cancel()"><span translate>Cancel</span> <i
+						class="icon-close2 position-right"></i>
+				</button>
+				<button data-ng-click2="vmCardImport.import()"
+				        type="submit" class="btn btn-xs btn-primary"><span translate>Import</span> <i
+						class="icon-import position-right"></i>
+				</button>-->
+			</apt-panel-footer-right>
+		</apt-panel-footer>
+	
+	</apt-panel>
+</form>
+

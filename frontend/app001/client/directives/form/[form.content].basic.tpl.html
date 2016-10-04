@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-md-3">
+		<apt-client-group-selector
+				data-apt-formify data-label="Client Group"
+				data-translate
+				data-view-type="list"
+				data-list-class="pre-scrollable"
+				data-ng-model="vmClientForm.form.data.client_group_id" />
+	</div>
+	<div class="col-md-5">
+		<apt-field type="date-ui"
+		           field="registration_date"
+		           model-base="vmClientForm.form.data"
+		           data-label="Registration Date" />
+		
+		<apt-field data-ng-if="vmClientForm.clientFormType=='person'"
+		           field="person_id"
+		           model-base="vmClientForm.form.data"
+		           ng-change="vmClientForm.clientSelected()"
+		           form-handler-suffix="manager" />
+		
+		<apt-field data-ng-if="vmClientForm.clientFormType=='entity'"
+		           field="entity_id"
+		           model-base="vmClientForm.form.data"
+		           on-change="vmClientForm.clientSelected()"
+		           form-handler-suffix="manager" />
+		
+		<apt-field field="notes" type="textarea" rows="5" model-base="vmClientForm.form.data" />
+	
+	
+	</div>
+	<div class="col-md-4">
+		<apt-person-profile ng-if="vmClientForm.clientFormType=='person'"
+		                    item-id="vmClientForm.selectedId" />
+		<apt-entity-profile ng-if="vmClientForm.clientFormType=='entity'"
+		                    entity-id="vmClientForm.selectedId" />
+	</div>
+</div>

@@ -1,0 +1,9 @@
+<div class="btn-group btn-group-sm">
+    <button type="button"
+            class="btn btn-default btn-icon text-capitalize"
+            data-ng-class="{true: 'btn-primary', false: 'btn-default'}[type.type_id==vmCashSaleDefaultPaymentTypeSelector.typeId]"
+            data-ng-click="vmCashSaleDefaultPaymentTypeSelector.setType(type)"
+            data-uib-tooltip="{{type.name|translate:'paymentType'}}"
+            data-tooltip-append-to-body="true"
+            data-ng-repeat="type in vmCashSaleDefaultPaymentTypeSelector.types"><i class="{{type.conf.icon}}"></i></button>
+</div>
