@@ -1,8 +1,11 @@
 /**
  * Created by burak on 26.09.2016.
  */
-_.merge(clientBuilder.form,{
+_.merge(clientBuilder.form, {
     suffix    : 'form',
+    defaults  : {
+        registration_date: new Date()
+    },
     controller: function ($injector, $scope, builder) {
 
         var vm         = this;
