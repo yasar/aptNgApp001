@@ -1,130 +1,125 @@
 <div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label translate>Shopping Channel</label>
-                <div data-apt-type-selector
-                     data-filter-object="{groupname:'coupon_shopping_channel'}"
-                     data-view-type2="plain"
-                     data-ng-model="vmCouponConditionForm.form.data.shopping_channel_type_id"></div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label translate>Type</label>
-                <div data-apt-type-selector
-                     data-view-type2="plain"
-                     data-filter-object="{groupname:'coupon_condition'}"
-                     data-ng-model="vmCouponConditionForm.form.data.condition_type_id"
-                     data-ng-change="vmCouponConditionForm.changeTarget(data)">
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label translate>Shopping Channel</label>
+				<div data-apt-type-selector
+				     data-filter-object="{groupname:'coupon_shopping_channel'}"
+				     data-view-type2="plain"
+				     data-ng-model="vmCouponConditionForm.form.data.shopping_channel_type_id"></div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label translate>Type</label>
+				<div data-apt-type-selector
+				     data-view-type2="plain"
+				     data-filter-object="{groupname:'coupon_condition'}"
+				     data-ng-model="vmCouponConditionForm.form.data.condition_type_id"
+				     data-ng-change="vmCouponConditionForm.changeTarget(data)">
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-    <div class="row" ng-show="vmCouponConditionForm.vars.show.event">
-        <div class="col-md-8"
-             ng-class="{'col-md-8':vmCouponConditionForm.vars.show.nth, 'col-md-12':!vmCouponConditionForm.vars.show.nth}">
-            <div class="form-group">
-                <label translate>Event</label>
-                <div data-apt-type-selector
-                     data-apt-formify
-                     data-filter-object="{groupname:'coupon_event'}"
-                     data-ng-model="vmCouponConditionForm.form.data.event_type_id"></div>
-            </div>
-        </div>
+	<div class="row" ng-show="vmCouponConditionForm.vars.show.event">
+		<div class="col-md-8"
+		     ng-class="{'col-md-8':vmCouponConditionForm.vars.show.nth, 'col-md-12':!vmCouponConditionForm.vars.show.nth}">
+			<div class="form-group">
+				<label translate>Event</label>
+				<div data-apt-type-selector
+				     data-apt-formify
+				     data-filter-object="{groupname:'coupon_event'}"
+				     data-ng-model="vmCouponConditionForm.form.data.event_type_id"></div>
+			</div>
+		</div>
 
-        <div class="col-md-2" ng-show="vmCouponConditionForm.vars.show.nth">
-            <div class="form-group">
-                <label translate>When</label>
-                <select class="form-control input-xs select" ng-model="vmCouponConditionForm.form.data.nth_condition">
-                    <option value=""></option>
-                    <option value="=">=</option>
-                    <option value="<">&lt;</option>
-                    <option value=">">&gt;</option>
-                    <option value="<=">≤</option>
-                    <option value=">=">≥</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-2" ng-show="vmCouponConditionForm.vars.show.nth">
-            <div class="form-group">
-                <label translate>Nth</label>
-                <input type="number"
-                       class="form-control input-xs"
-                       value="1"
-                       min="1"
-                       data-ng-model="vmCouponConditionForm.form.data.nth"/>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row" ng-show="vmCouponConditionForm.vars.show.date_interval">
-        <div class="col-md-12">
-            <label for="date_range" translate>Date Interval</label>
-            <input date-range-picker class="form-control date-picker"
-                   id="date_range"
-                   name="date_range"
-                   type="text" data-ng-model="vmCouponConditionForm.form.data.date_range"/>
-
-        </div>
-
-    </div>
-
-    <div class="row mt-20" ng-show="vmCouponConditionForm.vars.show.date_interval">
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-4">
-                        <label translate>Start Time</label>
-
-                    </div>
-                    <div class="col-md-8">
-                        <div uib-timepicker ng-model="vmCouponConditionForm.form.data.start_time"
-                             hour-step="1" minute-step="5" show-meridian="false"></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-4">
-                        <label translate>End Time</label>
-
-                    </div>
-                    <div class="col-md-8">
-                        <div uib-timepicker ng-model="vmCouponConditionForm.form.data.end_time"
-                             hour-step="1" minute-step="5" show-meridian="false"></div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="col-md-2" ng-show="vmCouponConditionForm.vars.show.nth">
+			<div class="form-group">
+				<label translate>When</label>
+				<select class="form-control input-xs select" ng-model="vmCouponConditionForm.form.data.nth_condition">
+					<option value=""></option>
+					<option value="=">=</option>
+					<option value="<">&lt;</option>
+					<option value=">">&gt;</option>
+					<option value="<=">≤</option>
+					<option value=">=">≥</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-2" ng-show="vmCouponConditionForm.vars.show.nth">
+			<div class="form-group">
+				<label translate>Nth</label>
+				<input type="number"
+				       class="form-control input-xs"
+				       value="1"
+				       min="1"
+				       data-ng-model="vmCouponConditionForm.form.data.nth" />
+			</div>
+		</div>
+	</div>
 
 
-    <div class="row" ng-if="vmCouponConditionForm.vars.show.timeFrame_interval">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="timeframe_start" translate>Time Frame Start</label>
-                <input type="text" ng-model="vmCouponConditionForm.form.data.timeframe_start"
-                       class="form-control"
-                       id="timeframe_start">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="timeframe_end" translate>Time Frame End</label>
-                <input type="text" ng-model="vmCouponConditionForm.form.data.timeframe_end"
-                       class="form-control"
-                       id="timeframe_end">
-            </div>
-        </div>
-    </div>
+	<div class="row" ng-show="vmCouponConditionForm.vars.show.date_interval">
+		<div class="col-md-12">
+			<label for="date_range" translate>Date Interval</label>
+			<input date-range-picker class="form-control date-picker"
+			       id="date_range"
+			       name="date_range"
+			       type="text" data-ng-model="vmCouponConditionForm.form.data.date_range" />
+
+		</div>
+
+	</div>
+
+	<div class="row mt-20" ng-show="vmCouponConditionForm.vars.show.date_interval">
+		<div class="col-md-6">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-4">
+						<label translate>Start Time</label>
+
+					</div>
+					<div class="col-md-8">
+						<div uib-timepicker ng-model="vmCouponConditionForm.form.data.start_time"
+						     hour-step="1" minute-step="5" show-meridian="false"></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-4">
+						<label translate>End Time</label>
+
+					</div>
+					<div class="col-md-8">
+						<div uib-timepicker ng-model="vmCouponConditionForm.form.data.end_time"
+						     hour-step="1" minute-step="5" show-meridian="false"></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row" ng-if="vmCouponConditionForm.vars.show.timeFrame_interval">
+		<div class="col-md-6">
+			<apt-field
+					field="timeframe_start"
+					model-base="vmCouponConditionForm.form.data"
+					label="Time Frame Start" />
+
+		</div>
+		<div class="col-md-6">
+			<apt-field field="timeframe_end" model-base="vmCouponConditionForm.form.data"label="Time Frame End" />
+
+		</div>
+	</div>
 
 </div>
