@@ -1,0 +1,125 @@
+<table apt-datatable2 class="table table-compressed table-striped table-bordered no-border apt-datatable"
+       data-options="vmShoppingCartManager.tableOptions"
+       data-datasource="items"
+       data-model-base="vmShoppingCartManager">
+	<thead>
+	<tr class="bg-grey-300">
+		<th apt-sort="saleitem" translate>Sale Item</th>
+		<th colspan="2" apt-sort="qty" style="width: 120px;" translate>QTY</th>
+		<th apt-sort="total" style="width: 200px;" translate>Total</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat-start="row in vmShoppingCartManager.items">
+		<td>
+			<span class="text-semibold">{{row.saleitem.name}}</span>
+			<div class="btn-group pull-right">
+				<a href
+				   class="dropdown-toggle text-default"
+				   data-toggle="dropdown"
+				   aria-expanded="false"><i icon="item-menu"></i></a>
+				<ul class="dropdown-menu dropdown-menu-right dropdown-menu-xs bg-slate-300">
+					<li><a href
+					       data-ng-click="vmShoppingCartManager.removeItem(row)"><i icon="remove"></i> Remove From Basket</a>
+					</li>
+					<li><a href
+					       data-ng-click="vmShoppingCartManager.showDiscountPopup(row)"><i icon="set-discount"></i> Set Discount</a>
+					</li>
+					<li class="divider"></li>
+					<li><a href data-ng-click="vmShoppingCartManager.editItem(row)"><i icon="edit"></i> Edit Product</a>
+					</li>
+				</ul>
+			</div>
+		</td>
+		<td class="no-padding" style="width: 70px;">
+			<input type="number"
+			       class="form-control input-xs no-border"
+			       ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+			       data-ng-change2="vmShoppingCartManager.refresh()"
+			       ng-class="{'text-info text-bold':row.qty>1}"
+			       value="1"
+			       min="1"
+				   step="any"
+				   data-ng-model="row.qty" />
+		</td>
+		<td class="text-size-small text-thin" style="width: 50px;">{{row.saleitem.saleitem_unit_name}}</td>
+		<td rowspan="2" class="text-right">
+			<ul class="list-inline list-inline-condensed heading-text">
+				<li class="pull-right">
+					<a href data-ng-if="row.saleitem.count > 1"
+					   data-ng-click="vmShoppingCartManager.openSaleitemPriceSelectForm(row.saleitem)">
+						<span class="badge badge-info" title="{{'Change Price' | translate}}">{{row.saleitem.count}}</span> </a>
+					<h4 ng-hide="row.newPrice">
+						{{(row.saleitem.taxed_price.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}</h4>
+					<h4 ng-show="row.newPrice">
+						<del class="clearfix text-danger-300 text-size-large">
+							{{(row.saleitem.taxed_price.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}
+						</del>
+						{{(row.newPrice.taxedPrice.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}
+					</h4>
+				</li>
+			
+			</ul>
+		
+		
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="no-padding text-size-mini text-light">
+			<div class="div-table pull-left">
+				<div class="tr">
+					<div class="td">
+						<span ng-show="!row.newPrice">{{row.saleitem.base_price.toFixed(2)|isoCurrency:row.saleitem.currency_code}}</span>
+						<span ng-show="row.newPrice">
+                            <del class="clearfix text-danger">
+                                {{row.saleitem.base_price|isoCurrency:row.saleitem.currency_code}}
+                            </del>
+                            {{(row.newPrice.basePrice).toFixed(2)|isoCurrency:row.saleitem.currency_code}}
+                        </span>
+					</div>
+					<div class="td"> x {{row.qty}} {{row.saleitem.saleitem_unit_name}} =</div>
+					<div class="td">
+						<span ng-show="!row.newPrice">{{(row.saleitem.base_price.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}</span>
+						<span ng-show="row.newPrice">
+                            <del class="clearfix text-danger">
+                                {{(row.saleitem.base_price.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}
+                            </del>
+                            {{(row.newPrice.basePrice.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}
+                        </span>
+					</div>
+					<div class="td"> +</div>
+					<div class="td">
+						<span ng-show="!row.newPrice">{{(row.saleitem.tax.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}</span>
+						<span ng-show="row.newPrice">
+                            <del class="clearfix text-danger">
+                                {{(row.saleitem.tax.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}
+                            </del>
+                            {{(row.newPrice.tax.toFixed(2)*row.qty)|isoCurrency:row.saleitem.currency_code}}
+                        </span>
+					</div>
+					<div class="td"> (%{{row.saleitem.tax_percentage}})</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<tr ng-repeat-end>
+		<td colspan="4" class="alpha-primary"></td>
+	</tr>
+	<tr data-ng-if="vmShoppingCartManager.showTotalPrice">
+		<td colspan="4">
+			<div class="div-table pull-right">
+				<div class="tr">
+					<span class="td text-semibold">{{'Total'|translate}}:</span><span class="td">{{vmShoppingCartManager.totalBasePrice.toFixed(2)|isoCurrency:row.currency.code}} </span>
+				</div>
+				<div class="tr">
+					<span class="td text-semibold">{{'Tax'|translate}}:</span><span class="td">{{vmShoppingCartManager.totalTax.toFixed(2)|isoCurrency:row.currency.code}} </span>
+				</div>
+				<div class="tr text-size-large text-info">
+					<span class="td text-semibold">{{'Grand Total'|translate}}:</span><span class="td">{{vmShoppingCartManager.totalPrice.toFixed(2)|isoCurrency:row.currency.code}} </span>
+				</div>
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>
+

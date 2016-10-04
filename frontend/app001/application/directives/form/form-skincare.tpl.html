@@ -1,0 +1,140 @@
+<div class="panel">
+    <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
+        <li class="active"><a href="#Consultation" data-toggle="tab" pg-tab role="tab"
+                              data-ng-click="showCalendar= false" translate>Consultation</a>
+        </li>
+        <li><a href="#Operation" data-toggle="tab" pg-tab role="tab"
+               data-ng-click="showCalendar = true" translate>Operation</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="Consultation">
+            <div data-apt-person-selector data-ng-model="formData.person_id"></div>
+            <div class="row form-group-attached">
+                <div class="col-md-4 ">
+                    <!--<div class="radio radio-success">-->
+                    <!--<input type="radio" value="1" name="optionyes" id="male" ng-model="formData.sex">-->
+                    <!--<label for="male" translate>Male</label>-->
+                    <!--<input type="radio" value="0" name="optionyes" id="female" ng-model="formData.sex">-->
+                    <!--<label for="female" translate>Female</label>-->
+                    <!--</div>-->
+                    <fieldset>
+                        <legend style="font-size: 16px" style="font-size: 14px;">Skin Type</legend>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="dry" translate>Dry</label>
+                            <input type="text" class="form-control" id="dry"
+                                   data-ng-model="formData.consultation_dry">
+                        </div>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="normal" translate>Normal</label>
+                            <input type="text" class="form-control" id="normal"
+                                   data-ng-model="formData.consultation_normal">
+                        </div>
+
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="delicate" translate>Delicate</label>
+                            <input type="text" class="form-control" id="delicate"
+                                   data-ng-model="formData.consultation_delicate">
+                        </div>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="fatty" translate>Fatty</label>
+                            <input type="text" class="form-control" id="fatty"
+                                   data-ng-model="formData.consultation_fatty">
+                        </div>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="mixed" translate>Mixed</label>
+                            <input type="text" class="form-control" id="mixed"
+                                   data-ng-model="formData.consultation_mixed">
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-4">
+                    <fieldset>
+                        <legend style="font-size: 16px">Skin Form</legend>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="firm" translate>Firm</label>
+                            <input type="text" class="form-control" id="firm"
+                                   data-ng-model="formData.consultation_firm">
+                        </div>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="loose" translate>Loose</label>
+                            <input type="text" class="form-control" id="loose"
+                                   data-ng-model="formData.consultation_loose">
+                        </div>
+
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="rough" translate>Rough</label>
+                            <input type="text" class="form-control" id="rough"
+                                   data-ng-model="formData.consultation_rough">
+                        </div>
+
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="wrinkled" translate>Wrinkled</label>
+                            <input type="text" class="form-control" id="wrinkled"
+                                   data-ng-model="formData.consultation_wrinkled">
+                        </div>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="smooth" translate>Smooth</label>
+                            <input type="text" class="form-control" id="smooth"
+                                   data-ng-model="formData.consultation_smooth">
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-4">
+                    <fieldset>
+                        <legend style="font-size: 16px">Skin Properties</legend>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="tight" translate>Tight</label>
+                            <input type="text" class="form-control" id="tight"
+                                   data-ng-model="formData.consultation_tight">
+                        </div>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="shiny" translate>Shiny</label>
+                            <input type="text" class="form-control" id="shiny"
+                                   data-ng-model="formData.consultation_shiny">
+                        </div>
+
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="is_normal" translate>Normal</label>
+                            <input type="text" class="form-control" id="is_normal"
+                                   data-ng-model="formData.consultation_is_normal">
+                        </div>
+
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="acneiform" translate>Acneiform</label>
+                            <input type="text" class="form-control" id="acneiform"
+                                   data-ng-model="formData.consultation_acneiform">
+                        </div>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="stressed" translate>Stressed</label>
+                            <input type="text" class="form-control" id="stressed"
+                                   data-ng-model="formData.consultation_stressed">
+                        </div>
+                        <div data-pg-form-group class="form-group form-group-default">
+                            <label for="allergic" translate>Allergic</label>
+                            <input type="text" class="form-control" id="allergic"
+                                   data-ng-model="formData.consultation_allergic">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="Operation">
+
+            <div data-pg-form-group class="form-group form-group-default ">
+                <label>Date</label>
+                <input id="start-date" type="text" class="form-control date" name="startDate"
+                       data-ng-model="formData.operation_date_start_time" ui-jq="datepicker" ui-jq="popover"
+                       data-container="body" data-placement="top"
+                       data-content="This field is required" data-trigger="manual" required>
+            </div>
+
+            <div data-pg-form-group class="form-group form-group-default">
+                <label for="application" translate>Application</label>
+                <input type="text" class="form-control" id="application"
+                       placeholder="Bölgeler için selector yapılacak" data-ng-model="formData.operation_application">
+            </div>
+        </div>
+    </div>
+</div>

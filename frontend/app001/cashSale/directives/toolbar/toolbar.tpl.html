@@ -1,0 +1,38 @@
+<div class="navbar navbar-default navbar-component">
+	<ul class="nav navbar-nav no-border visible-xs-block">
+		<li><a class="text-center collapsed"
+		       data-toggle="collapse"
+		       data-target="#navbar-content"><i class="icon-circle-down2"></i></a></li>
+	</ul>
+
+	<div class="navbar-collapse collapse" id="navbar-content">
+
+		<ul class="nav navbar-nav">
+			<li class="dropdown dropdown-user">
+				<span class="navbar-text" ng-hide="vmCashSaleToolbar.saleData.client.client_id" translate>Client is not selected</span>
+				<a ng-show="vmCashSaleToolbar.saleData.client.client_id" class="dropdown-toggle"
+				   data-toggle="dropdown" aria-expanded="false">
+					<img ng-if="!vmCashSaleToolbar.saleData.client.person.photo"
+					     gravatar-src="vmCashSaleToolbar.saleData.client.email"
+					     gravatar-size="32" class="img-circle img-sm" />
+					<img ng-if="vmCashSaleToolbar.saleData.client.person.photo"
+					     ng-src="{{vmCashSaleToolbar.saleData.client.person.photo}}"
+					     class="img-circle img-sm" />
+					<span>{{vmCashSaleToolbar.saleData.client.name}}</span>
+					<i class="caret"></i>
+				</a>
+
+				<div class="dropdown-menu dropdown-content">
+					<div class="dropdown-content-body" style="min-width: 280px;">
+						<apt-cash-sale-client-stats></apt-cash-sale-client-stats>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<div class="navbar-right">
+			<span data-apt-coupon-applicables view-type="dropdown"></span>
+			<span apt-cash-sale-payment view-type="dropdown"></span>
+		</div>
+	</div>
+</div>

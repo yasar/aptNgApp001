@@ -1,0 +1,8 @@
+<div>
+    <apt-saleitem-finder ng-click="vmCashSaleSaleitemFinder.selectSaleitem(data)"
+                         ng-model="vmCashSaleSaleitemFinder.saleitemId"
+                         ng-if="vmCashSaleSaleitemFinder.flags.isClientSelected"></apt-saleitem-finder>
+    <div class="text-muted text-center" ng-if="!vmCashSaleSaleitemFinder.flags.isClientSelected">
+        <h5 translate>Client is not selected</h5>
+    </div>
+</div>
