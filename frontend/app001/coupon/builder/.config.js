@@ -214,12 +214,11 @@ var couponBuilder = new aptBuilder({
     },
     form              : {
         title       : 'Coupon',
+        showHelp    : true,
         beforeCreate: function ($injector, $scope, builder) {
             var vm = this;
             //vm.stay = true;
         }
     },
-    
-});
 
-couponBuilder.generate();
+});

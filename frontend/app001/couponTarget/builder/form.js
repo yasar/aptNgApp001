@@ -1,8 +1,9 @@
 /**
  * Created by engin on 26.09.2016.
  */
-_.merge(couponTargetBuilder.form,{
-    title:'Target',
+_.merge(couponTargetBuilder.form, {
+    title     : 'Target',
+    showHelp  : true,
     controller: function ($injector, $scope, builder) {
         var $routeSegment = $injector.get('$routeSegment');
         var aptUtils      = $injector.get('aptUtils');
@@ -56,7 +57,7 @@ _.merge(couponTargetBuilder.form,{
                 default:
                     vm.form.data.client_group_id = null;
                     vm.form.data.staff_group_id  = null;
-                    vm.form.data.card_type_id   = null;
+                    vm.form.data.card_type_id    = null;
                     break;
             }
         };

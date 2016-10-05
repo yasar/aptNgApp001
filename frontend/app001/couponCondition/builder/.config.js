@@ -14,6 +14,7 @@ var couponConditionBuilder = new aptBuilder({
     },
     form   : {
         title     : 'Condition',
+        showHelp  : true,
         controller: function ($injector, $scope, builder) {
             var $routeSegment = $injector.get('$routeSegment');
             var aptUtils      = $injector.get('aptUtils');
