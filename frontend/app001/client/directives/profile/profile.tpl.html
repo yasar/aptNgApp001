@@ -1,28 +1,31 @@
 <div>
-    <table class="table table-compressed">
+    <table class="table table-compressed table-bordered table-striped table-hover">
         <tr>
-            <th translate>Client Group</th>
-            <td>{{data.clientgroup}}</td>
+            
+            <td class=" text-right"><span class="pull-left text-semibold" translate>Client Group</span><span>{{data.clientgroup}}</span></td>
+            
         </tr>
         <tr>
-            <th translate>Name</th>
-            <td>{{data.name}}</td>
+            <td class=" text-right"><span class="pull-left text-semibold" translate>Name</span>{{data.name}}</td>
+
         </tr>
         <tr>
-            <th translate>Phone</th>
-            <td>{{data.phone}}</td>
+            <td class=" text-right"><span class="pull-left text-semibold" translate>Phone</span>{{data.phone}}</td>
+
         </tr>
         <tr>
-            <th translate>TCKN</th>
-            <td>{{data.tck_no}}</td>
+    
+            <td class=" text-right"><span class="pull-left text-semibold" translate>TCKN</span>{{data.tck_no}}</td>
+
+        </tr>1
+        <tr>
+            
+            <td class=" text-right"><span class="pull-left text-semibold" translate>Total Sales</span>{{data.total_sales}}</td>
+
         </tr>
         <tr>
-            <th translate>Total Sales</th>
-            <td>{{data.total_sales}}</td>
-        </tr>
-        <tr>
-            <th translate>Total Points</th>
-            <td>{{data.total_points}}</td>
+            <td class=" text-right text-semibold"><span class="pull-left" translate>Total Points</span><span>{{data.total_points}}</span></td>
+
         </tr>
     </table>
 </div>
