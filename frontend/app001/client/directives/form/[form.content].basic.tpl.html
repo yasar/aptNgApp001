@@ -11,20 +11,21 @@
 		<apt-field type="date-ui"
 		           field="registration_date"
 		           model-base="vmClientForm.form.data"
-		           data-label="Registration Date" />
+		           data-label2="Registration Date" required />
 		
 		<apt-field data-ng-if="vmClientForm.clientFormType=='person'"
 		           field="person_id"
 		           model-base="vmClientForm.form.data"
 		           ng-change="vmClientForm.clientSelected()"
-		           form-handler-suffix="manager" />
+		           form-handler-suffix="manager" required />
 		
 		<apt-field data-ng-if="vmClientForm.clientFormType=='entity'"
 		           field="entity_id"
 		           model-base="vmClientForm.form.data"
 		           on-change="vmClientForm.clientSelected()"
-		           form-handler-suffix="manager" />
+		           form-handler-suffix="manager" required />
 		
+		<apt-field field="card_id" model-base="vmClientForm.form.data" />
 		<apt-field field="notes" type="textarea" rows="5" model-base="vmClientForm.form.data" />
 	
 	
