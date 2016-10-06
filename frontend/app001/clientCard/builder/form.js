@@ -1,8 +1,9 @@
 /**
  * Created by burak on 26.09.2016.
  */
-_.merge(clientCardBuilder.form,{
+_.merge(clientCardBuilder.form, {
     title       : 'Client Card',
+    showHelp    : true,
     beforeCreate: function ($injector, $scope, builder) {
         var vm  = this;
         vm.stay = true;
