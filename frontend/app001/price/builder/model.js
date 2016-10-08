@@ -1,10 +1,14 @@
 /**
  * Created by engin on 26.09.2016.
  */
-_.merge(priceBuilder.model,{
+_.merge(priceBuilder.model, {
     normalize           : function (item) {
         aptBuilder.utils.makeInt(item, ['currency_id', 'enterprise_id', 'price_id', 'tax_id']);
-        aptBuilder.utils.makeNumber(item, ['base_price', 'price', 'tax_amount', 'taxed_price', 'tax_percentage',
+        /**
+         * tax and tax_amount are the same thing.
+         * we should remove tax_amount(?or tax: not sure)  from the database.
+         */
+        aptBuilder.utils.makeNumber(item, ['base_price', 'price', 'tax', 'tax_amount', 'taxed_price', 'tax_percentage',
             'currency_rate', 'discount_amount', 'discount_percentage']);
         aptBuilder.utils.makeBool(item, ['is_tax_included', 'uses_enterprise_id', '__is_incomplete']);
 

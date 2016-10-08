@@ -1,131 +1,43 @@
-<div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-white">
-			
-			
-			<div class="panel-heading">
-				<h6 class="panel-title"><i class="icon-cash4 position-left"></i>
-					<span class="text-semibold" translate>Select Price</span></h6>
-				<div class="heading-elements">
-                    <span class="heading-text text-semibold">
-                        <i class="icon-basket position-left"></i>
-                        {{vmSaleitemPriceSetPrice.item.name}}
-                    </span>
-				</div>
-			</div>
-			
-			
-			<!--<div class="panel-body">
-				<div class="col-lg-6" data-ng-repeat="price in vmSaleitemPriceSetPrice.prices">
-
-					<div data-ng-class="{true:'border-success', false:''}
-					  [vmSaleitemPriceSetPrice.selectedPrice.price_id==price.price_id]"
-						 class="panel invoice-grid border-lg">
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-sm-6">
-									<h6 class="text-semibold no-margin-top" translate>Taxed Price</h6>
-									<ul class="list list-unstyled">
-										<li><span translate>Base Price: </span>
-											<span class="text-semibold">{{price.price.base_price}}</span></li>
-										<li><span translate>Tax: </span>
-											<span class="text-semibold">{{price.price.tax}}</span></li>
-										<li><span translate>Primary: </span>
-										</li>
-									</ul>
-								</div>
-
-								<div class="col-sm-6">
-									<h6 class="text-semibold text-right no-margin-top">
-										{{price.price.taxed_price}}
-										<span class="pull-right text-muted text-size-small">{{price.price.currency_unit}}</span>
-									</h6>
-									<ul class="list list-unstyled text-right">
-										<li>
-											<span class="text-semibold">{{price.price.currency}}</span></li>
-										<li>
-											<span class="text-muted text-size-small">%</span>
-											<span class="text-semibold">{{price.price.tax_percentage}}</span>
-										</li>
-										<li>
-											<span data-ng-if="price.is_primary"
-												  class="label border-left-primary label-striped"
-												  translate>Primary</span>
-											<span data-ng-if="!price.is_primary"
-												  class="label border-left-danger label-striped"
-												  translate>Not Primary</span>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-						<div class="panel-footer panel-footer-condensed">
-							<div class="heading-elements">
-												<span class="heading-text">
-													<span data-ng-if="vmSaleitemPriceSetPrice.selectedPrice.price_id==price.price_id"
-														  class="status-mark border-success position-left"></span>
-													<span data-ng-if="vmSaleitemPriceSetPrice.selectedPrice.price_id!=price.price_id"
-														  class="status-mark border-default position-left"></span>
-												</span>
-
-								<div class="text-center">
-									<button data-ng-click="vmSaleitemPriceSetPrice.selectPrice(price.price)"
-											type="button" class="btn btn-xs">
-										<span translate>Choose</span>
-									</button>
-								</div>
-							</div>
-							<a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
-					</div>
-
-				</div>
-
-			</div>-->
-			
-			<table apt-datatable datasource="prices" model-base="vmSaleitemPriceSetPrice">
-				<thead>
-				<tr>
-					<th apt-sort="level" translate>Base Price</th>
-					<th apt-sort="level" translate>Tax Rate</th>
-					<th apt-sort="level" translate>Tax</th>
-					<th apt-sort="level" translate>Price</th>
-					<th apt-sort="level" translate>Status</th>
-					<th apt-sort="level" translate>Action</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td>{{row.price.base_price.toFixed(2)|isoCurrency:row.price.currency_code}}</td>
-					<td>{{row.price.tax_percentage}}</td>
-					<td>{{row.price.tax.toFixed(2)|isoCurrency:row.price.currency_code}}</td>
-					<td>{{row.price.taxed_price.toFixed(2)|isoCurrency:row.price.currency_code}}</td>
-					<td><span data-ng-if="row.is_primary"
-					          class="label label-primary"
-					          translate>Primary</span></td>
-					<td>
-						<button data-ng-click="vmSaleitemPriceSetPrice.selectPrice(row.price)"
-						        type="button" class="btn btn-xs">
-							<span translate>Choose</span>
-						</button>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-			
-			<!--<div class="panel-footer panel-footer-condensed">
-				<div class="pull-right">
-
-					<button data-ng-click="vmSaleitemPriceSetPrice.setPrice()"
-							type="button" class="btn bg-teal-400 btn-labeled">
-						<b><i class="icon-file-check"></i></b>
-						<span translate>Accept</span>
-					</button>
-				</div>
-			</div>-->
-		</div>
-	</div>
-</div>
+<apt-panel class="no-margin">
+	<apt-panel-title>
+		<i class="position-left" ng-class="$root.$window.saleitemPriceBuilder.icon"></i>
+		<span class="text-semibold" translate>Price Manager</span>
+		<span class="text-size-mini text-info" ng-bind="vmSaleitemPriceSetPrice.item.name"></span>
+	</apt-panel-title>
+	
+	<table apt-datatable
+	       datasource="prices"
+	       model-base="vmSaleitemPriceSetPrice"
+	       options="{ addRowMenu: false, showHeader: false }">
+		<thead>
+		<tr>
+			<th apt-sort="price.base_price" translate>Base Price</th>
+			<th apt-sort="price.tax_percentage" translate>Tax Rate</th>
+			<th apt-sort="price.tax" translate>Tax</th>
+			<th apt-sort="price.taxed_price" translate>Price</th>
+			<th width="40"></th>
+			<th width="60"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>{{row.price.base_price.toFixed(2)|isoCurrency:row.price.currency_code}}</td>
+			<td>{{row.price.tax_percentage | percentSign}}</td>
+			<td>{{row.price.tax.toFixed(2)|isoCurrency:row.price.currency_code}}</td>
+			<td>{{row.price.taxed_price.toFixed(2)|isoCurrency:row.price.currency_code}}</td>
+			<td class="border-left border-default">
+				<i ng-class="$root.apt.Templ.getIcon(row.is_primary ? 'featured' : 'not-featured') + ' ' + (row.is_primary ? 'text-info' : 'text-muted')"></i>
+			</td>
+			<td>
+				<button data-ng-click="vmSaleitemPriceSetPrice.selectPrice(row.price)"
+				        type="button" class="btn btn-default btn-xs btn-icon">
+					<i icon="select"></i>
+				</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</apt-panel>
 
 
 

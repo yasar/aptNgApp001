@@ -4,7 +4,7 @@
 var saleitemPriceBuilder = new aptBuilder({
     domain : 'saleitemPrice',
     package: 'app001',
-    icon   : ' icon-cash4',
+    icon   : 'icon-cash4',
     create : {
         listDirective    : true,
         formDirective    : true,
