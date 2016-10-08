@@ -1,14 +1,16 @@
-<apt-panel class="browse-saleitem">
+<apt-panel class="browse-saleitem no-margin">
     <apt-panel-title><span translate>Product Browser</span></apt-panel-title>
     <apt-panel-heading-elements>
         <form class="heading-form">
             <div data-apt-saleitem-group-selector
                  data-ng-model="vmCashSaleBrowseSaleitem.groupId"
                  data-placeholder="{{'Group'|translate}}"
+                 label="false"
                  data-apt-formify></div>
             <div data-apt-brand-selector
                  data-ng-model="vmCashSaleBrowseSaleitem.brandId"
                  data-placeholder="{{'Brand'|translate}}"
+                 label="false"
                  data-apt-formify></div>
             <button data-ng-click="vmCashSaleBrowseSaleitem.findSaleitem()"
                     class="btn bg-pink-300 heading-btn pull-right"><i class="icon-folder-search"></i></button>
@@ -60,18 +62,15 @@
         <div bs-loading-overlay
              bs-loading-overlay-template-url="misc/loading-overlay-template.tpl.html"
              bs-loading-overlay-reference-id="ref_{{vmCashSaleBrowseSaleitem.uniqId}}"></div>
-
-
     </apt-panel-body>
 
 
-    <div class="row mr-20">
-        <div class="pull-right mt-20">
-
-            <button class="btn btn-default btn-xs"
-                    data-ng-click="vmCashSaleBrowseSaleitem.cancel()">
-                Cancel
-            </button>
-        </div>
-    </div>
+    <apt-panel-footer>
+        <apt-panel-footer-left />
+        <apt-panel-footer-right>
+            <apt-button type="button" action-type="cancel" label="'Cancel'"
+                        class="btn btn-xs btn-default"
+                        data-ng-click="vmCashSaleBrowseSaleitem.cancel()"></apt-button>
+        </apt-panel-footer-right>
+    </apt-panel-footer>
 </apt-panel>
