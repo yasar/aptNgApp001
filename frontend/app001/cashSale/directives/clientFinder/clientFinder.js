@@ -46,6 +46,10 @@
 
 
         function selectClientFn(data) {
+            if (!data) {
+                return;
+            }
+
             CashSaleDataService.set('flags.isClientSelected', true);
             ClientService.getSaleProfile(data.client_id).then(function (data) {
                 CashSaleDataService.refresh();

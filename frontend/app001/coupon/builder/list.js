@@ -7,15 +7,8 @@ _.merge(couponBuilder.list,{
             restOp  = $injector.get('restOperationService'),
             service = $injector.get(couponBuilder.getServiceName('service'));
 
-        var rowMenu = Menu.Item({
-            name   : 'row-menu',
-            'class': 'btn-group-xs'
-        });
-
-        var menuItemEdit = Menu.Item({
-            text   : 'Edit',
-            icon   : 'edit',
-            'class': 'btn-success',
+            var rowMenu = Menu.Item('row-menu',{});
+            var menuItemEdit = Menu.Item('edit',{
             show   : function (item) {
                 if (item.coupon_status == 'draft') {
                     return true;
@@ -25,17 +18,11 @@ _.merge(couponBuilder.list,{
             },
             click  : function (item) {
                 service.edit(item, {popup: true, stay: true, suffix: 'manager'});
-
             }
         });
-
-        var menuItemDelete = Menu.Item({
-            text   : 'delete',
-            icon   : 'delete',
-            'class': 'btn-danger',
+            var menuItemDelete = Menu.Item('delete',{
             click  : function (item) {
                 restOp.delete({type: 'couponReward', data: item, allData: service.getRepo()});
-
             }
         });
 

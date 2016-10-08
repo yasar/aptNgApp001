@@ -1,45 +1,40 @@
-<div>
-    <apt-panel class="no-margin">
-        <apt-panel-title><span translate>Payment Options</span></apt-panel-title>
-        <apt-panel-body>
-            <div class="row">
-
-
-                <div class="col-md-2">
-                    <div data-apt-coupon-applicables ng-model="vmCashSalePaymentOptions.selected_coupon"></div>
-                </div>
-
-                <div class="col-md-5">
-                    <div data-apt-cash-sale-enter-payment
-                         payment-type-delete="vmCashSalePaymentOptions.selectedPaymentType"></div>
-
-                </div>
-                <div class="col-md-5">
-                    <table apt-datatable
-                           data-options="vmCashSalePaymentOptions.tableOptions"
-                           data-datasource="splits"
-                           data-model-base="vmCashSalePaymentOptions">
-                        <thead>
-                        <tr>
-                            <th apt-sort="payment_type" translate>Type</th>
-                            <th apt-sort="payment" translate>Payment</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{row.payment_type.name|translate}}</td>
-                            <td><span>{{row.payment.toFixed(2)|isoCurrency:'try'}}</span></td>
-                            <td>
-                                <button type="button" class="btn btn-danger btn-xs btn-icon"
-                                        ng-click="vmCashSalePaymentOptions.removeSplit($index)"><i
-                                        class="icon-minus2"></i></button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </apt-panel-body>
-    </apt-panel>
-</div>
+<apt-panel class="no-margin panel-default">
+	<apt-panel-title><span translate>Payment Options</span></apt-panel-title>
+	<apt-panel-body>
+		<div class="row">
+			<div class="col-md-3">
+				<div data-apt-coupon-applicables ng-model="vmCashSalePaymentOptions.selected_coupon"></div>
+			</div>
+			
+			<div class="col-md-5">
+				<div data-apt-cash-sale-enter-payment></div>
+			
+			</div>
+			<div class="col-md-4">
+				<table apt-datatable
+				       data-options="vmCashSalePaymentOptions.tableOptions"
+				       data-datasource="splits"
+				       data-model-base="vmCashSalePaymentOptions">
+					<thead>
+					<tr>
+						<th apt-sort="payment_type" translate>Type</th>
+						<th apt-sort="payment" translate>Payment</th>
+						<th></th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td><span>{{row.payment_type.name|translate:'paymentType'}}</span>
+						</td>
+						<td>{{row.payment.toFixed(2)|isoCurrency:'try'}}</td>
+						<td>
+								<span class="cursor-pointer text-danger"
+								      ng-click="vmCashSalePaymentOptions.removeSplit($index)"> <i icon="delete"></i></span>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</apt-panel-body>
+</apt-panel>

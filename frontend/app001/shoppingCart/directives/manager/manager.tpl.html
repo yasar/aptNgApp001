@@ -23,13 +23,16 @@
 				   aria-expanded="false"><i icon="item-menu"></i></a>
 				<ul class="dropdown-menu dropdown-menu-right dropdown-menu-xs bg-slate-300">
 					<li><a href
-					       data-ng-click="vmShoppingCartManager.removeItem(row)"><i icon="remove"></i> Remove From Basket</a>
+					       data-ng-click="vmShoppingCartManager.removeItem(row)"><i icon="remove"></i>
+						<span translate>Remove From Basket</span></a>
 					</li>
 					<li><a href
-					       data-ng-click="vmShoppingCartManager.showDiscountPopup(row)"><i icon="set-discount"></i> Set Discount</a>
+					       data-ng-click="vmShoppingCartManager.showDiscountPopup(row)"><i icon="set-discount"></i>
+						<span translate>Set Discount</span></a>
 					</li>
 					<li class="divider"></li>
-					<li><a href data-ng-click="vmShoppingCartManager.editItem(row)"><i icon="edit"></i> Edit Product</a>
+					<li><a href data-ng-click="vmShoppingCartManager.editItem(row)"><i icon="edit"></i>
+						<span translate>Edit Product</span></a>
 					</li>
 				</ul>
 			</div>
@@ -113,13 +116,16 @@
 		<td colspan="4">
 			<div class="div-table pull-right">
 				<div class="tr">
-					<span class="td text-semibold">{{'Total'|translate}}:</span><span class="td">{{vmShoppingCartManager.totalBasePrice.toFixed(2)|isoCurrency:row.currency.code}} </span>
+					<span class="td text-semibold"
+					      translate>Total</span>:<span class="td">{{vmShoppingCartManager.totalBasePrice.toFixed(2)|isoCurrency:row.currency.code}} </span>
 				</div>
 				<div class="tr">
-					<span class="td text-semibold">{{'Tax'|translate}}:</span><span class="td">{{vmShoppingCartManager.totalTax.toFixed(2)|isoCurrency:row.currency.code}} </span>
+					<span class="td text-semibold"
+					      translate>Tax</span>:<span class="td">{{vmShoppingCartManager.totalTax.toFixed(2)|isoCurrency:row.currency.code}} </span>
 				</div>
 				<div class="tr text-size-large text-info">
-					<span class="td text-semibold">{{'Grand Total'|translate}}:</span><span class="td">{{vmShoppingCartManager.totalPrice.toFixed(2)|isoCurrency:row.currency.code}} </span>
+					<span class="td text-semibold"
+					      translate>Grand Total</span>:<span class="td">{{vmShoppingCartManager.totalPrice.toFixed(2)|isoCurrency:row.currency.code}} </span>
 				</div>
 			</div>
 		</td>
