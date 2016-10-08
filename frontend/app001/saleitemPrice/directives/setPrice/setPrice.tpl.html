@@ -26,14 +26,10 @@
 			<td>{{row.price.tax.toFixed(2)|isoCurrency:row.price.currency_code}}</td>
 			<td>{{row.price.taxed_price.toFixed(2)|isoCurrency:row.price.currency_code}}</td>
 			<td class="border-left border-default">
-				<i ng-class="$root.apt.Templ.getIcon(row.is_primary ? 'featured' : 'not-featured') + ' ' + (row.is_primary ? 'text-info' : 'text-muted')"></i>
+				<i ng-class="$root.apt.Templ.getIcon(row.is_primary ? 'featured' : 'not-featured') + ' ' + (row.is_primary ? 'text-success' : 'text-muted')"></i>
 			</td>
-			<td>
-				<button data-ng-click="vmSaleitemPriceSetPrice.selectPrice(row.price)"
-				        type="button" class="btn btn-default btn-xs btn-icon">
-					<i icon="select"></i>
-				</button>
-			</td>
+			<td><a data-ng-click="vmSaleitemPriceSetPrice.selectPrice(row.price)"
+			       class="cursor-pointer"> <i icon="select"></i> </a></td>
 		</tr>
 		</tbody>
 	</table>
