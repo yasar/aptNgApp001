@@ -13,7 +13,6 @@
 
     function Directive() {
         return {
-            replace     : true,
             templateUrl : builder.getPath(_name) + '/' + _name + '.tpl.html',
             controller  : Controller,
             controllerAs: builder.getControllerAsName(_name)
@@ -26,6 +25,7 @@
         var vm                     = this;
         var CashSalePaymentService = $injector.get('CashSalePaymentService');
         var ShoppingCartService    = $injector.get('ShoppingCartService');
+        var CashSaleDataService    = $injector.get('CashSaleDataService');
 
         // vm.paymentTypes = CashSalePaymentService.getPaymentTypes(function () {
         //     vm.selectedPaymentType = _.find(vm.paymentTypes, {name: 'cash'});
@@ -41,8 +41,9 @@
 
         vm.removeSplit = function (index) {
             CashSalePaymentService.removeSplit(index);
-            ShoppingCartService.refresh().then(function () {
-                CashSalePaymentService.refreshSplit();
+            CashSaleDataService.refresh().then(function () {
+            // ShoppingCartService.refresh().then(function () {
+            //     CashSalePaymentService.refreshSplit();
             });
         };
 
