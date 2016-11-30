@@ -17,8 +17,15 @@ var dashboardBuilder = new aptBuilder({
         managerDirective : false,
         moduleService    : true,
         modelService     : false,
-        layoutController : true
+        layoutController : true,
+        routeConfig      : true
     },
+    routeConfig : {
+        layout: {
+            abstract    : false,
+            defaultChild: undefined
+        }
+    }
 
 
 });

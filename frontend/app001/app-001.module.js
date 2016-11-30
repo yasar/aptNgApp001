@@ -9,7 +9,7 @@
         'apt.app001.icons',
         'apt.app001.application', // disabled temporarily
         'apt.app001.card',
-        'apt.app001.client',
+        // 'apt.app001.client',
         'apt.app001.clientCard',
         'apt.app001.coupon',
         'apt.app001.couponCondition',

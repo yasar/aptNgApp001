@@ -1,6 +1,3 @@
-/**
- * Created by burak on 26.09.2016.
- */
 var cashSaleBuilder = new aptBuilder({
     domain   : 'cashSale',
     title    : 'Sale',
@@ -12,13 +9,14 @@ var cashSaleBuilder = new aptBuilder({
         order: 2
     },
     create   : {
-        listDirective    : true,
-        formDirective    : true,
+        listDirective    : false,
+        formDirective    : false,
         selectorDirective: true,
         managerDirective : true,
         moduleService    : true,
         modelService     : true,
-        layoutController : true
+        layoutController : true,
+        routeConfig      : true,
     },
     onRun    : function ($injector) {
         var hotkeys        = $injector.get('hotkeys');
