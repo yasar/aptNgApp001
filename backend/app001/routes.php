@@ -8,7 +8,7 @@
 
 BYRWEB\app001\application\Route::initRoutes($app, $db);
 BYRWEB\app001\card\Route::initRoutes($app, $db);
-BYRWEB\app001\client\Route::initRoutes($app, $db);
+//BYRWEB\app001\client\Route::initRoutes($app, $db);
 BYRWEB\app001\clientCard\Route::initRoutes($app, $db);
 BYRWEB\app001\coupon\Route::initRoutes($app, $db);
 BYRWEB\app001\couponInspector\CouponInspector::initRoutes($app, $db);
@@ -53,6 +53,7 @@ BYRWEB\app999\accessLevel\Route::initRoutes($app, $db);
 BYRWEB\app999\accessRight\Route::initRoutes($app, $db);
 BYRWEB\app999\address\Route::initRoutes($app, $db);
 BYRWEB\app999\branch\Route::initRoutes($app, $db);
+BYRWEB\app999\client\Route::initRoutes($app, $db);
 BYRWEB\app999\entity\Route::initRoutes($app, $db);
 BYRWEB\app999\person\Route::initRoutes($app, $db);
 BYRWEB\app999\setting\Route::initRoutes($app, $db);

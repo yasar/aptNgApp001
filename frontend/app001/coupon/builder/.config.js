@@ -17,7 +17,8 @@ var couponBuilder = new aptBuilder({
         managerDirective : true,
         moduleService    : true,
         modelService     : true,
-        layoutController : true
+        layoutController : true,
+        routeConfig      : true
     },
     onRun             : function ($injector) {
         var hotkeys    = $injector.get('hotkeys');

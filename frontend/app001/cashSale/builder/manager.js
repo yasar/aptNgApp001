@@ -9,7 +9,6 @@ _.merge(cashSaleBuilder.manager, {
         // var ShoppingCartService = $injector.get('ShoppingCartService');
         var ShoppingCartService = $injector.get('ShoppingCartService');
         var NotifyingService    = $injector.get('NotifyingService');
-        var $routeSegment       = $injector.get('$routeSegment');
         var aptUtils            = $injector.get('aptUtils');
         vm.saleData             = CashSaleDataService.getData();
 

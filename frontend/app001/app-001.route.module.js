@@ -2,30 +2,42 @@
 
     angular.module("apt.app001.route", [])
         .config([
-            '$routeSegmentProvider',
-            '$routeProvider',
+            // '$routeSegmentProvider',
+            // '$routeProvider',
+            '$stateProvider',
             'aptTemplProvider',
-            function ($routeSegmentProvider, $routeProvider, aptTempl) {
-                var segmentConf = {
-                    /**
-                     *
-                     * IMPORTANT
-                     *
-                     * Dont use `template` itself, rather use `templateUrl`
-                     * it will cause template being not  loaded on initial page load.
-                     *
-                     */
-                    // template: '<div app-view-segment="2"></div>'
-                    templateUrl : 'app001/layout.tpl.html',
-                    controller  : Controller,
-                    controllerAs: 'vmAppLayout'
-                };
-
-                if (_.has($routeSegmentProvider, 'segments.main.children.app001')) {
-                    _.set($routeSegmentProvider, 'segments.main.children.app001.params', segmentConf);
-                } else {
-                    $routeSegmentProvider.within('main').segment('app001', segmentConf);
-                }
+            // function ($routeSegmentProvider, $routeProvider, aptTempl) {
+            function ($stateProvider, aptTempl) {
+                $stateProvider
+                    .state({
+                        name         : 'main.app001',
+                        abstract     : true,
+                        template     : '<!--main.app001--><ui-view></ui-view>',
+                        controller   : Controller,
+                        ncyBreadcrumb: {
+                            skip: true
+                        }
+                    });
+                // var segmentConf = {
+                //     /**
+                //      *
+                //      * IMPORTANT
+                //      *
+                //      * Dont use `template` itself, rather use `templateUrl`
+                //      * it will cause template being not  loaded on initial page load.
+                //      *
+                //      */
+                //     // template: '<div app-view-segment="2"></div>'
+                //     templateUrl : 'app001/layout.tpl.html',
+                //     controller  : Controller,
+                //     controllerAs: 'vmAppLayout'
+                // };
+                //
+                // if (_.has($routeSegmentProvider, 'segments.main.children.app001')) {
+                //     _.set($routeSegmentProvider, 'segments.main.children.app001.params', segmentConf);
+                // } else {
+                //     $routeSegmentProvider.within('main').segment('app001', segmentConf);
+                // }
 
                 // var wrapper='<div card-read="vmAppLayout.parseCard($card, $readError, $tracks)"></div>';
                 var wrapper = '<div card-read="vmLayout.smartNotify($card, $readError, $tracks, \'parseCard\')"></div>';
