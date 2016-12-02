@@ -16,7 +16,6 @@ var couponConditionBuilder = new aptBuilder({
         title     : 'Condition',
         showHelp  : true,
         controller: function ($injector, $scope, builder) {
-            var $routeSegment = $injector.get('$routeSegment');
             var aptUtils      = $injector.get('aptUtils');
             var vm            = $scope[builder.getControllerAsName('form')];
             //if (angular.isDefined(vm.form.data.__is_incomplete)) {

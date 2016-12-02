@@ -1,12 +1,9 @@
-/**
- * Created by engin on 26.09.2016.
- */
-_.merge(couponConditionBuilder.form,{
+_.merge(couponConditionBuilder.form, {
     title     : 'Condition',
     controller: function ($injector, $scope, builder) {
-        var $routeSegment = $injector.get('$routeSegment');
-        var aptUtils      = $injector.get('aptUtils');
-        var vm            = $scope[builder.getControllerAsName('form')];
+        // var $routeSegment = $injector.get('$routeSegment');
+        var aptUtils = $injector.get('aptUtils');
+        var vm       = $scope[builder.getControllerAsName('form')];
         //if (angular.isDefined(vm.form.data.__is_incomplete)) {
 
         vm.form.data.coupon_id = aptUtils.getUrlSearchParamValue('id', vm.form.data.coupon_id);

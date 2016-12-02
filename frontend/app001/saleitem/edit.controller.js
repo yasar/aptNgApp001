@@ -7,15 +7,15 @@
         .module(builder.getModuleName())
         .controller('SaleitemEditCtrl', fn);
 
-    fn.$inject = ['$scope', '$routeSegment', 'aptTempl', 'aptMenu', 'aptUtils'];
+    fn.$inject = ['$scope', '$state', 'aptTempl', 'aptMenu', 'aptUtils'];
 
-    function fn($scope, $routeSegment, Templ, Menu, aptUtils) {
+    function fn($scope, $state, Templ, Menu, aptUtils) {
         // console.log('saleItem: edit.controller');
         //
         // Templ.reset();
         var vm = this;
 
-        vm.saleitem_id = $routeSegment.$routeParams.id;
+        vm.saleitem_id = $state.params.id;
 
         // Templ.config.showHeader       = true;
         // Templ.config.showBreadcrumb   = true;

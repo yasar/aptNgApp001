@@ -4,7 +4,6 @@
 _.merge(saleitemPriceBuilder.form,{
     title     : 'Price',
     controller: function ($injector, $scope, builder) {
-        var $routeSegment = $injector.get('$routeSegment');
         var vm            = $scope[builder.getControllerAsName('form')];
 
 
