@@ -5,7 +5,7 @@ _.merge(couponTargetBuilder.form, {
     title     : 'Target',
     showHelp  : true,
     controller: function ($injector, $scope, builder) {
-        var $routeSegment = $injector.get('$routeSegment');
+        // var $routeSegment = $injector.get('$routeSegment');
         var aptUtils      = $injector.get('aptUtils');
         var vm            = $scope[builder.getControllerAsName('form')];
 

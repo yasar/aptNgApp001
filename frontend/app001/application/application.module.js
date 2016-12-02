@@ -50,27 +50,16 @@ var applicationBuilder = new aptBuilder({
         methods: {}
     },
     form     : {
-        controller: function ($injector, $scope, builder) {
-
-            var vm = this;
-
-
-            return;
-
-            var vm         = this;
-            var $rootScope = $injector.get('$rootScope'),
-                aptUtils   = $injector.get('aptUtils'),
-                service    = $injector.get(cardBuilder.getServiceName('service')),
-                model      = $injector.get(cardBuilder.getServiceName('model'));
-        }
+        // controller: function ($injector, $scope, builder) {
+        // }
     },
     list     : {
         rowMenu   : function ($injector, vm) {
-            var Menu          = $injector.get('aptMenu'),
-                aptUtils      = $injector.get('aptUtils'),
-                $routeSegment = $injector.get('$routeSegment'),
-                model         = $injector.get(applicationBuilder.getServiceName('model')),
-                service       = $injector.get(applicationBuilder.getServiceName('service'));
+            var Menu     = $injector.get('aptMenu');
+            var aptUtils = $injector.get('aptUtils');
+            var $state   = $injector.get('$state');
+            var model    = $injector.get(applicationBuilder.getServiceName('model'));
+            var service  = $injector.get(applicationBuilder.getServiceName('service'));
 
 
             var rowMenu = Menu.Item({
@@ -145,17 +134,17 @@ var applicationBuilder = new aptBuilder({
             var aptTempl         = $injector.get('aptTempl');
             var NotifyingService = $injector.get('NotifyingService');
             var gettextCatalog   = $injector.get('gettextCatalog');
-            var $routeSegment    = $injector.get('$routeSegment');
+            var $state           = $injector.get('$state');
             var service          = $injector.get(builder.getServiceName('service'));
 
             aptMenu.get('moduleMenu').clear().addChild({
                 // text : gettextCatalog.getString('Add New') + ': ' + $routeSegment.$routeParams.name + ' Message',
-                text : gettextCatalog.getString('Add New') + ': ' + _.startCase($routeSegment.$routeParams.app_name),
+                text : gettextCatalog.getString('Add New') + ': ' + _.startCase($state.params.app_name),
                 class: 'btn btn-primary btn-sm',
                 icon : 'icon-plus',
-                href : $routeSegment.getSegmentUrl('main.app001.application.current.new', {
-                    app_id  : $routeSegment.$routeParams.app_id,
-                    app_name: $routeSegment.$routeParams.app_name
+                href : $state.href('main.app001.application.current.new', {
+                    app_id  : $state.params.app_id,
+                    app_name: $state.params.app_name
                 }),
                 auth : ['create_application_module'],
                 click: function () {
@@ -184,7 +173,7 @@ var applicationBuilder = new aptBuilder({
                     aptMenu.get('insideMenu').addChild({
                         text: application.title,
                         icon: 'fa fa-users',
-                        href: $routeSegment.getSegmentUrl('main.app001.application.current', {
+                        href: $state.href('main.app001.application.current', {
                             app_id  : application.app_id,
                             app_name: application.name.toLowerCase()
                         })

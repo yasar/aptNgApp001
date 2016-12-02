@@ -4,7 +4,6 @@
 _.merge(couponRewardBuilder.form,{
     title:'Reward',
     controller: function ($injector, $scope, builder) {
-        var $routeSegment = $injector.get('$routeSegment');
         var aptUtils      = $injector.get('aptUtils');
         var vm            = $scope[builder.getControllerAsName('form')];
 
