@@ -32,21 +32,21 @@ FROM
       sitype.`name` AS saleitem_type,
       lb. NAME AS brand_name
     FROM
-      saleitem AS si
+      `app001.saleitem` AS si
       LEFT JOIN lup_saleitem_group ON lup_saleitem_group.saleitem_group_id = si.group_id
       LEFT JOIN lup_saleitem_unit ON lup_saleitem_unit.saleitem_unit_id = si.unit_id
       LEFT JOIN lup_brand AS lb ON lb.brand_id = si.brand_id
-      LEFT JOIN saleitem_price AS sip ON sip.saleitem_id = si.saleitem_id
+      LEFT JOIN `app001.saleitem_price` AS sip ON sip.saleitem_id = si.saleitem_id
                                          AND sip.is_active = 1
                                          AND sip.is_primary = 1
-      LEFT JOIN price AS p ON p.price_id = sip.price_id
+      LEFT JOIN `app001.price` AS p ON p.price_id = sip.price_id
       LEFT JOIN lup_currency AS lupcur ON lupcur.currency_id = p.currency_id
-      LEFT JOIN type AS t ON t.type_id = sip.price_type_id
-      LEFT JOIN type_group AS tg ON tg.type_group_id = t.type_group_id
+      LEFT JOIN `app999.type` AS t ON t.type_id = sip.price_type_id
+      LEFT JOIN `app999.type_group` AS tg ON tg.type_group_id = t.type_group_id
                                     AND tg.`name` = 'saleitem_type'
       LEFT JOIN lup_tax AS luptx ON luptx.tax_id = p.tax_id
-      LEFT JOIN type AS sitype ON si.type_id = sitype.type_id
-      LEFT JOIN type AS saleitem_price_type ON saleitem_price_type.type_id = sip.price_type_id
+      LEFT JOIN `app999.type` AS sitype ON si.type_id = sitype.type_id
+      LEFT JOIN `app999.type` AS saleitem_price_type ON saleitem_price_type.type_id = sip.price_type_id
     WHERE
       si.__is_incomplete IS NULL
       AND saleitem_price_type.`name` = 'sale'

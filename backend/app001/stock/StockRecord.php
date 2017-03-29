@@ -9,9 +9,7 @@
 namespace BYRWEB\app001\stock;
 
 
-use BYRWEB\base\ADbObject;
 use BYRWEB\base\ADbRecord;
-use BYRWEB\base\WTDbUtils;
 
 class StockRecord extends ADbRecord
 {
@@ -20,10 +18,11 @@ class StockRecord extends ADbRecord
     public $saleitem_id;
     public $enterprise_id;
     public $branch_id;
-
-
+    
+    
     public function __construct()
     {
+        parent::__construct();
         $this->setTableName('stock');
         $this->setPrimaryKey('stock_id');
     }

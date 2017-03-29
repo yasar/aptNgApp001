@@ -30,7 +30,7 @@ class PointRecord extends ADbRecord
 
     public function __construct()
     {
-        $this->setTableName('point');
+        $this->setTableName('`app001.point`');
         $this->setPrimaryKey('point_id');
 //        $this->setSqlQueryStaticFilter('__is_incomplete is null');
     }

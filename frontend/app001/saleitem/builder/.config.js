@@ -17,7 +17,7 @@ var saleitemBuilder = new aptBuilder({
         moduleService    : true,
         modelService     : true,
         layoutController : true,
-        routeConfig      : false
+        routeConfig      : true
     },
     //onRun  : function ($injector) {
     //    var hotkeys    = $injector.get('hotkeys');

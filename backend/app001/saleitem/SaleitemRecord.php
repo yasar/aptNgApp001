@@ -10,6 +10,7 @@ namespace BYRWEB\app001\saleitem;
 
 
 use BYRWEB\base\ADbRecord;
+use BYRWEB\base\SqlObject;
 
 class SaleitemRecord extends ADbRecord
 {
@@ -24,12 +25,14 @@ class SaleitemRecord extends ADbRecord
 
     public function __construct()
     {
-        $this->setTableName('saleitem');
+        parent::__construct();
+        
+        $this->setTableName('`app001.saleitem`');
         $this->setPrimaryKey('saleitem_id');
         $this->setSearchableFields(['name']);
-        $this->setSqlQueryBrowse(file_get_contents(__DIR__ . '/sql/browse.sql'));
-        $this->setSqlQueryFind(file_get_contents(__DIR__ . '/sql/listing.sql'));
-        $this->setSqlQuery(file_get_contents(__DIR__ . '/sql/get.sql'));
+        $this->setSqlQuery(new SqlObject(file_get_contents(__DIR__ . '/sql/browse.sql')), SqlObject::SQL_FOR_BROWSE);
+        $this->setSqlQuery(new SqlObject(file_get_contents(__DIR__ . '/sql/listing.sql')), SqlObject::SQL_FOR_LISTING);
+        $this->setSqlQuery(new SqlObject(file_get_contents(__DIR__ . '/sql/get.sql')), SqlObject::SQL_FOR_GET);
     }
 
 }

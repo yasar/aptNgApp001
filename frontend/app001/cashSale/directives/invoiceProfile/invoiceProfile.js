@@ -73,10 +73,29 @@
             }
 
 
-            if (vm.billTo.entity_id) {
+//            if (vm.billTo.entity_id) {
+//                /**
+//                 * todo:
+//                 * entity client sectiginde person gibi yap.....
+//                 */
+//            }
+    
+            if (client.entity_id) {
+                var popupTpl = builder.getPath('cache') + '/popup.html';
+                $templateCache.put(popupTpl, '<apt-entity-manager item="entity"></apt-entity-manager>');
+                dialogs.create(popupTpl, ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+                    $scope.entity = client.entity;
+                    $uibModalInstance.close();
+            
+                }], undefined, {
+                    windowClass: 'slide-up'
+                });
+        
                 /**
-                 * todo:
-                 * entity client sectiginde person gibi yap.....
+                 * todo :
+                 * edit client dedikten sonra person manager formda persona ait bilgiler ve contact ve address bilgileri
+                 * guncellenebilmektedir.Ama bu guncellenmelerin invoice profile yansıması için degisikliklerin yapıldıgının
+                 * duyurulması gerekmektedir.simdilik bu işleme sonraya bırakıldı bug olarak not dusuldu.
                  */
             }
 

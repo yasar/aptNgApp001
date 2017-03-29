@@ -10,6 +10,7 @@ namespace BYRWEB\app001\couponSubject;
 
 
 use BYRWEB\base\ADbRecord;
+use BYRWEB\base\SqlObject;
 
 class CouponSubjectRecord extends ADbRecord
 {
@@ -19,9 +20,11 @@ class CouponSubjectRecord extends ADbRecord
 
     public function __construct()
     {
-        $this->setTableName('coupon_subject');
+        parent::__construct();
+        
+        $this->setTableName('`app001.coupon_subject`');
         $this->setPrimaryKey('coupon_subject_id');
-        $this->setSqlQuery("SELECT _.* FROM (
+        $this->setSqlQuery(new SqlObject("SELECT _.* FROM (
 		 SELECT
             cs.*,
             t.`name` as type,
@@ -29,12 +32,12 @@ class CouponSubjectRecord extends ADbRecord
             lsg.name as saleitemgroup,
             lb.name as brand
             FROM
-            coupon_subject AS cs
-            LEFT JOIN type AS t ON t.type_id = cs.type_id
-            LEFT JOIN saleitem AS s ON s.saleitem_id = cs.saleitem_id
+            `app001.coupon_subject` AS cs
+            LEFT JOIN `app999.type` AS t ON t.type_id = cs.type_id
+            LEFT JOIN `app001.saleitem` AS s ON s.saleitem_id = cs.saleitem_id
             LEFT JOIN lup_saleitem_group AS lsg ON lsg.saleitem_group_id = cs.saleitem_group_id
             LEFT JOIN lup_brand AS lb ON lb.brand_id = cs.brand_id
-	    ) AS _");
+	    ) AS _"), SqlObject::SQL_FOR_FIND);
         $this->setSqlQueryStaticFilter('__is_incomplete is null');
         $this->required_incomplete_fields = ['coupon_id'];
     }
