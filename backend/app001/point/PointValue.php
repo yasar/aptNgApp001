@@ -39,7 +39,7 @@ class PointValue extends ADbObject
     public static function getActivePointValue()
     {
         $db = WTDbUtils::$db;
-        $sql = "select * from point_value where is_active=1 and end_date is null and "
+        $sql = "select * from `app001.point_value` where is_active=1 and end_date is null and "
             . SecurityUtils::getEnterpriseSecurityForQuery(true, false, '');
         $sth = $db->query($sql);
         return $sth->fetchObject( __NAMESPACE__.'\PointValueRecord');

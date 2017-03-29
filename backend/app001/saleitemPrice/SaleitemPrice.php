@@ -11,12 +11,10 @@ namespace BYRWEB\app001\saleitemPrice;
 
 
 use BYRWEB\app001\price\PriceRecord;
-use BYRWEB\app001\saleitem\Saleitem;
+use BYRWEB\app998\tax\TaxUtils;
+use BYRWEB\app999\type\Type;
 use BYRWEB\base\ADbObject;
 use BYRWEB\base\IDbObject;
-use BYRWEB\lup\tax\TaxUtils;
-use BYRWEB\lup\type\Type;
-use BYRWEB\lup\type\TypeRecord;
 
 
 class SaleitemPrice extends ADbObject implements IDbObject

@@ -21,7 +21,7 @@ class PointValueRecord extends ADbRecord
 
     public function __construct()
     {
-        $this->setTableName('point_value');
+        $this->setTableName('`app001.point_value`');
         $this->setPrimaryKey('point_value_id');
     }
 

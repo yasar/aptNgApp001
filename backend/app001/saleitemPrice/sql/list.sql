@@ -19,8 +19,11 @@ FROM (
              1
          )        AS is_price_inuse
        FROM
-         saleitem_price AS sip
-         LEFT JOIN type AS t ON t.type_id = sip.price_type_id
-         LEFT JOIN sale_item AS si ON si.price_id = sip.price_id
-         LEFT JOIN purchase_item AS pi ON pi.price_id = sip.price_id
+         `app001.saleitem_price` AS sip
+         LEFT JOIN `app999.type` AS t
+           ON t.type_id = sip.price_type_id
+         LEFT JOIN `app900.sale_item` AS si
+           ON si.price_id = sip.price_id
+         LEFT JOIN `app900.purchase_item` AS pi
+           ON pi.price_id = sip.price_id
      ) AS _

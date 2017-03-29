@@ -21,7 +21,8 @@ _.merge(couponConditionBuilder.model,{
             item.end_date   = item.date_range.endDate;
         }
 
-        aptBuilder.utils.formatTimeForDb(item, ['start_time', 'end_time']);
+//        aptBuilder.utils.formatTimeForDb(item, ['start_time', 'end_time']);
+        aptBuilder.utils.makeTime(item, ['start_time', 'end_time']);
     },
     responseInterceptors: [
         {

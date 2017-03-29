@@ -11,6 +11,7 @@ namespace BYRWEB\app001\saleitemPrice;
 
 use BYRWEB\app001\price\PriceRecord;
 use BYRWEB\base\ADbRecord;
+use BYRWEB\base\SqlObject;
 
 
 class SaleitemPriceRecord extends ADbRecord
@@ -26,10 +27,12 @@ class SaleitemPriceRecord extends ADbRecord
 
     public function __construct()
     {
-        $this->setTableName('saleitem_price');
+        parent::__construct();
+        
+        $this->setTableName('`app001.saleitem_price`');
         $this->setPrimaryKey('saleitem_price_id');
-        $this->setSqlQuery(file_get_contents(__DIR__ . '/sql/get.sql'));
-        $this->setSqlQueryFind(file_get_contents(__DIR__ . '/sql/list.sql'));
+        $this->setSqlQuery(new SqlObject(file_get_contents(__DIR__ . '/sql/get.sql')), SqlObject::SQL_FOR_GET);
+        $this->setSqlQuery(new SqlObject(file_get_contents(__DIR__ . '/sql/list.sql')), SqlObject::SQL_FOR_LISTING);
         $this->required_incomplete_fields = ['saleitem_id', 'price_type_id', 'price_id'];
         $this->excluded_update_fields = ['saleitem_id', 'price_id'];
     }

@@ -39,25 +39,29 @@ function getRequiredFlags()
     /**
      * default values
      */
-    $login = true;
+    $login   = true;
     $license = true;
-
-    if (strpos($_SERVER['REQUEST_URI'], 'login')) {
-        $login = $login && false;
-        $license = $license && true;
-    } else if (strpos($_SERVER['REQUEST_URI'], 'logout')) {
-        $login = $login && false;
-        $license = $license && false;
-    } else if (strpos($_SERVER['REQUEST_URI'], 'signup')) {
-        $login = $login && false;
-        $license = $license && false;
-    } else if (strpos($_SERVER['REQUEST_URI'], 'activate')) {
-        $login = $login && false;
-        $license = $license && false;
+    
+    if (isset($_SERVER['REQUEST_URI'])) {
+        if (strpos($_SERVER['REQUEST_URI'], 'login')) {
+            $login   = $login && false;
+            $license = $license && true;
+        } else if (strpos($_SERVER['REQUEST_URI'], 'logout')) {
+            $login   = $login && false;
+            $license = $license && false;
+        } else if (strpos($_SERVER['REQUEST_URI'], 'signup')) {
+            $login   = $login && false;
+            $license = $license && false;
+        } else if (strpos($_SERVER['REQUEST_URI'], 'activate')) {
+            $login   = $login && false;
+            $license = $license && false;
+        } else {
+            $login   = $login && true;
+            $license = $license && true;
+        }
     } else {
-        $login = $login && true;
-        $license = $license && true;
+        // we are probably running unit test
     }
-
+    
     return [$login, $license];
 }

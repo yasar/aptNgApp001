@@ -23,13 +23,13 @@ class Point extends ADbObject
     {
         $db = WTDbUtils::$db;
         
-        $sql = "select points_total from point
-              where client_id=$client_id ORDER BY timestamp DESC LIMIT 1";
+        $sql = "select points_total from `app001.point`
+              where client_id=$client_id ORDER BY `timestamp` DESC LIMIT 1";
         $sth = $db->query($sql);
         $row = $sth->fetch(\PDO::FETCH_ASSOC);
         $points_total = $row['points_total'];
 
-        $sql = "UPDATE client_stats
+        $sql = "UPDATE `app999.client_stats`
             SET total_points=$points_total
             WHERE client_id=$client_id";
         $db->execUpdate($sql);
