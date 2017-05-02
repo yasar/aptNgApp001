@@ -55,6 +55,7 @@ BYRWEB\app999\address\Route::initRoutes($app, $db);
 BYRWEB\app999\branch\Route::initRoutes($app, $db);
 BYRWEB\app999\client\Route::initRoutes($app, $db);
 BYRWEB\app999\entity\Route::initRoutes($app, $db);
+BYRWEB\app999\my\Route::initRoutes($app, $db);
 BYRWEB\app999\person\Route::initRoutes($app, $db);
 BYRWEB\app999\setting\Route::initRoutes($app, $db);
 BYRWEB\app999\signup\Route::initRoutes($app, $db);
