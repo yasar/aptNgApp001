@@ -4,6 +4,7 @@
 
 
 (function () {
+    return;
     var builder = saleitemBuilder;
     angular
         .module(builder.getModuleName())

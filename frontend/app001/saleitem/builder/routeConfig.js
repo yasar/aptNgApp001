@@ -3,7 +3,7 @@
  */
 _.merge(saleitemBuilder.routeConfig, {
     layout: {
-        defaultChild: 'manager'
+        defaultChild: 'list'
     },
     list: {
         template  : '<apt-panel><div data-apt-saleitem-list edit-conf="vmSaleitemList.editConf" add-new-conf="vmSaleitemList.addNewConf"></div></apt-panel>',
