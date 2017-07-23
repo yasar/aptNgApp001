@@ -2,6 +2,7 @@
  * Created by murat on 24.12.2015.
  */
 (function () {
+    return;
     var builder = saleitemBuilder;
     angular
         .module(builder.getModuleName())
