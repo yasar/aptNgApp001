@@ -13,17 +13,16 @@ namespace BYRWEB\app001\saleitemPrice;
 use BYRWEB\app001\price\PriceRecord;
 use BYRWEB\app998\tax\TaxUtils;
 use BYRWEB\app999\type\Type;
+use BYRWEB\app999\type\TypeRecord;
 use BYRWEB\base\ADbObject;
 use BYRWEB\base\IDbObject;
 
 
 class SaleitemPrice extends ADbObject implements IDbObject
 {
-    /**
-     *
-     */
     public function __construct()
     {
+    	parent::__construct();
         $this->setRecordObject(new SaleitemPriceRecord());
     }
 
@@ -61,12 +60,15 @@ class SaleitemPrice extends ADbObject implements IDbObject
 
         return $saleitemPrice;
     }
-
-    /**
-     * @param $id
-     *
-     * @return SaleitemPriceRecord
-     */
+	
+	
+	
+	/**
+	 * @param $id
+	 *
+	 * @return SaleitemPriceRecord
+	 * @throws \BYRWEB\base\exceptions\Exception
+	 */
     public function get($id)
     {
         /**
@@ -125,6 +127,7 @@ class SaleitemPrice extends ADbObject implements IDbObject
      */
     public function update($data)
     {
+//    	var_dump($data);exit;
         $priceRecord = new PriceRecord();
         $priceRecord->setDb($this->db);
         $priceRecord->loadFrom($data['price']);
