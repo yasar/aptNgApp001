@@ -99,7 +99,8 @@ class SaleSaleItemRecord extends ADbRecord
 
 //        $saleitem_original = PriceManager::get($data['saleitem']['price_id']);
 //        $this->base_price = $saleitem_original['base_price'];
-        
+     
+	    self::getDb()->disableCheckRightOnce();
         $original_price   = Price::getBy(['price_id' => $data['saleitem']['price_id']]);
         $this->base_price = $original_price->base_price;
     }

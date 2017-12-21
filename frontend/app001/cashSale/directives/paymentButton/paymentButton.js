@@ -8,8 +8,7 @@
     var builder = cashSaleBuilder;
 
 
-    angular.module(builder.getModuleName())
-        .directive(builder.getDirectiveName(_name), Directive);
+    angular.module(builder.getModuleName()).directive(builder.getDirectiveName(_name), Directive);
 
     function Directive() {
         return {
@@ -25,6 +24,7 @@
     }
 
     Controller.$inject = ['$scope', '$templateCache', 'dialogs', '$injector'];
+
     function Controller($scope, $templateCache, dialogs, $injector) {
         var vm                     = this;
         var ShoppingCartService    = $injector.get('ShoppingCartService');
@@ -55,16 +55,28 @@
             };
             aptUtils.showWait(waitConf);
             CashSalePaymentService.processPayment().then(function (result) {
-                if (!result) {
-                    aptUtils.showError('Warning', 'Payment has not been processed successfully.');
-                }
+                // if (!result) {
+                //     aptUtils.showError('Warning', 'Payment has not been processed successfully.');
+                // }
+                // NotifyingService.notify('shopping-cart:reset');
+                // CashSaleDataService.reset();
+                // CashSalePaymentService.reset();
+                // waitConf.progress = 100;
+                var title   = gettextCatalog.getString('Successfull');
+                var message = gettextCatalog.getString('Payment has been processed successfully.');
+                aptUtils.showInfo(title, message);
+
                 NotifyingService.notify('shopping-cart:reset');
                 CashSaleDataService.reset();
                 CashSalePaymentService.reset();
+
+            }, function (error) {
+                var title   = gettextCatalog.getString('Error');
+                var message = gettextCatalog.getString('Payment failed: ');
+                aptUtils.showError('Warning', message + error);
+            }).finally(function () {
+
                 waitConf.progress = 100;
-                var title         = gettextCatalog.getString('Successfull');
-                var message       = gettextCatalog.getString('Payment has been processed successfully.');
-                aptUtils.showInfo(title, message);
             });
         }
 
@@ -88,8 +100,8 @@
                     //CouponService.reset();
 
                 }], undefined, {
-                windowClass: 'slide-up'
-            });
+                               windowClass: 'slide-up'
+                           });
 
         }
     }
