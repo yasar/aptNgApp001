@@ -11,8 +11,9 @@ namespace BYRWEB\app001\cashSale;
 
 
 
-use BYRWEB\app001\saleSaleItem\SaleSaleItemRecord;
+//use BYRWEB\app001\saleSaleItem\SaleSaleItemRecord;
 use BYRWEB\app900\sale\SaleRecord;
+use BYRWEB\app900\saleSaleItem\SaleSaleItemRecord;
 use BYRWEB\base\ADbRecord;
 use BYRWEB\base\Exception;
 

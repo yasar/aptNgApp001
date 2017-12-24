@@ -113,7 +113,7 @@ class CouponInspector implements SlimRouteProvider
 	
 	
 	public static
-	function getCoupons()
+	function getCoupons(): CouponInspectorResult
 	{
 		
 		/**
@@ -128,7 +128,8 @@ class CouponInspector implements SlimRouteProvider
 		CouponProcessor::process();
 		self::fixExcessivePayment();
 		
-		$returnObj          = new \stdClass();
+		//		$returnObj          = new \stdClass();
+		$returnObj          = new CouponInspectorResult();
 		$returnObj->coupons = self::getApplicableCoupons();
 		
 		/**
@@ -193,7 +194,7 @@ LEFT JOIN `app001.coupon_target` AS ct ON ct.coupon_id = c.coupon_id
 LEFT JOIN `app001.coupon_target_group` AS ctg ON ctg.coupon_target_id = ct.coupon_target_id
 LEFT JOIN `app999.client_group` AS cg ON cg.client_group_id = ctg.client_group_id
 LEFT JOIN `app001.card` AS crd ON crd.type_id = ctg.card_type_id
-LEFT JOIN `app999.client_card` AS cc ON cc.card_id = crd.card_id
+LEFT JOIN `app001.client_card` AS cc ON cc.card_id = crd.card_id
 LEFT JOIN `app999.type` AS t ON t.type_id = ct.type_id
 LEFT JOIN `app999.type` AS st ON st.type_id = c.status_id
 LEFT JOIN `app999.type` AS card_type ON card_type.type_id = crd.type_id

@@ -22,7 +22,8 @@ _.merge(cashSaleBuilder.manager, {
 
 
         var listener = $scope.$on('$routeChangeStart', function (event, next, current) {
-            if (current.$$route.segment != 'main.app001.cashSale') {
+            // if (current.$$route.segment != 'main.app001.cashSale') {
+            if (current.$$route.segment != 'main.app001.cashSale.list') {
                 return;
             }
 
