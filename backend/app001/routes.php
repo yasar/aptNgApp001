@@ -8,7 +8,6 @@
 
 BYRWEB\app001\application\Route::initRoutes($app, $db);
 BYRWEB\app001\card\Route::initRoutes($app, $db);
-//BYRWEB\app001\client\Route::initRoutes($app, $db);
 BYRWEB\app001\clientCard\Route::initRoutes($app, $db);
 BYRWEB\app001\coupon\Route::initRoutes($app, $db);
 BYRWEB\app001\couponInspector\CouponInspector::initRoutes($app, $db);
@@ -54,6 +53,7 @@ BYRWEB\app999\accessRight\Route::initRoutes($app, $db);
 BYRWEB\app999\address\Route::initRoutes($app, $db);
 BYRWEB\app999\branch\Route::initRoutes($app, $db);
 BYRWEB\app999\client\Route::initRoutes($app, $db);
+BYRWEB\app999\contact\Route::initRoutes($app, $db);
 BYRWEB\app999\entity\Route::initRoutes($app, $db);
 BYRWEB\app999\my\Route::initRoutes($app, $db);
 BYRWEB\app999\person\Route::initRoutes($app, $db);
@@ -73,7 +73,6 @@ BYRWEB\app998\department\Route::initRoutes($app, $db);
 BYRWEB\app998\staffGroup\Route::initRoutes($app, $db);
 BYRWEB\app998\clientGroup\Route::initRoutes($app, $db);
 BYRWEB\app998\location\Route::initRoutes($app, $db);
-//    \BYRWEB\app998\Location::initRoutes($app, $db);
 BYRWEB\app998\profession\Route::initRoutes($app, $db);
 BYRWEB\app998\premium\Route::initRoutes($app, $db);
 BYRWEB\app998\tax\Route::initRoutes($app, $db);
@@ -82,7 +81,6 @@ BYRWEB\app998\saleitemGroup\Route::initRoutes($app, $db);
 BYRWEB\app998\saleitemUnit\Route::initRoutes($app, $db);
 BYRWEB\app998\template\Route::initRoutes($app, $db);
 
-BYRWEB\contact\Route::initRoutes($app, $db);
 BYRWEB\cronjob\Route::initRoutes($app, $db);
 BYRWEB\file\File::initRoutes($app, $db);
 BYRWEB\nexus\Appointment::initRoutes($app, $db);
