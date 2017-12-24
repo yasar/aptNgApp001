@@ -29,7 +29,7 @@ _.merge(cashSaleBuilder.widgets, [
                     text : gettextCatalog.getString('Shopping Cart'),
                     icon : shoppingCartBuilder.icon,
                     click: function (item) {
-                        aptUtils.goto({segment: 'main.app001.cashSale'});
+                        aptUtils.goto({segment: 'main.app001.cashSaleçl'});
                     }
                 }],
                 graph           : {
@@ -80,11 +80,11 @@ _.merge(cashSaleBuilder.widgets, [
                 }
             };
             this.serviceObj.addWidget({
-                template: '<apt-widget-builder ' +
-                          'params="params"' +
-                          'on-graph-create="onGraphCreate(graphApi)"></apt-widget-builder>',
-                _scopeId: $scope.$id
-            });
+                                          template: '<apt-widget-builder ' +
+                                          'params="params"' +
+                                          'on-graph-create="onGraphCreate(graphApi)"></apt-widget-builder>',
+                                          _scopeId: $scope.$id
+                                      });
 
             function onGraphCreate(graphApi) {
                 service.getWidgetDataForDashboard().then(function (data) {
@@ -93,11 +93,13 @@ _.merge(cashSaleBuilder.widgets, [
 
                     ///
 
-                    $scope.params.title += ' (' + $filter('isoCurrency')(data['stats_totals']['day'], 'try') + ')';
-                    $scope.params.description = $filter('isoCurrency')(data['stats_totals']['week'], 'try')
-                                                + ' / ' + $filter('isoCurrency')(data['stats_totals']['month'], 'try')
-                                                + ' / ' + $filter('isoCurrency')(data['stats_totals']['year'], 'try');
-                    // + ' / ' + $filter('isoCurrency')(data['stats_totals']['overall'], 'try');
+                    if (data['stats_totals']) {
+                        $scope.params.title += ' (' + $filter('isoCurrency')(data['stats_totals']['day'], 'try') + ')';
+                        $scope.params.description = $filter('isoCurrency')(data['stats_totals']['week'], 'try')
+                            + ' / ' + $filter('isoCurrency')(data['stats_totals']['month'], 'try')
+                            + ' / ' + $filter('isoCurrency')(data['stats_totals']['year'], 'try');
+                        // + ' / ' + $filter('isoCurrency')(data['stats_totals']['overall'], 'try');
+                    }
                 });
             }
         }

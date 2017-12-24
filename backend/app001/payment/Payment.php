@@ -17,6 +17,7 @@ use BYRWEB\app001\cashSale\CashSale;
 //use BYRWEB\app001\client\Client;
 //use BYRWEB\app001\client\ClientRecord;
 use BYRWEB\app001\couponInspector\CouponInspector;
+use BYRWEB\app001\couponInspector\CouponInspectorResult;
 use BYRWEB\app001\couponInspector\CouponPaymentSplit;
 use BYRWEB\app001\couponInspector\CouponProcessor;
 use BYRWEB\app001\point\PointRecord;
@@ -25,11 +26,11 @@ use BYRWEB\app001\point\PointValue;
 
 use BYRWEB\app001\saleitem\Saleitem;
 use BYRWEB\app001\saleitemPackage\SaleitemPackage;
-use BYRWEB\app001\saleSaleItem\SaleSaleItemRecord;
 use BYRWEB\app900\account\Account;
 use BYRWEB\app900\current\CurrentRecord;
 use BYRWEB\app900\invoice\Invoice;
 use BYRWEB\app900\sale\SaleRecord;
+use BYRWEB\app900\saleSaleItem\SaleSaleItemRecord;
 use BYRWEB\app900\transaction\Transaction;
 use BYRWEB\app999\client\Client;
 use BYRWEB\app999\client\ClientRecord;
@@ -136,11 +137,11 @@ class Payment //extends ADbObject
 			self::addClientPackageItem($post['saleItems']);
 		}
 		catch (\Exception $e) {
-//			error_log($e->getMessage());
+			//			error_log($e->getMessage());
 			$db->rollBack();
 			FUNC::mailException($e);
 			
-//			return false;
+			//			return false;
 			throw $e;
 		}
 		
@@ -250,21 +251,21 @@ class Payment //extends ADbObject
 				self::$current_splits[] = $tx_split;
 			}
 		}
-		unset($split);
+		unset($split, $tx_split, $arr);
 		
 		$total     = $inspector->total;
 		$new_total = $inspector->new_total;
 		
-		$tx_splits[] = ['account_id' => 'sales',
+		$tx_splits[] = ['account_id' => Account::SPECIAL_SALES,
 		                'tx_type'    => 'credit',
 		                'amount'     => $total['price'],];
 		
-		$tx_splits[] = ['account_id' => 'tax',
+		$tx_splits[] = ['account_id' => Account::SPECIAL_TAX,
 		                'tx_type'    => 'credit',
 		                'amount'     => $new_total['tax'],];
 		
 		if ($new_total['discount'] > 0) {
-			$tx_splits[] = ['account_id' => 'discount',
+			$tx_splits[] = ['account_id' => Account::SPECIAL_DISCOUNT,
 			                'tx_type'    => 'debt',
 			                'amount'     => $new_total['discount'],];
 		}
@@ -471,7 +472,7 @@ class Payment //extends ADbObject
 	
 	
 	private static
-	function processPoints(CouponInspector $inspector, array $splits): void
+	function processPoints(CouponInspectorResult $inspector, array $splits): void
 	{
 		$pointValueRecord = PointValue::getActivePointValue();
 		
@@ -517,9 +518,8 @@ class Payment //extends ADbObject
 				continue;
 			}
 			
-			$pointRecord->points_spent   = $pointRecord->points_spent + $split->amount;
-			$pointRecord->money_spent    = $pointRecord->money_spent + $pointRecord->points_spent
-			                                                           * $pointValueRecord->value;
+			$pointRecord->points_spent   += $split->amount;
+			$pointRecord->money_spent    += $pointRecord->points_spent * $pointValueRecord->value;
 			$pointRecord->sale_id        = self::$saleRecord->sale_id;
 			$pointRecord->point_value_id = $pointValueRecord->point_value_id;
 			$pointRecord->card_id        = 1;
@@ -532,7 +532,7 @@ class Payment //extends ADbObject
 	
 	
 	private static
-	function addClientPackageItem($sale_items)
+	function addClientPackageItem($sale_items): void
 	{
 		$package_items = [];
 		$packageType   = Type::getBy(['name' => 'package', 'groupname' => 'saleitem_type']);
@@ -541,7 +541,7 @@ class Payment //extends ADbObject
 				continue;
 			}
 			
-			if ($sale_item['saleitem']['is_partial'] == null) {
+			if ($sale_item['saleitem']['is_partial'] === null) {
 				continue;
 			};
 			

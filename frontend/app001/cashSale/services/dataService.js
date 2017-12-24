@@ -10,6 +10,7 @@
     angular.module(builder.getModuleName()).factory(builder.getServiceName(_name), fn);
 
     fn.$inject = ['$injector'];
+
     function fn($injector) {
 
         var aptUtils            = $injector.get('aptUtils');
@@ -25,9 +26,13 @@
             // saleItems       : [],
             saleItems       : ShoppingCartService.vars.items,
             client          : {},
-            newTotal        : {},
+            newTotal        : {
+                grand: 0
+            },
             points          : {},
-            initialTotal    : {},
+            initialTotal    : {
+                grand:0
+            },
             coupons         : [],
             clientStats     : {},
             invoiceRecipient: {
@@ -36,7 +41,7 @@
                 tax_num        : null,
                 tax_office     : null,
                 billing_address: null,
-                addresses     : []
+                addresses      : []
             }
         };
 
@@ -106,8 +111,8 @@
 
 
             if (!data.saleItems.length) {
-                this.set('newTotal', 0);
-                this.set('initialTotal', 0);
+                this.set('newTotal.grand', 0);
+                this.set('initialTotal.grand', 0);
                 this.set('coupons', []);
             } else {
                 this.set('flags.isInspecting', true);

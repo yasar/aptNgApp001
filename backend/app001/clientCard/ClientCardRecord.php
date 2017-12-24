@@ -11,6 +11,8 @@ namespace BYRWEB\app001\clientCard;
 
 
 
+use BYRWEB\app001\card\Card;
+use BYRWEB\app001\card\CardRecord;
 use BYRWEB\app999\entity\EntityRecord;
 use BYRWEB\app999\person\PersonRecord;
 use BYRWEB\base\ADbRecord;
@@ -19,6 +21,8 @@ use BYRWEB\base\SqlObject;
 
 class ClientCardRecord extends ADbRecord
 {
+	public const TABLE_NAME = '`app001.client_card`';
+	
 	public $client_card_id, $enterprise_id, $client_id, $card_id, $is_primary, $password;
 	public                                                                     $card_no;
 	
@@ -29,7 +33,7 @@ class ClientCardRecord extends ADbRecord
 	{
 		parent::__construct();
 		
-		$this->setTableName('`app001.client_card`');
+		$this->setTableName(self::TABLE_NAME);
 		$this->setPrimaryKey('client_card_id');
 		$this->setSqlQuery(new SqlObject('SELECT * FROM (
         SELECT
@@ -39,9 +43,8 @@ class ClientCardRecord extends ADbRecord
         cc.is_primary,
         cc.enterprise_id,
         c.card_no
-        FROM
-        `app001.client_card` AS cc
-        INNER JOIN `app001.card` AS c ON c.card_id = cc.card_id
+        FROM ' . self::TABLE_NAME . ' AS cc
+        INNER JOIN ' . CardRecord::TABLE_NAME . ' AS c ON c.card_id = cc.card_id
         ) _'), SqlObject::SQL_FOR_FIND);
 	}
 	

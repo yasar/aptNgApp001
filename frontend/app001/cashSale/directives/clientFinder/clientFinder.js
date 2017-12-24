@@ -8,8 +8,7 @@
     var builder = cashSaleBuilder;
 
 
-    angular.module(builder.getModuleName())
-        .directive(builder.getDirectiveName(_name), Directive);
+    angular.module(builder.getModuleName()).directive(builder.getDirectiveName(_name), Directive);
 
     function Directive() {
         return {
@@ -28,6 +27,7 @@
     }
 
     Controller.$inject = ['$scope', '$injector'];
+
     function Controller($scope, $injector) {
 
         var vm                  = this;
@@ -68,7 +68,7 @@
 
                 if (_.has(invoiceProfile, 'person') && _.isObject(invoiceProfile.person)) {
                     invoiceRecipient.tckn = invoiceProfile.person.tckn;
-                    if (invoiceProfile.person.addresses.length) {
+                    if (invoiceProfile.person.addresses && invoiceProfile.person.addresses.length) {
                         setInvoiceProfileAddresses(invoiceProfile.person.addresses);
                     }
 
@@ -76,7 +76,7 @@
                 else if (_.has(invoiceProfile, 'entity') && _.isObject(invoiceProfile.entity)) {
                     invoiceRecipient.tax_office = invoiceProfile.entity.tax_office;
                     invoiceRecipient.tax_num    = invoiceProfile.entity.tax_nr;
-                    if (invoiceProfile.entity.addresses.length) {
+                    if (invoiceProfile.entity.addresses && invoiceProfile.entity.addresses.length) {
                         setInvoiceProfileAddresses(invoiceProfile.entity.addresses);
                     }
 

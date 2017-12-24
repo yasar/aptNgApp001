@@ -28,7 +28,7 @@ var cashSaleBuilder = new aptBuilder({
                 description: gettextCatalog.getString('Cash Sale'),
                 callback   : function () {
                     var aptUtils = $injector.get('aptUtils');
-                    aptUtils.goto({segment: 'main.app001.cashSale'});
+                    aptUtils.goto({segment: 'main.app001.cashSale.list'});
                 }
             });
     },
