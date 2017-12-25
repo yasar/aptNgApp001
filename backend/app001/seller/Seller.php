@@ -15,10 +15,10 @@ use BYRWEB\app999\entity\Entity;
 use BYRWEB\app999\entity\EntityAddressRecord;
 use BYRWEB\app999\person\Person;
 use BYRWEB\app999\person\PersonAddressRecord;
+use BYRWEB\app999\type\Type;
 use BYRWEB\base\ADbObject;
 use BYRWEB\base\IDbObject;
 use BYRWEB\contact\Contact;
-use BYRWEB\lup\type\Type;
 
 class Seller extends ADbObject implements IDbObject
 {
