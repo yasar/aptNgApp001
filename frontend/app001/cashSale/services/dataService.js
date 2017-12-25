@@ -31,7 +31,7 @@
             },
             points          : {},
             initialTotal    : {
-                grand:0
+                grand: 0
             },
             coupons         : [],
             clientStats     : {},
@@ -72,6 +72,7 @@
         function set(varName, value) {
 
             var dataProp = _.get(data, varName);
+            // var dataProp = data[varName];
 
             /**
              * first check against array
@@ -97,8 +98,8 @@
         }
 
         function get(varName) {
-            return _.get(data, varName);
-            // return data[varName];
+            // return _.get(data, varName);
+            return data[varName];
         }
 
         function getData() {
