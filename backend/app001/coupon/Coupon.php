@@ -10,9 +10,9 @@
 namespace BYRWEB\app001\coupon;
 
 
+use BYRWEB\app999\type\Type;
 use BYRWEB\base\ADbObject;
 use BYRWEB\base\IDbObject;
-use BYRWEB\lup\type\Type;
 
 class Coupon extends ADbObject implements IDbObject
 {
@@ -21,6 +21,7 @@ class Coupon extends ADbObject implements IDbObject
      */
     public function __construct()
     {
+    	parent::__construct();
         $this->setRecordObject(new CouponRecord());
     }
     

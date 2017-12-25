@@ -43,7 +43,6 @@ use BYRWEB\base\WTDbUtils;
 use BYRWEB\common\Session;
 
 
-//use BYRWEB\lup\type\Type;
 
 class Payment //extends ADbObject
 {

@@ -13,7 +13,6 @@ namespace BYRWEB\app001\couponTarget;
 use BYRWEB\app001\couponTargetGroup\CouponTargetGroup;
 use BYRWEB\app001\couponTargetGroup\CouponTargetGroupRecord;
 use BYRWEB\base\ADbObject;
-use BYRWEB\lup\type\Type;
 
 class CouponTarget extends ADbObject
 {
