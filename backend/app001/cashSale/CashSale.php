@@ -58,25 +58,55 @@ class CashSale extends ADbObject implements IDbObject, IWidget
 	
 	
 	public static
-	function updateStats($client_id)
+	function getTotalSales($client_id)
 	{
-		
 		$sql = 'SELECT sum(grand) as grand FROM ' . CashSaleRecord::TABLE_NAME . " where client_id=$client_id";
 		$sth = WTDbUtils::$db->query($sql);
 		ADbRecord::evalError($sth);
 		
 		$row = $sth->fetch(\PDO::FETCH_ASSOC);
 		if (!$row) {
-			return;
+			return 0;
 		}
 		
-		$total_sales = $row['grand'];
-		
-		$sql = "UPDATE client_stats
-            SET total_sales=$total_sales
-            WHERE client_id=$client_id";
-		WTDbUtils::$db->execUpdate($sql);
+		return $row['grand'] * 1.0;
 	}
+	
+	
+	
+//	public static
+//	function updateStats($client_id)
+//	{
+//
+//		$sql = 'SELECT sum(grand) as grand FROM ' . CashSaleRecord::TABLE_NAME . " where client_id=$client_id";
+//		$sth = WTDbUtils::$db->query($sql);
+//		ADbRecord::evalError($sth);
+//
+//		$row = $sth->fetch(\PDO::FETCH_ASSOC);
+//		if (!$row) {
+//			return;
+//		}
+//
+//		$total_sales = $row['grand'];
+//
+//		$loop = null;
+//
+//		do {
+//			$sql         = "UPDATE `app999.client_stats`
+//            SET total_sales=$total_sales
+//            WHERE client_id=$client_id";
+//			$num_of_rows = WTDbUtils::$db->execUpdate($sql);
+//
+//			if ($num_of_rows === 0) {
+//				$sql = WTDbUtils::getInsertQuery('`app999.client_stats`', ['client_id'], [$client_id]);
+//				WTDbUtils::$db->execForce($sql);
+//				$loop = true;
+//			}
+//			else {
+//				$loop = false;
+//			}
+//		} while ($loop);
+//	}
 	
 	
 	

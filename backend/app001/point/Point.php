@@ -29,26 +29,44 @@ class Point extends ADbObject
 	
 	
 	public static
-	function updateStats($client_id)
+	function getTotalPoints($client_id)
 	{
-		$db  = WTDbUtils::$db;
-		$sql = "select points_total from " . PointRecord::TABLE_NAME . "
+		$sql = 'select points_total from ' . PointRecord::TABLE_NAME . "
               where client_id=$client_id ORDER BY `timestamp` DESC LIMIT 1";
-		$sth = $db->query($sql);
+		$sth = WTDbUtils::$db->query($sql);
 		ADbRecord::evalError($sth);
 		
 		$row = $sth->fetch(\PDO::FETCH_ASSOC);
 		if (!$row) {
-			return;
+			return 0;
 		}
 		
-		$points_total = $row['points_total'];
-		
-		$sql = "UPDATE `app999.client_stats`
-            SET total_points=$points_total
-            WHERE client_id=$client_id";
-		$db->execUpdate($sql);
+		return $row['points_total'] * 1.0;
 	}
+	
+	
+	
+//	public static
+//	function updateStats($client_id)
+//	{
+//		$db  = WTDbUtils::$db;
+//		$sql = "select points_total from " . PointRecord::TABLE_NAME . "
+//              where client_id=$client_id ORDER BY `timestamp` DESC LIMIT 1";
+//		$sth = $db->query($sql);
+//		ADbRecord::evalError($sth);
+//
+//		$row = $sth->fetch(\PDO::FETCH_ASSOC);
+//		if (!$row) {
+//			return;
+//		}
+//
+//		$points_total = $row['points_total'];
+//
+//		$sql = "UPDATE `app999.client_stats`
+//            SET total_points=$points_total
+//            WHERE client_id=$client_id";
+//		$db->execUpdate($sql);
+//	}
 	
 	
 	
