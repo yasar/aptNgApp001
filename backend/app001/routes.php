@@ -8,6 +8,7 @@
 
 BYRWEB\app001\application\Route::initRoutes($app, $db);
 BYRWEB\app001\card\Route::initRoutes($app, $db);
+BYRWEB\app001\cardFund\Route::initRoutes($app, $db);
 BYRWEB\app001\clientCard\Route::initRoutes($app, $db);
 BYRWEB\app001\coupon\Route::initRoutes($app, $db);
 BYRWEB\app001\couponInspector\CouponInspector::initRoutes($app, $db);
@@ -23,14 +24,6 @@ BYRWEB\app001\saleitemPackage\Route::initRoutes($app, $db);
 BYRWEB\app001\saleitemPrice\Route::initRoutes($app, $db);
 BYRWEB\app001\seller\Route::initRoutes($app, $db);
 BYRWEB\app001\till\Route::initRoutes($app, $db);
-/**
- * we have app002/image module as well.
- * we shoudl change the db table name from `app002.image` to `image` then
- * remove the app002/image module. so that we will only use one module which is `image`.
- *
- * for now, use them as separate.
- */
-BYRWEB\app999\image\Route::initRoutes($app, $db);
 
 BYRWEB\app900\account\Route::initRoutes($app, $db);
 BYRWEB\app900\current\Route::initRoutes($app, $db);
@@ -55,6 +48,7 @@ BYRWEB\app999\branch\Route::initRoutes($app, $db);
 BYRWEB\app999\client\Route::initRoutes($app, $db);
 BYRWEB\app999\contact\Route::initRoutes($app, $db);
 BYRWEB\app999\entity\Route::initRoutes($app, $db);
+BYRWEB\app999\image\Route::initRoutes($app, $db);
 BYRWEB\app999\my\Route::initRoutes($app, $db);
 BYRWEB\app999\person\Route::initRoutes($app, $db);
 BYRWEB\app999\setting\Route::initRoutes($app, $db);
