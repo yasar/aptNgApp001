@@ -1,0 +1,47 @@
+<div>
+	<apt-panel-heading-elements>
+		<div class="heading-form">
+			<span class="heading-text pr-20 border-right border-right-grey" translate>Card Fund</span>
+		</div>
+	</apt-panel-heading-elements>
+	
+	<div class="row">
+		
+		<div class="col-md-6">
+			<div data-apt-client-selector
+			     data-ng-model="vmCardFundForm.form.data.client_id"></div>
+			<span class="help-block" translate>Client</span>
+		</div>
+		<div class="col-md-6">
+			<div data-apt-client-card-selector
+			     data-filter-required="true"
+			     data-filter-object="{client_id: vmCardFundForm.form.data.client_id}"
+			     data-select-item="vmCardFundForm.form.vars.selectedClientCard"
+			     data-ng-model="vmCardFundForm.form.vars.client_card_id"></div>
+			<span class="help-block" translate>Client</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<apt-field type="date"
+			           field="date"
+			           model-base="vmCardFundForm.form.data"
+			           use-formify="false"
+			           show-label="false"></apt-field>
+			<span class="help-block" translate>Date</span>
+		</div>
+		<div class="col-md-6">
+			<apt-field field="deposit"
+			           model-base="vmCardFundForm.form.data"
+			           use-formify="false"></apt-field>
+			<span class="help-block" translate>Deposit</span>
+		</div>
+	
+	</div>
+	<apt-field field="description"
+	           help-text="Description"
+	           label="true"
+	           type="textarea"
+	           model-base="vmCardFundForm.form.data"></apt-field>
+
+</div>

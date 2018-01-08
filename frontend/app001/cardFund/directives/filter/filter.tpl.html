@@ -1,0 +1,23 @@
+<div class="clearfix">
+	<mini-calendar selected="vmCardFundFilter.filter.date" style="width:100%; border: none;"></mini-calendar>
+</div>
+<apt-panel class="no-border no-margin">
+	<apt-panel-body>
+		<apt-client-selector data-ng-model="vmCardFundFilter.filter.client_id" label="Client" apt-formify></apt-client-selector>
+	</apt-panel-body>
+	<apt-panel-footer>
+		<apt-panel-footer-left></apt-panel-footer-left>
+		<apt-panel-footer-right>
+			<button type="button"
+			        class="btn btn-info btn-xs"
+			        data-ng-show="vmCardFundFilter.filter.date || vmCardFundFilter.filter.client_id"
+			        data-ng-click="vmCardFundFilter.resetFilter()">
+				<i icon="reset"></i><span translate>Reset</span>
+			</button>
+			<button type="button" class="btn btn-info btn-xs"
+			        data-ng-click="vmCardFundFilter.applyFilter()">
+				<i icon="apply"></i><span translate>Apply</span>
+			</button>
+		</apt-panel-footer-right>
+	</apt-panel-footer>
+</apt-panel>

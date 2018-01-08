@@ -1,0 +1,20 @@
+<table apt-datatable datasource="data" model-base="vmCardFundList">
+	<thead>
+	<tr>
+		<th class="col-md-2" apt-sort="date" translate>Date</th>
+		<th class="col-md-4" apt-sort="client" translate>Client</th>
+		<th class="col-md-2 text-right" apt-sort="deposit" translate>Deposit</th>
+		<th class="col-md-2 text-right" apt-sort="withdraw" translate>Withdraw</th>
+		<th class="col-md-2 hidden-xs text-right" apt-sort="balance" translate>Balance</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>{{row.date|amDateFormat:$root.apt.Templ.appConfig.defaults.formats.screenDate}}</td>
+		<td>{{row.client}}</td>
+		<td class="text-right">{{row.deposit.toFixed(2)|isoCurrency:row.currency_code}}</td>
+		<td class="text-right">{{row.withdraw.toFixed(2)|isoCurrency:row.currency_code}}</td>
+		<td class="text-right">{{row.balance.toFixed(2)|isoCurrency:row.currency_code}}</td>
+	</tr>
+	</tbody>
+</table>

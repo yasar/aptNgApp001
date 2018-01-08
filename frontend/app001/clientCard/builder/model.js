@@ -2,7 +2,7 @@
  * Created by burak on 26.09.2016.
  */
 _.merge(clientCardBuilder.model,{
-    restsize            : function (item) {
+    restize            : function (item) {
         aptBuilder.utils.makeInt(item, ['is_primary']);
 
         if (_.has(item, 'setPassword') && !item.setPassword) {
@@ -25,7 +25,7 @@ _.merge(clientCardBuilder.model,{
         {
             operation: ['get', 'customGET', 'put', 'post', 'getList', 'customGETLIST'],
             callback : function (item) {
-                clientCardBuilder.model.restsize(item);
+                clientCardBuilder.model.restize(item);
                 return item;
             }
         }
