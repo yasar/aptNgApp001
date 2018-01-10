@@ -21,6 +21,12 @@ use BYRWEB\app001\Saleitem;
 use BYRWEB\common\Session;
 
 
+/**
+ * Class CashSale
+ *
+ * @package BYRWEB\app001\cashSale
+ * @method CashSaleRecord getRecordObject()
+ */
 class CashSale extends ADbObject implements IDbObject, IWidget
 {
 	
