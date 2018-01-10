@@ -8,8 +8,7 @@
     var builder = cashSaleBuilder;
 
 
-    angular.module(builder.getModuleName())
-        .directive(builder.getDirectiveName(_name), Directive);
+    angular.module(builder.getModuleName()).directive(builder.getDirectiveName(_name), Directive);
 
     function Directive() {
         return {
@@ -22,6 +21,7 @@
     }
 
     Controller.$inject = ['$injector'];
+
     function Controller($injector) {
 
         var vm                     = this;
@@ -36,9 +36,13 @@
 
 
         TypeModel.getList({groupname: 'payment_type'}).then(function (data) {
+            var l    = 0;
             vm.types = data.plain();
-            if (vm.types.length) {
+            if (l = vm.types.length) {
                 vm.setType(vm.types[0]);
+                // for (var i = 0; i < l; i++) {
+                //     vm.types[i].is_available = false;
+                // }
             }
         });
 

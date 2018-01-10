@@ -11,11 +11,13 @@ namespace BYRWEB\app001\payment;
 
 
 
+use BYRWEB\app001\cardFund\CardFund;
 use BYRWEB\app001\cashSale\CashSale;
 
 
 //use BYRWEB\app001\client\Client;
 //use BYRWEB\app001\client\ClientRecord;
+use BYRWEB\app001\clientCard\ClientCard;
 use BYRWEB\app001\couponInspector\CouponInspector;
 use BYRWEB\app001\couponInspector\CouponInspectorResult;
 use BYRWEB\app001\couponInspector\CouponPaymentSplit;
@@ -34,14 +36,15 @@ use BYRWEB\app900\saleSaleItem\SaleSaleItemRecord;
 use BYRWEB\app900\transaction\Transaction;
 use BYRWEB\app999\client\Client;
 use BYRWEB\app999\client\ClientRecord;
+use BYRWEB\app999\clientStats\ClientStats;
 use BYRWEB\app999\type\Type;
+use BYRWEB\app999\type\TypeRecord;
 use BYRWEB\base\Exception;
 use BYRWEB\base\FUNC;
 use BYRWEB\base\NestedPDO;
 use BYRWEB\base\WTDate;
 use BYRWEB\base\WTDbUtils;
 use BYRWEB\common\Session;
-
 
 
 class Payment //extends ADbObject
@@ -103,7 +106,7 @@ class Payment //extends ADbObject
 			 * şimdi eger post içinden payment split bos ise tek tip ödeme oldugundan splite eger varsa new totali atıyoruz
 			 *eger yok ise coupon inspectorden alıyoruz splitleri
 			 */
-			if (count($post['payment_splits']) === 0) {
+			if (\count($post['payment_splits']) === 0) {
 				$split         = new CouponPaymentSplit();
 				$split->amount = $inspector->new_total['grand'];
 				$split->setTypeId($post['default_payment_type_id']);
@@ -116,7 +119,11 @@ class Payment //extends ADbObject
 				                         ->getSplits();
 			}
 			
-			$transaction_id = self::processTransaction($splits, $inspector);
+			if (!isset($post['card_id'])) {
+				$post['card_id'] = ClientCard::getPrimaryCardId($post['client_id']);
+			}
+			
+			$transaction_id = self::processTransaction($post['client_id'], $post['card_id'], $splits, $inspector);
 			
 			
 			self::processSale($post, $inspector, $transaction_id);
@@ -129,6 +136,7 @@ class Payment //extends ADbObject
 			self::processInvoice($post);
 			
 			self::processPoints($inspector, $splits);
+			self::processCardFund($post['client_id'], $post['card_id'], $splits);
 			
 			Client::updateStats(self::$saleRecord->client_id);
 			
@@ -153,6 +161,8 @@ class Payment //extends ADbObject
 	
 	/**
 	 * @param array $post
+	 *
+	 * @throws \BYRWEB\base\exceptions\DatabaseException
 	 */
 	private static
 	function init(array &$post): void
@@ -224,13 +234,17 @@ class Payment //extends ADbObject
 	
 	
 	/**
-	 * @param $splits    CouponPaymentSplit[]
-	 * @param $inspector \stdClass
+	 * @param int                   $client_id
+	 * @param int                   $card_id
+	 * @param CouponPaymentSplit[]  $splits
+	 * @param CouponInspectorResult $inspector
 	 *
 	 * @return mixed
+	 * @throws Exception
+	 * @throws \Exception
 	 */
 	private static
-	function processTransaction(&$splits, $inspector)
+	function processTransaction(int $client_id, ?int $card_id, array &$splits, CouponInspectorResult $inspector)
 	{
 		/**
 		 * @var $split CouponPaymentSplit
@@ -239,12 +253,19 @@ class Payment //extends ADbObject
 		$tx_splits = [];
 		
 		foreach ($splits as &$split) {
-			$arr                         = self::getAccountAndTxTypeByPaymentType($split->getTypeId());
+			$payment_type = Type::getById($split->getTypeId());
+			
+			if (!self::isPayableWithPaymentType($client_id, $card_id, $split, $payment_type)) {
+				throw new \Exception('Payment method\'s limit is not adequate.');
+			}
+			
+			$arr                         = self::getAccountAndTxTypeByPaymentType($payment_type->type_id);
 			$tx_split['account_id']      = $arr['account_id'];
 			$tx_split['tx_type']         = $arr['tx_type'];
 			$tx_split['amount']          = $split->amount;
-			$tx_split['payment_type_id'] = $split->getTypeId();
-			$tx_splits[]                 = $tx_split;
+			$tx_split['payment_type_id'] = $payment_type->type_id;
+			
+			$tx_splits[] = $tx_split;
 			
 			if ($arr['special_account_code'] === Account::SPECIAL_SALES_CREDIT) {
 				self::$current_splits[] = $tx_split;
@@ -295,6 +316,42 @@ class Payment //extends ADbObject
 		$transaction->setDb(self::$db);
 		
 		return $transaction->add($data)->transaction_id;
+	}
+	
+	
+	
+	/**
+	 * @param $split CouponPaymentSplit
+	 * @param $type  TypeRecord
+	 *
+	 * @return bool
+	 */
+	private static
+	function isPayableWithPaymentType($client_id, $card_id, $split, $type): bool
+	{
+		$client_stats = ClientStats::getBy(['client_id' => $client_id, 'card_id' => $card_id]);
+		
+		$success = true;
+		
+		switch ($type->name) {
+			case 'cash':
+				break;
+			case 'card_fund':
+				if ((float)$client_stats->total_fund < (float)$split->amount) {
+					$success = false;
+				}
+				break;
+			case 'points_cash':
+				break;
+			case 'instalment':
+				break;
+			case 'sales_credit':
+				break;
+			case 'credit_card':
+				break;
+		}
+		
+		return $success;
 	}
 	
 	
@@ -365,8 +422,15 @@ class Payment //extends ADbObject
 	
 	
 	
+	/**
+	 * @param array                 $post
+	 * @param CouponInspectorResult $inspector
+	 * @param int                   $transaction_id
+	 *
+	 * @throws Exception
+	 */
 	private static
-	function processSale($post, $inspector, $transaction_id): void
+	function processSale(array $post, CouponInspectorResult $inspector, int $transaction_id): void
 	{
 		
 		$new_total = $inspector->new_total;
@@ -466,6 +530,31 @@ class Payment //extends ADbObject
 		$invoiceRecord->shipping_address = null;
 		$invoiceRecord->add();
 		
+	}
+	
+	
+	
+	/**
+	 * @param int                  $client_id
+	 * @param int                  $card_id
+	 * @param CouponPaymentSplit[] $splits
+	 *
+	 * @throws \Exception
+	 */
+	private static
+	function processCardFund(int $client_id, ?int $card_id, array $splits): void
+	{
+		$typeCardFund = Type::getBy(['name' => 'card_fund', 'groupname' => 'payment_type']);
+		$cardFund     = new CardFund();
+		
+		foreach ($splits as $split) {
+			if ($split->getTypeId() === (int)$typeCardFund->type_id) {
+				$cardFund->add(['client_id' => $client_id,
+				                'card_id'   => $card_id,
+				                'withdraw'  => $split->amount,
+				                'date'      => (new WTDate())->GetDateFormattedForDB()]);
+			}
+		}
 	}
 	
 	
