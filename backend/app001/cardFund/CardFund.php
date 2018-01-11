@@ -9,6 +9,7 @@ namespace BYRWEB\app001\cardFund;
 use BYRWEB\app900\current\Current;
 use BYRWEB\app900\current\CurrentRecord;
 use BYRWEB\app999\clientStats\ClientStats;
+use BYRWEB\app999\clientStats\ClientStatsRecord;
 use BYRWEB\base\ADbObject;
 use BYRWEB\base\WTDate;
 
@@ -56,6 +57,15 @@ class CardFund extends ADbObject
 			
 			$stats             = ClientStats::getBy(['client_id' => $result->client_id,
 			                                         'card_id'   => $result->card_id]);
+			if(!$stats){
+//				throw new \Exception('Client stats does not have entry in the database.');
+				
+				$stats = new ClientStatsRecord();
+				$stats->card_id = $result->card_id;
+				$stats->client_id = $result->client_id;
+				$stats->add();
+			}
+			
 			$stats->total_fund += (float)$result->deposit - (float)$result->withdraw;
 			$stats->update();
 			$this->getDb()
