@@ -29,7 +29,7 @@ _.merge(cashSaleBuilder.widgets, [
                     text : gettextCatalog.getString('Shopping Cart'),
                     icon : shoppingCartBuilder.icon,
                     click: function (item) {
-                        aptUtils.goto({segment: 'main.app001.cashSaleçl'});
+                        aptUtils.goto({segment: 'main.app001.cashSale.list'});
                     }
                 }],
                 graph           : {

@@ -33,51 +33,51 @@ class CardFund extends ADbObject
 	
 	
 	
-	/**
-	 * Adds record into CardFund table, then updates the ClientStats table accordingly.
-	 *
-	 * @param      $data
-	 * @param bool $updateOnDuplicate
-	 *
-	 * @return bool|CardFundRecord|void
-	 * @throws \Exception
-	 */
-	public
-	function add($data, $updateOnDuplicate = false)
-	{
-		//		return $this->deposit($data);
-		$this->getDb()
-		     ->beginTransaction();
-		
-		try {
-			/**
-			 * @var CardFundRecord $result
-			 */
-			$result = parent::add($data, $updateOnDuplicate);
-			
-			$stats             = ClientStats::getBy(['client_id' => $result->client_id,
-			                                         'card_id'   => $result->card_id]);
-			if(!$stats){
-//				throw new \Exception('Client stats does not have entry in the database.');
-				
-				$stats = new ClientStatsRecord();
-				$stats->card_id = $result->card_id;
-				$stats->client_id = $result->client_id;
-				$stats->add();
-			}
-			
-			$stats->total_fund += (float)$result->deposit - (float)$result->withdraw;
-			$stats->update();
-			$this->getDb()
-			     ->commit();
-			
-			return $result;
-		}
-		catch (\Exception $e) {
-			$this->getDb()
-			     ->rollBack();
-			throw $e;
-		}
-	}
+//	/**
+//	 * Adds record into CardFund table, then updates the ClientStats table accordingly.
+//	 *
+//	 * @param      $data
+//	 * @param bool $updateOnDuplicate
+//	 *
+//	 * @return bool|CardFundRecord|void
+//	 * @throws \Exception
+//	 */
+//	public
+//	function add(array $data, $updateOnDuplicate = false): bool
+//	{
+//		//		return $this->deposit($data);
+//		$this->getDb()
+//		     ->beginTransaction();
+//
+//		try {
+//			/**
+//			 * @var CardFundRecord $result
+//			 */
+//			$result = parent::add($data, $updateOnDuplicate);
+//
+//			$stats = ClientStats::getBy(['client_id' => $result->client_id,
+//			                             'card_id'   => $result->card_id]);
+//			if (!$stats) {
+//				//				throw new \Exception('Client stats does not have entry in the database.');
+//
+//				$stats            = new ClientStatsRecord();
+//				$stats->card_id   = $result->card_id;
+//				$stats->client_id = $result->client_id;
+//				$stats->add();
+//			}
+//
+//			$stats->total_fund += (float)$result->deposit - (float)$result->withdraw;
+//			$stats->update();
+//			$this->getDb()
+//			     ->commit();
+//
+//			return $result;
+//		}
+//		catch (\Exception $e) {
+//			$this->getDb()
+//			     ->rollBack();
+//			throw $e;
+//		}
+//	}
 	
 }

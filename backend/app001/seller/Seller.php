@@ -27,65 +27,80 @@ class Seller extends ADbObject implements IDbObject
      */
     public function __construct()
     {
+    	parent::__construct();
         $this->setRecordObject(new SellerRecord());
     }
 
-    /**
-     * @param $id
-     *
-     * @return SellerRecord
-     */
-    public function get($id)
-    {
-        /**
-         * @var SellerRecord
-         */
-        return parent::get($id);
+//    /**
+//     * @param $id
+//     *
+//     * @return SellerRecord
+//     */
+//    public function get($id)
+//    {
+//        /**
+//         * @var SellerRecord
+//         */
+//        return parent::get($id);
+////
+//    }
+
+//    /**
+//     * @param $data
+//     *
+//     * @return bool|SellerRecord
+//     */
+//    public function add($data, $updateOnDuplicate = false)
+//    {
+////        return;
 //
+//        $this->db->beginTransaction();
+//
+//        if (array_key_exists('quickEntityData', $data)) {
+//            $entityRecord    = $this->addQuickEntityBeforeSeller($data);
+//            $data->entity_id = $entityRecord->entity_id;
+//        }
+//
+//        if (array_key_exists('quickPersonData', $data)) {
+//            $personRecord    = $this->addQuickPersonBeforeSeller($data);
+//            $data->person_id = $personRecord->person_id;
+//
+//        }
+//        $seller = parent::add($data, $updateOnDuplicate);
+//
+//        if (!$seller) {
+//            return false;
+//        }
+//
+//        $this->db->commit();
+//
+//        return $seller;
+//    }
+    
+    protected function beforeAdd($data){
+	    if (array_key_exists('quickEntityData', $data)) {
+		    $entityRecord    = $this->addQuickEntityBeforeSeller($data);
+		    $data->entity_id = $entityRecord->entity_id;
+	    }
+	
+	    if (array_key_exists('quickPersonData', $data)) {
+		    $personRecord    = $this->addQuickPersonBeforeSeller($data);
+		    $data->person_id = $personRecord->person_id;
+	    }
+	    
+	    return $data;
     }
 
-    /**
-     * @param $data
-     *
-     * @return bool|SellerRecord
-     */
-    public function add($data, $updateOnDuplicate = false)
-    {
-//        return;
-
-        $this->db->beginTransaction();
-
-        if (array_key_exists('quickEntityData', $data)) {
-            $entityRecord    = $this->addQuickEntityBeforeSeller($data);
-            $data->entity_id = $entityRecord->entity_id;
-        }
-
-        if (array_key_exists('quickPersonData', $data)) {
-            $personRecord    = $this->addQuickPersonBeforeSeller($data);
-            $data->person_id = $personRecord->person_id;
-
-        }
-        $seller = parent::add($data, $updateOnDuplicate);
-
-        if (!$seller) {
-            return false;
-        }
-
-        $this->db->commit();
-
-        return $seller;
-    }
-
-    /**
-     * @param $data
-     *
-     * @return bool|SellerRecord
-     */
-    public function update($data)
-    {
-
-        return parent::update($data);
-    }
+//    /**
+//     * @param $data
+//     *
+//     * @return bool|SellerRecord
+//     */
+//    public function update($data)
+//    {
+//
+//        return parent::update($data);
+//    }
 
     /**
      * @param null  $filter

@@ -8,8 +8,7 @@
     var builder = saleitemBuilder;
 
 
-    angular.module(builder.getModuleName())
-        .directive(builder.getDirectiveName(_name), Directive);
+    angular.module(builder.getModuleName()).directive(builder.getDirectiveName(_name), Directive);
 
     Directive.$inject = ['$injector'];
 
@@ -44,7 +43,13 @@
                     if (!vm.secondEnter) {
                         vm.findSaleitem();
                     } else {
-                        NotifyingService.notify('product-barcode-read', vm.saleitem);
+                        // NotifyingService.notify('product-barcode-read', vm.saleitem);
+                        NotifyingService.notify('product-barcode-read', {
+                            saleitem: vm.saleitem,
+                            options : {closePopup: false}
+                        });
+
+                        vm.reset();
                     }
                 }
             }
@@ -66,8 +71,9 @@
         vm.saleitem        = {};
         vm.productOverview = null;
         vm.findSaleitem    = findSaleitem;
+        vm.reset           = reset;
 
-        vm.saleData             = CashSaleDataService.getData();
+        vm.saleData = CashSaleDataService.getData();
 
         function findSaleitem() {
 
@@ -82,6 +88,15 @@
                     vm.productOverview = false;
                 }
             });
+        }
+
+        function reset() {
+            // utils.removeObjectProperties(vm.saleitem);
+            vm.saleitem        = {};
+            vm.productOverview = false;
+            vm.barcode         = null;
+            vm.lastBarcode     = null;
+            vm.secondEnter     = false;
         }
 
 

@@ -18,7 +18,7 @@ use BYRWEB\base\IDbObject;
  * @package BYRWEB\app001\clientCard
  * @method static ClientCardRecord getBy($filter, $singleRow = true, ADbObject $instance = null, string $mode = null, array $order = null, int $limit = null)
  * @method ClientCardRecord[] find($filter = null, $keyword = null, $limit = null, array $order = [], $selectOnly = null, $lookIn = null)
- * @method bool|ClientCardRecord update($data)
+ * @method bool update(array $data)
  * @method ClientCardRecord getRecordObject()
  */
 class ClientCard extends ADbObject
@@ -55,33 +55,44 @@ class ClientCard extends ADbObject
 	
 	
 	
-	/**
-	 * @param      $data
-	 *
-	 * @param bool $updateOnDuplicate
-	 *
-	 * @return bool|ClientCardRecord
-	 * @throws \Exception
-	 */
-	public
-	function add($data, $updateOnDuplicate = false)
-	{
-		$clientCard = parent::add($data, $updateOnDuplicate);
-		
-		
-		if (!$clientCard) {
-			return false;
-		}
-		$card = new Card();
-		$card->setDb($this->db);
-		$cardRecord         = $card->get($data->card_id);
-		$cardRecord->in_use = 1;
-		$cardRecord->update();
-		
-		return $clientCard;
-	}
-	
-	
+//	/**
+//	 * @param      $data
+//	 *
+//	 * @param bool $updateOnDuplicate
+//	 *
+//	 * @return bool|ClientCardRecord
+//	 * @throws \Exception
+//	 */
+//	public
+//	function add(array $data, $updateOnDuplicate = false): bool
+//	{
+//		$result = parent::add($data, $updateOnDuplicate);
+//		if (!$result) {
+//			return false;
+//		}
+//
+//		$card = new Card();
+//		$card->setDb($this->db);
+//		$cardRecord         = $card->get($data['card_id']);
+//		$cardRecord->in_use = 1;
+//		$cardRecord->update();
+//
+//		return true;
+//
+//		//		$clientCard = parent::add($data, $updateOnDuplicate);
+//		//
+//		//
+//		//		if (!$clientCard) {
+//		//			return false;
+//		//		}
+//		//		$card = new Card();
+//		//		$card->setDb($this->db);
+//		//		$cardRecord         = $card->get($data->card_id);
+//		//		$cardRecord->in_use = 1;
+//		//		$cardRecord->update();
+//		//
+//		//		return $clientCard;
+//	}
 	
 	
 	

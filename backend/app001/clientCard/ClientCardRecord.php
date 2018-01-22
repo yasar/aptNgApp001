@@ -48,5 +48,19 @@ class ClientCardRecord extends ADbRecord
         ) _'), SqlObject::SQL_FOR_FIND);
 	}
 	
+	
+	
+	/**
+	 * @throws \BYRWEB\base\exceptions\Exception
+	 */
+	protected
+	function afterAdd()
+	{
+		$card = new Card();
+		$card->setDb($this->db);
+		$cardRecord         = $card->get($this->card_id);
+		$cardRecord->in_use = 1;
+		$cardRecord->update();
+	}
 }
 
