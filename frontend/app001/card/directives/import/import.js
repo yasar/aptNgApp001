@@ -32,7 +32,8 @@
         var model      = $injector.get(builder.getServiceName('model'));
 
         vm.import = importFn;
-        vm.form   = new aptUtils.form('cardImport', {}, {
+        // vm.form   = new aptUtils.form('cardImport', {}, {
+        vm.form   = new aptUtils.form(cardBuilder, {}, {
             stay     : true,
             mute     : true,
             integrate: false
