@@ -239,12 +239,12 @@ class Payment //extends ADbObject
 	 * @param CouponPaymentSplit[]  $splits
 	 * @param CouponInspectorResult $inspector
 	 *
-	 * @return mixed
+	 * @return int
 	 * @throws Exception
 	 * @throws \Exception
 	 */
 	private static
-	function processTransaction(int $client_id, ?int $card_id, array &$splits, CouponInspectorResult $inspector)
+	function processTransaction(int $client_id, ?int $card_id, array &$splits, CouponInspectorResult $inspector): int
 	{
 		/**
 		 * @var $split CouponPaymentSplit
@@ -313,9 +313,13 @@ class Payment //extends ADbObject
 		         'splits'            => $tx_splits,];
 		
 		$transaction = new Transaction();
-		$transaction->setDb(self::$db);
+		//		$transaction->setDb(self::$db);
 		
-		return $transaction->add($data)->transaction_id;
+		//		return $transaction->add($data)->transaction_id;
+		
+		$transaction->add($data);
+		
+		return (int)$transaction->getRecordObject()->transaction_id;
 	}
 	
 	

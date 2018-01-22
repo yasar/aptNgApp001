@@ -33,48 +33,48 @@ class Card extends ADbObject
 	
 	
 	
-	/**
-	 * @param $id
-	 *
-	 * @return CardRecord
-	 */
-	public
-	function get($id)
-	{
-		/**
-		 * @var CardRecord
-		 */
-		return parent::get($id);
-		//
-	}
+//	/**
+//	 * @param $id
+//	 *
+//	 * @return CardRecord
+//	 */
+//	public
+//	function get($id)
+//	{
+//		/**
+//		 * @var CardRecord
+//		 */
+//		return parent::get($id);
+//		//
+//	}
+//
+//
+//
+//	/**
+//	 * @param $data
+//	 *
+//	 * @return bool|CardRecord
+//	 */
+//	public
+//	function add($data, $updateOnDuplicate = false)
+//	{
+//
+//		return parent::add($data, $updateOnDuplicate);
+//	}
 	
 	
 	
-	/**
-	 * @param $data
-	 *
-	 * @return bool|CardRecord
-	 */
-	public
-	function add($data, $updateOnDuplicate = false)
-	{
-		
-		return parent::add($data, $updateOnDuplicate);
-	}
-	
-	
-	
-	/**
-	 * @param $data
-	 *
-	 * @return bool|CardRecord
-	 */
-	public
-	function update($data)
-	{
-		
-		return parent::update($data);
-	}
+//	/**
+//	 * @param $data
+//	 *
+//	 * @return bool|CardRecord
+//	 */
+//	public
+//	function update($data)
+//	{
+//
+//		return parent::update($data);
+//	}
 	
 	
 	

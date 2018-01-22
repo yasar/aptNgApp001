@@ -15,8 +15,8 @@ _.merge(cashSaleBuilder.manager, {
         /**
          * barcode ile okutulan ürünün ilk dinleme yeri
          */
-        NotifyingService.subscribe($scope, 'product-barcode-read', function (event, saleitem) {
-            ShoppingCartService.addItem(saleitem);
+        NotifyingService.subscribe($scope, 'product-barcode-read', function (event, data) {
+            ShoppingCartService.addItem(data.saleitem);
             event.preventDefault();
         }, false, true);
 
