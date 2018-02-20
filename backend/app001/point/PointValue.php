@@ -17,35 +17,32 @@ use BYRWEB\base\WTDbUtils;
 use BYRWEB\common\Session;
 
 
+/**
+ * Class PointValue
+ *
+ * @package BYRWEB\app001\point
+ * @method PointValueRecord getRecordObject()
+ */
 class PointValue extends ADbObject
 {
 	
 	public
 	function __construct()
 	{
+		parent::__construct();
 		$this->setRecordObject(new PointValueRecord());
 	}
 	
 	
-	//    public function load()
-	//    {
-	//        $enterprise_id = Session::user()->enterprise_id;
-	//        $sql = "SELECT * FROM point_value where enterprise_id=$enterprise_id and is_active=1";
-	//        $sth = $this->db->query($sql);
-	//        $row = $sth->fetch(\PDO::FETCH_ASSOC);
-	//
-	//        $this->loadFromArray($row);
-	//
-	//    }
 	
 	/**
 	 * @return PointValueRecord
 	 */
 	public static
-	function getActivePointValue()
+	function getActivePointValue(): PointValueRecord
 	{
 		$db  = WTDbUtils::$db;
-		$sql = "SELECT * FROM `app001.point_value` WHERE is_active=1 AND end_date IS NULL AND "
+		$sql = 'SELECT * FROM `app001.point_value` WHERE is_active=1 AND end_date IS NULL AND '
 		       . SecurityUtils::getEnterpriseSecurityForQuery(true, false, '');
 		$sth = $db->query($sql);
 		//        return $sth->fetchObject( __NAMESPACE__.'\PointValueRecord');
