@@ -16,6 +16,12 @@ use BYRWEB\base\ADbObject;
 use BYRWEB\base\IDbObject;
 
 
+/**
+ * Class Till
+ *
+ * @package BYRWEB\app001\till
+ * @method TillRecord getRecordObject()
+ */
 class Till extends ADbObject implements IDbObject
 {
 	/**
